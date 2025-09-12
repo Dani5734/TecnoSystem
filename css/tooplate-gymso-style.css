@@ -31,7 +31,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
   }
 
   :root {
-    --primary-color:        #f13a11;
+    --primary-color:        rgb(251, 17, 17);
     --white-color:          #ffffff;
     --dark-color:           #171819;
     --about-bg-color:       #f9f9f9;
@@ -222,36 +222,123 @@ https://www.tooplate.com/view/2119-gymso-fitness
     opacity: 0.85;
   }
 
+/*Estilos de chat  */
+.chat-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: black;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2em;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    z-index: 1000;
+}
 
-  /*---------------------------------------
-     MODAL              
-  -----------------------------------------*/
+.chat-container {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 380px;
+    height: 550px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    display: none; /* Inicia oculto */
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1000;
+}
 
-  .modal-content {
-    padding: 2rem 3rem;
-  }
+.chat-header {
+    background-color: black;
+    color: white;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 
-  .modal-header,
-  .modal-body,
-  .modal-footer {
-    border: 0;
-    padding: 0;
-  }
+.chat-header h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
 
-  .membership-form a {
-    color: var(--primary-color);
-  }
+.chat-logo img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
 
+.close-chat {
+    font-size: 1.5em;
+    cursor: pointer;
+}
 
-  /*---------------------------------------
-    FEATURE          
-  -----------------------------------------*/
+.chat-body {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
 
-  .feature {
-    background: var(--dark-color);
-    padding: 5rem 0;
-  }
+.welcome-message {
+    background-color: #f1f1f1;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+}
 
+.chat-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.chat-option-button {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    background-color: white;
+    cursor: pointer;
+}
+
+.chat-input-area {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.chat-input-area input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+.chat-input-area button {
+    background-color: #f1f1f1;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1.2em;
+}
 
   /*---------------------------------------
      MENU             

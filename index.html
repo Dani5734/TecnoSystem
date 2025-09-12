@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 
-     <title>Gymso Fitness HTML Template</title>
+     <title>HealthBot</title>
 
      <meta charset="UTF-8">
      <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -28,7 +28,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
 
-            <a class="navbar-brand" href="index.html">Gymso Fitness</a>
+            <a class="navbar-brand" href="index.html">HealthBot</a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -58,11 +58,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
                     </li>
                 </ul>
 
-                <ul class="social-icon ml-lg-3">
-                    <li><a href="https://fb.com/tooplate" class="fa fa-facebook"></a></li>
-                    <li><a href="#" class="fa fa-twitter"></a></li>
-                    <li><a href="#" class="fa fa-instagram"></a></li>
-                </ul>
+                
             </div>
 
         </div>
@@ -407,20 +403,18 @@ https://www.tooplate.com/view/2119-gymso-fitness
                <div class="row">
 
                     <div class="ml-auto col-lg-4 col-md-5">
-                        <p class="copyright-text">Copyright &copy; 2020 Gymso Fitness Co.
+                        <p class="copyright-text">Copyright &copy; 2025 TecnoSystem
                         
-                        <br>Design: <a href="https://www.tooplate.com">Tooplate</a></p>
+                        
                     </div>
 
                     <div class="d-flex justify-content-center mx-auto col-lg-5 col-md-7 col-12">
-                        <p class="mr-4">
-                            <i class="fa fa-envelope-o mr-1"></i>
-                            <a href="#">hello@company.co</a>
-                        </p>
-
-                        <p><i class="fa fa-phone mr-1"></i> 010-020-0840</p>
+                        <ul class="social-icon ml-lg-3">
+                    <li><a href="#" class="fa fa-facebook"></a></li>
+                    <li><a href="#" class="fa fa-twitter"></a></li>
+                    <li><a href="#" class="fa fa-instagram"></a></li>
+                        </ul>
                     </div>
-                    
                </div>
           </div>
      </footer>
@@ -471,6 +465,48 @@ https://www.tooplate.com/view/2119-gymso-fitness
      <script src="js/aos.js"></script>
      <script src="js/smoothscroll.js"></script>
      <script src="js/custom.js"></script>
+     <script src="js/chatbot.js"></script>
 
+<div id="chat-button" class="chat-button">
+    <i class="fa fa-commenting" aria-hidden="true"></i>
+</div>
+
+<!-- VENTANA CHATBOT -->
+<div id="chat-container" class="chat-container">
+    <div class="chat-header">
+        <span class="chat-logo">
+            <img src="images/logo.png" alt="Logo del Chatbot">
+        </span>
+        <h3 class="chat-title">HealthBot</h3>
+        <span id="close-chat" class="close-chat">&times;</span>
+    </div>
+    
+    <div class="chat-body">
+        <div class="welcome-message">
+            <p>👋 Want to chat about Healbot? I'm an AI chatbot here to help you find your way.</p>
+            <p>Ask me or select an option below.</p>
+        </div>
+        
+        <div class="chat-options">
+            <button class="chat-option-button">📝 Obten Plan nutricional</button>
+            <button class="chat-option-button">🚀 Mejora tu salud</button>
+            <button class="chat-option-button">📅 Genera una rutina</button>
+            <button class="chat-option-button">💬 Salud</button>
+        </div>
+        
+        <div id="messages-container" class="messages-container">
+            </div>
+        
+    </div>
+    
+    <div class="chat-input-area">
+        <input type="text" id="user-input" placeholder="Ask me anything...">
+        <button id="send-button">
+            <i class="fa fa-paper-plane" aria-hidden="true"></i>
+        </button>
+    </div>
+</div>
+
+</div>
 </body>
 </html>
