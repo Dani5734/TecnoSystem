@@ -229,7 +229,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
     right: 20px;
     width: 60px;
     height: 60px;
-    background-color: black;
+    background-color: rgb(251, 17, 17);
     color: white;
     border-radius: 50%;
     display: flex;
@@ -257,7 +257,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
 }
 
 .chat-header {
-    background-color: black;
+    background-color: rgb(251, 17, 17);
     color: white;
     padding: 15px;
     display: flex;
@@ -291,7 +291,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
 }
 
 .welcome-message {
-    background-color: #f1f1f1;
+    background-color:#f1f1f1; 
     padding: 15px;
     border-radius: 10px;
     margin-bottom: 10px;
