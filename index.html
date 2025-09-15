@@ -27,48 +27,50 @@ https://www.tooplate.com/view/2119-gymso-fitness
 <body data-spy="scroll" data-target="#navbarNav" data-offset="50">
 
     <!-- MENU BAR -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
 
-            <a class="navbar-brand" href="index.html">HealthBot</a>
+    <!-- Logo con icono -->
+    <a class="navbar-brand" href="index.html">
+      <img src="images/logo.png" alt="HealthBot" width="50" height="40" class="d-inline-block align-text-top">
+    </a>
 
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-lg-auto">
-                    <li class="nav-item">
-                        <a href="#home" class="nav-link smoothScroll">Home</a>
-                    </li>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-lg-auto">
+        <li class="nav-item">
+          <a href="#home" class="nav-link smoothScroll">Home</a>
+        </li>
 
-                    <li class="nav-item">
-                        <a href="#about" class="nav-link smoothScroll">Nosotros</a>
-                    </li>
+        <li class="nav-item">
+          <a href="#about" class="nav-link smoothScroll">Nosotros</a>
+        </li>
 
-                    <li class="nav-item">
-                        <a href="#class" class="nav-link smoothScroll">Classes</a>
-                    </li>
+        <li class="nav-item">
+          <a href="#class" class="nav-link smoothScroll">Testimonios</a>
+        </li>
 
-                    <li class="nav-item">
-                        <a href="#schedule" class="nav-link smoothScroll">Testimonios</a>
-                    </li>
+        <li class="nav-item">
+          <a href="#schedule" class="nav-link smoothScroll">Clase</a>
+        </li>
 
-                    <li class="nav-item">
-                        <a href="#contact" class="nav-link smoothScroll">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link smoothScroll" data-toggle="modal"
-                            data-target="#membershipForm">Iniciar Sesión</a>
-                    </li>
-                </ul>
+        <li class="nav-item">
+          <a href="#contact" class="nav-link smoothScroll">Contact</a>
+        </li>
 
+        <li class="nav-item">
+          <a href="#" class="nav-link smoothScroll" data-toggle="modal" data-target="#membershipForm">Iniciar Sesión</a>
+        </li>
+      </ul>
+    </div>
 
-            </div>
+  </div>
+</nav>
 
-        </div>
-    </nav>
 
 
     <!-- HERO -->
@@ -147,11 +149,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
                 <div class="mt-lg-5 mb-lg-0 mb-4 col-lg-5 col-md-10 mx-auto col-12">
                     <h2 class="mb-4" data-aos="fade-up" data-aos-delay="300">¡Hola! Soy HealthBot.</h2>
 
-                    <p data-aos="fade-up" data-aos-delay="400">Es un chatboy creado para ser tu acompañante virtual en
-                        salud y bienestar..</p> Su objetivo es apoyarte con rutinas de ejercicio personalizadas, planes
-                    de alimentación balanceados y consejos prácticos que te ayuden a mejorar tu estilo de vida. Siempre
-                    disponible para escucharte y motivarte, se convierte en ese compañero que te impulsa a mantenerte
-                    constante y alcanzar tus metas de forma segura y amigable. </p>
+                    <p data-aos="fade-up" data-aos-delay="400">Creado para ser tu acompañante virtual en salud y bienestar.</p>Mi objetivo es apoyarte con rutinas de ejercicio personalizadas, planes de alimentación balanceados y consejos prácticos que te ayuden a mejorar tu estilo de vida. Siempre estoy disponible para escucharte y motivarte, convirtiéndome en ese compañero que te impulsa a mantenerte constante y alcanzar tus metas de forma segura y amigable</p>
 
 
 
@@ -197,68 +195,88 @@ https://www.tooplate.com/view/2119-gymso-fitness
     </section>
 
 
-    <!-- CLASS -->
-    <section class="class section" id="class">
-        <div class="container">
-            <div class="row">
+    <!-- Beneficios - Carrusel -->
+<section class="class section" id="class">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-12 text-center mb-5">
+        <h6 data-aos="fade-up">Te Ofrezco</h6>
+        <h2 data-aos="fade-up" data-aos-delay="200">Beneficios</h2>
+      </div>
 
-                <div class="col-lg-12 col-12 text-center mb-5">
-                    <h6 data-aos="fade-up">Get A Perfect Body</h6>
+      <div class="col-12">
+        <div id="beneficiosCarousel" class="carousel slide" data-ride="carousel">
+          
+          <!-- Indicadores -->
+          <ol class="carousel-indicators">
+            <li data-target="#beneficiosCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#beneficiosCarousel" data-slide-to="1"></li>
+            <li data-target="#beneficiosCarousel" data-slide-to="2"></li>
+          </ol>
 
-                    <h2 data-aos="fade-up" data-aos-delay="200">Our Training Classes</h2>
+          <!-- Contenido del carrusel -->
+          <div class="carousel-inner text-center">
+
+            <!-- Item 1 -->
+            <div class="carousel-item active">
+              <div class="class-thumb mx-auto" style="max-width:400px;">
+                <img src="images/class/yoga-class.jpg" 
+                     class="img-fluid rounded-circle mb-3" 
+                     alt="Consejos"
+                     style="width:300px; height:300px; object-fit:cover;">
+                <div class="class-info">
+                  <h3 class="mb-1">Consejos</h3>
+                  <p class="mt-2">"Mantente hidratado durante tu entrenamiento para maximizar tu rendimiento."</p>
                 </div>
-
-                <div class="col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="400">
-                    <div class="class-thumb">
-                        <img src="images/class/yoga-class.jpg" class="img-fluid" alt="Class">
-
-                        <div class="class-info">
-                            <h3 class="mb-1">Yoga</h3>
-
-                            <span><strong>Trained by</strong> - Bella</span>
-
-                            <span class="class-price">$50</span>
-
-                            <p class="mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-5 mt-lg-0 mt-md-0 col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="500">
-                    <div class="class-thumb">
-                        <img src="images/class/crossfit-class.jpg" class="img-fluid" alt="Class">
-
-                        <div class="class-info">
-                            <h3 class="mb-1">Areobic</h3>
-
-                            <span><strong>Trained by</strong> - Mary</span>
-
-                            <span class="class-price">$66</span>
-
-                            <p class="mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-5 mt-lg-0 col-lg-4 col-md-6 col-12" data-aos="fade-up" data-aos-delay="600">
-                    <div class="class-thumb">
-                        <img src="images/class/cardio-class.jpg" class="img-fluid" alt="Class">
-
-                        <div class="class-info">
-                            <h3 class="mb-1">Cardio</h3>
-
-                            <span><strong>Trained by</strong> - Cathe</span>
-
-                            <span class="class-price">$75</span>
-
-                            <p class="mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing</p>
-                        </div>
-                    </div>
-                </div>
-
+              </div>
             </div>
+
+            <!-- Item 2 -->
+            <div class="carousel-item">
+              <div class="class-thumb mx-auto" style="max-width:400px;">
+                <img src="images/class/crossfit-class.jpg" 
+                     class="img-fluid rounded-circle mb-3" 
+                     alt="Aerobic"
+                     style="width:300px; height:300px; object-fit:cover;">
+                <div class="class-info">
+                  <h3 class="mb-1">Salud</h3>
+                  <p class="mt-2">Mantenerte activo reduce el estrés y mejora la calidad del sueño.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="carousel-item">
+              <div class="class-thumb mx-auto" style="max-width:400px;">
+                <img src="images/class/cardio-class.jpg" 
+                     class="img-fluid rounded-circle mb-3" 
+                     alt="Cardio"
+                     style="width:300px; height:300px; object-fit:cover;">
+                <div class="class-info">
+                  <h3 class="mb-1">Cardio</h3>
+                  <p class="mt-2">Ideal para bajar de peso y mejorar tu estado de ánimo.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Controles -->
+          <a class="carousel-control-prev" href="#beneficiosCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Anterior</span>
+          </a>
+          <a class="carousel-control-next" href="#beneficiosCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Siguiente</span>
+          </a>
         </div>
-    </section>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 
 
     <!-- SCHEDULE -->
@@ -373,70 +391,55 @@ https://www.tooplate.com/view/2119-gymso-fitness
 
 
     <!-- CONTACT -->
-    <section class="contact section" id="contact">
-        <div class="container">
-            <div class="row">
+<section class="contact section" id="contact">
+  <div class="container">
+    <div class="row justify-content-center">
 
-                <div class="ml-auto col-lg-5 col-md-6 col-12">
-                    <h2 class="mb-4 pb-2" data-aos="fade-up" data-aos-delay="200">Feel free to ask anything</h2>
+      <div class="col-lg-6 col-md-8 col-12">
+        <h2 class="mb-4 text-center" data-aos="fade-up" data-aos-delay="200">
+          Contáctanos
+        </h2>
+        <p class="text-center mb-5" data-aos="fade-up" data-aos-delay="300">
+          Si tienes alguna pregunta o deseas más información, completa el siguiente formulario.
+        </p>
 
-                    <form action="#" method="post" class="contact-form webform" data-aos="fade-up" data-aos-delay="400"
-                        role="form">
-                        <input type="text" class="form-control" name="cf-name" placeholder="Name">
+        <form action="#" method="post" class="contact-form webform shadow-lg p-4 rounded"
+          data-aos="fade-up" data-aos-delay="400" role="form">
+          
+          <!-- Nombre -->
+          <div class="mb-3">
+            <label for="cf-name" class="form-label">Nombre completo</label>
+            <input type="text" class="form-control" id="cf-name" name="cf-name" placeholder="Escribe tu nombre" required>
+          </div>
 
-                        <input type="email" class="form-control" name="cf-email" placeholder="Email">
+          <!-- Email -->
+          <div class="mb-3">
+            <label for="cf-email" class="form-label">Correo electrónico</label>
+            <input type="email" class="form-control" id="cf-email" name="cf-email" placeholder="ejemplo@correo.com" required>
+          </div>
 
-                        <textarea class="form-control" rows="5" name="cf-message" placeholder="Message"></textarea>
+          <!-- Mensaje -->
+          <div class="mb-3">
+            <label for="cf-message" class="form-label">Mensaje</label>
+            <textarea class="form-control" id="cf-message" rows="5" name="cf-message" placeholder="Escribe tu mensaje aquí..." required></textarea>
+          </div>
 
-                        <button type="submit" class="form-control" id="submit-button" name="submit">Send
-                            Message</button>
-                    </form>
-                </div>
+          <!-- Botón -->
+          <div class="d-grid">
+            <button type="submit" class="btn btn-primary btn-lg" id="submit-button" name="submit">
+              Enviar Mensaje
+            </button>
+          </div>
+        </form>
+      </div>
 
-                <div class="mx-auto mt-4 mt-lg-0 mt-md-0 col-lg-5 col-md-6 col-12">
-                    <h2 class="mb-4" data-aos="fade-up" data-aos-delay="600">Where you can <span>find us</span></h2>
-
-                    <p data-aos="fade-up" data-aos-delay="800"><i class="fa fa-map-marker mr-1"></i> 120-240 Rio de
-                        Janeiro - State of Rio de Janeiro, Brazil</p>
-                    <!-- How to change your own map point
-	1. Go to Google Maps
-	2. Click on your location point
-	3. Click "Share" and choose "Embed map" tab
-	4. Copy only URL and paste it within the src="" field below
--->
-                    <div class="google-map" data-aos="fade-up" data-aos-delay="900">
-                        <iframe
-                            src="https://maps.google.com/maps?q=Av.+Lúcio+Costa,+Rio+de+Janeiro+-+RJ,+Brazil&t=&z=13&ie=UTF8&iwloc=&output=embed"
-                            width="1920" height="250" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-
-    <!-- FOOTER -->
-    <footer class="site-footer">
-        <div class="container">
-            <div class="row">
-
-                <div class="ml-auto col-lg-4 col-md-5">
-                    <p class="copyright-text">Copyright &copy; 2025 TecnoSystem
+    </div>
+  </div>
+</section>
 
 
-                </div>
+                
 
-                <div class="d-flex justify-content-center mx-auto col-lg-5 col-md-7 col-12">
-                    <ul class="social-icon ml-lg-3">
-                        <li><a href="#" class="fa fa-facebook"></a></li>
-                        <li><a href="#" class="fa fa-twitter"></a></li>
-                        <li><a href="#" class="fa fa-instagram"></a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </footer>
 
     <!-- Modal y formulario-->
     <div class="modal fade" id="membershipForm" tabindex="-1" role="dialog" aria-labelledby="membershipFormLabel"
@@ -482,6 +485,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
             </div>
         </div>
     </div>
+    
 
     <!-- SCRIPTS -->
     <script src="js/jquery.min.js"></script>
