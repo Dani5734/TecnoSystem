@@ -158,9 +158,9 @@ https://www.tooplate.com/view/2119-gymso-fitness
 
   .custom-btn.bg-color:hover,
   .custom-btn.bg-color:focus {
-    background: var(--white-color);
+    background: var(--primary-color);
     border-color: transparent;
-    color: var(--primary-color);
+    color: var(--white-color);
   }
 
   .bordered {
@@ -169,7 +169,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
   }
 
   .bg-color {
-    background: var(--primary-color);
+    background: var(--dark-color);
     color: var(--white-color);
   }
 
