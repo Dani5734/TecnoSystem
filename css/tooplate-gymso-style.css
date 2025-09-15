@@ -173,7 +173,13 @@ https://www.tooplate.com/view/2119-gymso-fitness
     color: var(--white-color);
   }
 
+.bg-color.btn-rojo {
+    background-color: var(--primary-color) !important;
+}
 
+.bg-color.btn-rojo:hover {
+    background-color: var(--dark-color) !important;
+}
 
   /*---------------------------------------
      GENERAL               
