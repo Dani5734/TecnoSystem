@@ -1,11 +1,11 @@
 <?php
 header('Content-Type: application/json; charset=UTF-8');
 
-// Cargar configuración segura
+
 $config = include __DIR__ . "/config.php";
 $apiKey = $config["api_key"];
 
-// Recibir mensaje desde el frontend
+// Recibir frontend
 $input = json_decode(file_get_contents("php://input"), true);
 $userMessage = $input["message"] ?? "";
 
@@ -27,7 +27,7 @@ $data = [
     "temperature" => 0.7
 ];
 
-// Inicializar cURL
+
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     "Content-Type: application/json",
@@ -40,7 +40,7 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
 $response = curl_exec($ch);
 
 if (curl_errno($ch)) {
-    echo json_encode(["response" => "⚠️ Error de conexión con la API: " . curl_error($ch)]);
+    echo json_encode(["response" => "Error de conexión con la API: " . curl_error($ch)]);
     curl_close($ch);
     exit;
 }
@@ -52,5 +52,5 @@ $result = json_decode($response, true);
 if (isset($result["choices"][0]["message"]["content"])) {
     echo json_encode(["response" => trim($result["choices"][0]["message"]["content"])]); 
 } else {
-    echo json_encode(["response" => "⚠️ No hubo respuesta del modelo."]);
+    echo json_encode(["response" => "No hubo respuesta del modelo."]);
 }

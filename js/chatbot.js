@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const userInput = document.getElementById("user-input");
   const messagesContainer = document.getElementById("messages-container");
 
-  // Mostrar/Ocultar chatbot
+ 
   chatButton.addEventListener("click", () => chatContainer.classList.add("active"));
   closeChat.addEventListener("click", () => chatContainer.classList.remove("active"));
 
@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
     addMessage(message, "user");
     userInput.value = "";
 
-    // Llamar al backend
+    // traer al backend
     fetch("model/chatbot_api.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
         addMessage(data.response, "bot");
       })
       .catch((err) => {
-        addMessage("⚠️ Error al conectar con el servidor.", "bot");
+        addMessage("Error al conectar con el servidor.", "bot");
         console.error(err);
       });
   }
