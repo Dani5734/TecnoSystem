@@ -185,7 +185,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
 
 /* Estilo del logo en la navbar */
 .navbar-brand img {
-  width: 100px;              /* tamaño del logo */
+  width: 200px;              /* tamaño del logo */
   height: 50px;
 
   object-fit: cover;
