@@ -181,6 +181,19 @@ https://www.tooplate.com/view/2119-gymso-fitness
     background-color: var(--dark-color) !important;
 }
 
+
+
+/* Estilo del logo en la navbar */
+.navbar-brand img {
+  width: 100px;              /* tamaño del logo */
+  height: 50px;
+
+  object-fit: cover;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+
   /*---------------------------------------
      GENERAL               
   -----------------------------------------*/
@@ -345,6 +358,15 @@ https://www.tooplate.com/view/2119-gymso-fitness
     cursor: pointer;
     font-size: 1.2em;
 }
+#messages-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  height: 350px;
+  
+}
+
 
   /*---------------------------------------
      MENU             
@@ -457,7 +479,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
   -----------------------------------------*/
 
   .hero {
-    background-image: url('../images/hero-bg.jpg');
+    background-image: url('../images/car1.jpg');
     background-size: cover;
     background-position: top;
     background-repeat: no-repeat;
@@ -566,52 +588,49 @@ https://www.tooplate.com/view/2119-gymso-fitness
   .table td, .table th {
     padding: 1rem;
   }
+/* Sección con fondo negro */
+.testimonios-section {
+  background-color: #000;
+  color: #fc0f0f; /* Texto principal en rojo */
+  width: 100%;
+  min-height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0;
+}
+
+/* Imagen circular */
+.testimonio-img {
+  width: 220px;
+  height: 220px;
+  object-fit: cover;
+  border: 4px solid #000; /* Marco en negro */
+  padding: 2px;
+}
+
+/* Texto del testimonio */
+.testimonio-texto {
+  max-width: 650px;
+  margin: 0 auto;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #ddd;
+}
+
+/* Cargo debajo del nombre */
+.cargo {
+  color: #aaa;
+  font-size: 1rem;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  display: none !important; /* elimina flechas */
+}
 
 
-  /*---------------------------------------
-      ABOUT & TEAM            
-  -----------------------------------------*/
 
-  .about {
-    background: var(--about-bg-color);
-  }
-
-  .about-working-hours {
-    border-left: 2px solid;
-    padding-left: 3.5rem;
-  }
-
-  .about-working-hours strong {
-    color: var(--white-color);
-    opacity: 0.85;
-  }
-
-  .team-thumb {
-    position: relative;
-  }
-
-  .team-info {
-    background: var(--white-color);
-    border-radius: 0 0 2px 2px;
-    box-shadow: 6px 0 38px rgba(20,20,20,0.10);
-    padding: 20px;
-    position: relative;
-  }
-
-  .team-info span {
-    font-weight: var(--font-weight-light);
-    opacity: 0.85;
-  }
-
-  .team-info .social-icon {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-  }
-
-  .team-info .social-icon li {
-    display: block;
-  }
 
 
   /*---------------------------------------
@@ -712,6 +731,35 @@ https://www.tooplate.com/view/2119-gymso-fitness
   .social-icon li a:hover {
     color: var(--primary-color);
   }
+
+  /*Mensajes del chat*/
+
+.message {
+  max-width: 70%;
+  padding: 10px 5px;
+  margin: 5px;
+  border-radius: 15px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Mensajes del bot */
+.message.bot {
+  background-color: #f1f1f1;
+  align-self: flex-start;
+  text-align: left;
+  border-bottom-left-radius: 0;
+}
+
+/* Mensajes del usuario */
+.message.user {
+  background-color: #e63946;
+  color: #fff;
+  align-self: flex-end;
+  text-align: right;
+  border-bottom-right-radius: 0;
+}
+
 
 
   /*---------------------------------------
