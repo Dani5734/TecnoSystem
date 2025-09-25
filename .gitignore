@@ -1,0 +1,2 @@
+# Ignorar el archivo de configuración con la API Key
+/model/config.php
