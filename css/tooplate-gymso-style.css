@@ -591,7 +591,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
 /* Sección con fondo negro */
 .testimonios-section {
   background-color: #000;
-  color: #fc0f0f; /* Texto principal en rojo */
+  color: var(--primary-color); /* Texto principal en rojo */
   width: 100%;
   min-height: 40vh;
   display: flex;
@@ -667,17 +667,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
   .contact h2 + p {
     max-width: 90%;
   }
-
-  .google-map {
-    border-top: 1px solid #efebeb;
-    margin-top: 2.5rem;
-    padding-top: 2.5rem;
-  }
-
-  .google-map iframe {
-    width: 100%;
-  }
-
+  
 
   /*---------------------------------------
      FOOTER              
