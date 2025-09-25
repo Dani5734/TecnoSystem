@@ -3,7 +3,7 @@
 
 <head>
 
-  <title>HealthBott</title>
+  <title>HealthBot</title>
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -11,6 +11,12 @@
   <meta name="keywords" content="">
   <meta name="author" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Login -->
+  <script src="https://kit.fontawesome.com/274421acc6.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="plugins/sweetalert2/sweetalert2.min.css">
+  <link rel="stylesheet" href="model/login.php">
+  <!-- Fin Login -->
 
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -121,7 +127,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
 
       <!-- Imagen -->
 
-   <!-- <img src="images/Imag1.jpg" alt="Trainer" -->
+   <img src="images/Imag1.jpg" alt="Trainer"
      style="width:350px; border:6px solid #e63946; border-radius:15px;
             box-shadow:0 0 15px #e63946,0 0 30px #e63946,0 0 45px #e63946;">
 
@@ -385,12 +391,13 @@ https://www.tooplate.com/view/2119-gymso-fitness
         </div>
 
         <div class="modal-body">
-          <form class="membership-form webform" role="form">
-            <input type="email" class="form-control" name="cf-email" placeholder="Correo Electrónico">
+          <form action="model/login.php" method="post">
+            <input type="email" class="form-control" name="correousuario" id="correousuario" aria-describedby="helpId" placeholder="Correo Electrónico" required>
 
-            <input type="password" class="form-control" name="cf-password" placeholder="Contraseña">
+            <input  type="password" class="form-control" name="contrasena" id="contrasena" aria-describedby="helpId" placeholder="Contraseña" required>
+            <i id="togglePassword" class="fa-solid fa-eye"></i>
 
-            <button type="submit" class="form-control" id="submit-button" name="submit">Iniciar Sesión</button>
+            <button type="submit" class="form-control" id="submit-button" name="submit" onclick="MsgCaracteres()">Iniciar Sesión</button>
 
                 <p class="text-center mt-3">
                   ¿No tienes cuenta? <a href="#" data-toggle="modal" data-target="#registerModal">Regístrate</a>
@@ -406,6 +413,8 @@ https://www.tooplate.com/view/2119-gymso-fitness
     </div>
   </div>
 
+  <!-- Fin Modal y Formulario -->
+
   <!-- Modal de registro -->
    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -417,37 +426,37 @@ https://www.tooplate.com/view/2119-gymso-fitness
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form action="model/registro.php" method="post" enctype="multipart/form-data">
           <div class="form-row">
             <div class="form-group col-md-6">
               <label for="reg-nombre">Nombre</label>
-              <input type="text" class="form-control" id="reg-nombre" required>
+              <input type="text" class="form-control" name="nombre" id="nombre" aria-describedby="helpId" required>
             </div>
             <div class="form-group col-md-6">
               <label for="reg-apellidos">Apellidos</label>
-              <input type="text" class="form-control" id="reg-apellidos" required>
+              <input type="text" class="form-control" name="apellidos" id="apellidos" aria-describedby="helpId" required>
             </div>
           </div>
           <div class="form-group">
             <label for="reg-correo">Correo Electrónico</label>
-            <input type="email" class="form-control" id="reg-correo" required>
+            <input type="email" class="form-control" name="correousuario" id="correousuario" aria-describedby="helpId" required>
           </div>
           <div class="form-group">
             <label for="reg-password">Contraseña</label>
-            <input type="password" class="form-control" id="reg-password" required>
+            <input type="password" class="form-control" name="contrasena" id="contrasena" aria-describedby="helpId" required>
           </div>
           <div class="form-row">
             <div class="form-group col-md-4">
               <label for="reg-edad">Edad</label>
-              <input type="number" class="form-control" id="reg-edad" min="1" required>
+              <input type="text" class="form-control" name="edad" id="edad" aria-describedby="helpId" min="1" required>
             </div>
             <div class="form-group col-md-4">
               <label for="reg-peso">Peso (kg)</label>
-              <input type="number" class="form-control" id="reg-peso" step="0.1" required>
+              <input type="text" class="form-control" name="peso" id="peso" aria-describedby="helpId" step="0.1" required>
             </div>
             <div class="form-group col-md-4">
               <label for="reg-estatura">Estatura (cm)</label>
-              <input type="number" class="form-control" id="reg-estatura" required>
+              <input type="text" class="form-control" name="estatura" id="estatura" aria-describedby="helpId" required>
             </div>
           </div>
           <div class="form-group">
@@ -471,8 +480,6 @@ https://www.tooplate.com/view/2119-gymso-fitness
 
                 <div class="ml-auto col-lg-4 col-md-5">
                     <p class="copyright-text">Copyright &copy; 2025 TecnoSystem
-
-
                 </div>
 
                 <div class="d-flex justify-content-center mx-auto col-lg-5 col-md-7 col-12">
@@ -536,5 +543,35 @@ https://www.tooplate.com/view/2119-gymso-fitness
 
   </div>
 </body>
+
+
+<!-- Script Login-->
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+  integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+  integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const togglePassword = document.getElementById('togglePassword');
+    const password = document.getElementById('contrasena');
+
+    togglePassword.addEventListener('click', function () {
+      const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+      password.setAttribute('type', type);
+
+      // Cambia el ícono del ojo abierto/cerrado
+      togglePassword.classList.toggle('fa-eye');
+      togglePassword.classList.toggle('fa-eye-slash');
+    });
+  });
+</script>
+
+<!-- Fin Script Login -->
+
 
 </html>
