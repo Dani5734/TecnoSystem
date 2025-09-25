@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
         chatContainer.style.display = 'none';
     });
 });
-
 document.addEventListener("DOMContentLoaded", function () {
   const chatButton = document.getElementById("chat-button");
   const chatContainer = document.getElementById("chat-container");
@@ -21,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const userInput = document.getElementById("user-input");
   const messagesContainer = document.getElementById("messages-container");
 
- 
+  
   chatButton.addEventListener("click", () => chatContainer.classList.add("active"));
   closeChat.addEventListener("click", () => chatContainer.classList.remove("active"));
 
@@ -35,11 +34,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const message = userInput.value.trim();
     if (!message) return;
 
-    // Mostrar mensaje del usuario
+   
     addMessage(message, "user");
     userInput.value = "";
 
-    // traer al backend
+    // Llamar al backend
     fetch("model/chatbot_api.php", {
       method: "POST",
       headers: { "Content-Type": "application/json" },

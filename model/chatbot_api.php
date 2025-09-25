@@ -14,13 +14,22 @@ if (!$userMessage) {
     exit;
 }
 
+$afirmatives = ['Si', 'sí', 'claro', 'afirmativo', 'por su puesto', 'Adelante', 'de acuerdo'];
 // Endpoint de OpenAI
 $url = "https://api.openai.com/v1/chat/completions";
 
 $data = [
     "model" => "gpt-3.5-turbo", 
     "messages" => [
-        ["role" => "system", "content" => "Eres un asistente amigable de salud llamado HealthBot."],
+        ["role" => "system", "content" => "Eres un asistente amigable de salud llamado HealthBot.
+        
+        - Si el usuario no ha iniciado sesión (visitante), solo puedes:
+                * Explicar beneficios del chat
+                * Explicar qué servicios ofreces (planes, rutinas, consejos)
+                * Motivar al usuario a iniciar sesión si quiere un plan, rutina o seguimiento.
+            - Si el usuario pide un 'plan nutricional', 'rutina de ejercicio' o 'seguimiento de salud', responde: 'Necesitas iniciar sesión para poder iniciar tu plan e ir guardando tu seguimiento.'
+            - Si el usuario está logeado (te dirán con la palabra LOGIN), entonces ya puedes dar respuestas completas a planes, rutinas y consejos.
+        "],
         ["role" => "user", "content" => $userMessage]
     ],
     "max_tokens" => 200,
