@@ -56,12 +56,12 @@
             <a href="#class" class="nav-link smoothScroll">Beneficios</a>
           </li>
 
-          <li class="nav-item">
-            <a href="#schedule" class="nav-link smoothScroll">Testimonios</a>
+           <li class="nav-item">
+            <a href="#schedule" class="nav-link smoothScroll">Testimonios </a>
           </li>
 
           <li class="nav-item">
-            <a href="#contact" class="nav-link smoothScroll">Contact</a>
+            <a href="#contact" class="nav-link smoothScroll">Contacto</a>
           </li>
 
           <li class="nav-item">
@@ -110,9 +110,11 @@
           <div style="width:5px; background:var(--primary-color); height:350px;"></div>
         </div>
 
-        <!-- Imagen -->
-        <img src="images/Imag1.jpg" alt="Trainer" style="width:250px; border:6px solid var(--primary-color); border-radius:15px;
-            box-shadow:0 0 15px var(--primary-color),0 0 30px var(--primary-color),0 0 45px var(--primary-color);">
+       <img src="images/Imag1.jpg" alt="Trainer" 
+     style="width:300px; border:6px solid var(--primary-color); border-radius:15px;
+            box-shadow:0 0 15px var(--primary-color),0 0 30px var(--primary-color),0 0 45px var(--primary-color);
+            display:block; margin:0 auto;">
+
       </div>
     </div>
     </div>
@@ -198,9 +200,16 @@
   <section class="testimonios-section">
     <div id="carruselTestimonios" class="carousel slide" data-ride="carousel" data-interval="false">
       <div class="carousel-inner text-center">
+<!-- Sección de Testimonios -->
+<section id="schedule" class="testimonios-section">
+  <div class="container">
+    <h2 class="text-center mb-5">Lo que opinan nuestros clientes</h2>
+
+    <!-- Carrusel -->
+    <div id="carruselTestimonios" class="carousel slide" data-ride="carousel" data-interval="4000">
+      <div class="carousel-inner text-center">
 
         <!-- Testimonio 1 -->
-
         <div class="carousel-item active">
           <img src="images/testi2.jpg" class="rounded-circle mx-auto d-block testimonio-img" alt="Testimonio 1">
           <p class="testimonio-texto mt-4">
@@ -231,15 +240,15 @@
         </div>
       </div>
 
-      <!-- Flechas -->
-      <button class="carousel-control-prev" type="button" data-target="#carruselTestimonios" data-slide="prev">
-        <span class="carousel-control-prev-icon"></span>
-      </button>
-      <button class="carousel-control-next" type="button" data-target="#carruselTestimonios" data-slide="next">
-        <span class="carousel-control-next-icon"></span>
-      </button>
+      <!-- Indicadores (los puntitos) -->
+      <ol class="carousel-indicators">
+        <li data-target="#carruselTestimonios" data-slide-to="0" class="active"></li>
+        <li data-target="#carruselTestimonios" data-slide-to="1"></li>
+        <li data-target="#carruselTestimonios" data-slide-to="2"></li>
+      </ol>
     </div>
-  </section>
+  </div>
+</section>
 
 
 

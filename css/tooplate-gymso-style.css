@@ -588,46 +588,50 @@ https://www.tooplate.com/view/2119-gymso-fitness
   .table td, .table th {
     padding: 1rem;
   }
-/* Sección con fondo negro */
 .testimonios-section {
   background-color: #000;
-  color: var(--primary-color); /* Texto principal en rojo */
-  width: 100%;
-  min-height: 40vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: #fff;
   padding: 60px 0;
 }
 
-/* Imagen circular */
+
+
 .testimonio-img {
-  width: 220px;
-  height: 220px;
+  width: 180px;
+  height: 180px;
   object-fit: cover;
-  border: 4px solid #000; /* Marco en negro */
+  border: 4px solid #f50808;
   padding: 2px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.5);
 }
 
-/* Texto del testimonio */
 .testimonio-texto {
   max-width: 650px;
   margin: 0 auto;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   line-height: 1.6;
-  color: #ddd;
+  color: #000000;
 }
 
-/* Cargo debajo del nombre */
 .cargo {
-  color: #aaa;
-  font-size: 1rem;
+  color: #000000;
+  font-size: 0.95rem;
 }
 
-.carousel-control-prev,
-.carousel-control-next {
-  display: none !important; /* elimina flechas */
+/* Indicadores (puntitos abajo) */
+.carousel-indicators li {
+  background-color: #fff;
 }
+
+.carousel-indicators .active {
+  background-color: #f50505; /* Rojo activo */
+}
+#carruselTestimonios {
+  background-color: #ffffff; /* Fondo negro solo en el carrusel */
+  padding: 40px 20px;
+  border-radius: 12px; /* opcional, para que se vea más bonito */
+}
+
 
 
 
@@ -729,7 +733,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
   transform: scale(1.03);
 }
  /*---------------------------------------
-     final CONTACT              
+     finalCONTACT              
   -----------------------------------------*/
 
   
