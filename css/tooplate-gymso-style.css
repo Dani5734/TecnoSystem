@@ -799,3 +799,85 @@ https://www.tooplate.com/view/2119-gymso-fitness
       display: block;
     }
   }
+
+/* Estilos para la sección de perfil */
+.profile-card {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border: 3px solid #dd241a;
+}
+
+.avatar-container {
+    display: inline-block;
+}
+
+.edit-icon {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: #dd241a;
+    color: white;
+    border-radius: 50%;
+    padding: 8px;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.info-card {
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #dee2e6;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    font-weight: 600;
+    color: #495057;
+}
+
+.info-value {
+    color: var(--dark-color);
+}
+
+/* --- Media query para dispositivos móviles --- */
+@media (max-width: 768px) {
+    .profile-card,
+    .info-card {
+        padding: 15px; /* Reducir el relleno para pantallas pequeñas */
+        box-shadow: none; /* Eliminar la sombra para un diseño más limpio */
+    }
+
+    .info-item {
+        flex-direction: column; /* Apilar la etiqueta y el valor verticalmente */
+        align-items: flex-start; /* Alinear el texto a la izquierda */
+        padding: 8px 0;
+    }
+
+    .info-label {
+        font-size: 14px; /* Reducir el tamaño de la fuente de la etiqueta */
+        margin-bottom: 4px; /* Agregar un pequeño espacio debajo de la etiqueta */
+    }
+
+    .info-value {
+        font-size: 16px; /* Ajustar el tamaño de la fuente del valor */
+    }
+}

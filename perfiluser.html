@@ -12,19 +12,18 @@
   <meta name="author" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+  <!-- Login -->
+  <script src="https://kit.fontawesome.com/274421acc6.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="plugins/sweetalert2/sweetalert2.min.css">
+  <link rel="stylesheet" href="model/login.php">
+  <!-- Fin Login -->
+
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/font-awesome.min.css">
   <link rel="stylesheet" href="css/aos.css">
-  <link rel="stylesheet" href="css/usuario.css">
-  <link rel="stylesheet" href="css/logo.css">
-
 
   <!-- MAIN CSS -->
   <link rel="stylesheet" href="css/tooplate-gymso-style.css">
-  <!--
-Tooplate 2119 Gymso Fitness
-https://www.tooplate.com/view/2119-gymso-fitness
--->
 </head>
 
 <body data-spy="scroll" data-target="#navbarNav" data-offset="50">
@@ -35,7 +34,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
 
       <!-- Logo con icono -->
       <a class="navbar-brand" href="index.html">
-        <img src="images/logo.png" alt="HealthBot" width="45" height="45" class="d-inline-block align-text-top">
+        <img src="images/logo4.png" alt="HealthBot" width="45" height="45" class="d-inline-block align-text-top">
       </a>
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -70,97 +69,96 @@ https://www.tooplate.com/view/2119-gymso-fitness
           </li>
         </ul>
       </div>
-
     </div>
   </nav>
 
-    <!-- PERFIL DE USUARIO -->
+  <!-- PERFIL DE USUARIO -->
   <section class="section" id="perfiluser">
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-6 col-md-8 col-12" data-aos="fade-up" data-aos-delay="100">
-                <div class="profile-card text-center p-4">
-                    <div class="avatar-container position-relative mb-3">
-                        <img src="images/perfil.jpg" class="img-fluid rounded-circle profile-avatar" alt="Avatar del usuario">
-                        <a href="#" class="edit-icon"><i class="fa fa-pencil"></i></a>
-                    </div>
-                    <h4 id="userName" class="mt-2 mb-1">Nombre de Usuario</h4>
-                    <small id="userEmail" class="text-muted">usuario@example.com</small>
-                </div>
+      <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-12" data-aos="fade-up" data-aos-delay="100">
+          <div class="profile-card text-center p-4">
+            <div class="avatar-container position-relative mb-3">
+              <img src="images/perfil.jpg" class="img-fluid rounded-circle profile-avatar" alt="Avatar del usuario">
+              <a href="#" class="edit-icon"><i class="fa fa-pencil"></i></a>
             </div>
+            <h4 id="userName" class="mt-2 mb-1">Nombre de Usuario</h4>
+            <small id="userEmail" class="text-muted">usuario@example.com</small>
+          </div>
         </div>
+      </div>
 
-        <div class="row justify-content-center mt-5">
-            <div class="col-lg-6 col-md-8 col-12" data-aos="fade-up" data-aos-delay="200">
-                <div class="info-card p-4">
-                    <h5 class="card-title text-center mb-4">Datos del usuario</h5>
-                    <div class="info-item mb-3">
-                        <div class="info-label">Edad:</div>
-                        <div class="info-value" id="userAge">25</div>
-                    </div>
-                    <div class="info-item mb-3">
-                        <div class="info-label">Estatura:</div>
-                        <div class="info-value" id="userHeight">1.75 m</div>
-                    </div>
-                    <div class="info-item mb-3">
-                        <div class="info-label">Peso:</div>
-                        <div class="info-value" id="userWeight">70 kg</div>
-                    </div>
-                    <div class="info-item mb-3">
-                        <div class="info-label">Género:</div>
-                        <div class="info-value" id="userGender">Masculino</div>
-                    </div>
-                </div>
+      <div class="row justify-content-center mt-5">
+        <div class="col-lg-6 col-md-8 col-12" data-aos="fade-up" data-aos-delay="200">
+          <div class="info-card p-4">
+            <h5 class="card-title text-center mb-4">Datos del usuario</h5>
+            <div class="info-item mb-3">
+              <div class="info-label">Edad:</div>
+              <div class="info-value" id="userAge">25</div>
             </div>
-        </div>
-        
-        <div class="row justify-content-center mt-4">
-            <div class="col-lg-6 col-md-8 col-12" data-aos="fade-up" data-aos-delay="300">
-                <div class="info-card p-4">
-                    <h5 class="card-title text-center mb-4">Análisis</h5>
-                    <div class="info-item mb-3">
-                        <div class="info-label">IMC:</div>
-                        <div class="info-value" id="userIMC">22.86</div>
-                    </div>
-                    <div class="info-item mb-3">
-                        <div class="info-label">TBM:</div>
-                        <div class="info-value" id="userTBM">1700 kcal</div>
-                    </div>
-                    <div class="info-item mb-3">
-                        <div class="info-label">Progreso:</div>
-                        <div class="info-value" id="userProgress">En seguimiento</div>
-                    </div>
-                    <div class="info-item mb-3">
-                        <div class="info-label">Resumen:</div>
-                        <div class="info-value" id="userSummary">Peso saludable</div>
-                    </div>
-                </div>
+            <div class="info-item mb-3">
+              <div class="info-label">Estatura:</div>
+              <div class="info-value" id="userHeight">1.75 m</div>
             </div>
+            <div class="info-item mb-3">
+              <div class="info-label">Peso:</div>
+              <div class="info-value" id="userWeight">70 kg</div>
+            </div>
+            <div class="info-item mb-3">
+              <div class="info-label">Género:</div>
+              <div class="info-value" id="userGender">Masculino</div>
+            </div>
+          </div>
         </div>
+      </div>
+
+      <div class="row justify-content-center mt-4">
+        <div class="col-lg-6 col-md-8 col-12" data-aos="fade-up" data-aos-delay="300">
+          <div class="info-card p-4">
+            <h5 class="card-title text-center mb-4">Análisis</h5>
+            <div class="info-item mb-3">
+              <div class="info-label">IMC:</div>
+              <div class="info-value" id="userIMC">22.86</div>
+            </div>
+            <div class="info-item mb-3">
+              <div class="info-label">TBM:</div>
+              <div class="info-value" id="userTBM">1700 kcal</div>
+            </div>
+            <div class="info-item mb-3">
+              <div class="info-label">Progreso:</div>
+              <div class="info-value" id="userProgress">En seguimiento</div>
+            </div>
+            <div class="info-item mb-3">
+              <div class="info-label">Resumen:</div>
+              <div class="info-value" id="userSummary">Peso saludable</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</section>
+  </section>
 
-    <!-- FOOTER -->
-    <footer class="site-footer">
-        <div class="container">
-            <div class="row">
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row">
 
-                <div class="ml-auto col-lg-4 col-md-5">
-                    <p class="copyright-text">Copyright &copy; 2025 TecnoSystem
+        <div class="ml-auto col-lg-4 col-md-5">
+          <p class="copyright-text">Copyright &copy; 2025 TecnoSystem
 
-                    </p>
-                </div>
-
-                <div class="d-flex justify-content-center mx-auto col-lg-5 col-md-7 col-12">
-                    <ul class="social-icon ml-lg-3">
-                        <li><a href="#" class="fa fa-facebook"></a></li>
-                        <li><a href="#" class="fa fa-twitter"></a></li>
-                        <li><a href="#" class="fa fa-instagram"></a></li>
-                    </ul>
-                </div>
-            </div>
+          </p>
         </div>
-    </footer>
+
+        <div class="d-flex justify-content-center mx-auto col-lg-5 col-md-7 col-12">
+          <ul class="social-icon ml-lg-3">
+            <li><a href="#" class="fa fa-facebook"></a></li>
+            <li><a href="#" class="fa fa-twitter"></a></li>
+            <li><a href="#" class="fa fa-instagram"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <!-- SCRIPTS -->
   <script src="js/jquery.min.js"></script>
@@ -209,16 +207,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
       </button>
     </div>
   </div>
-
   </div>
 </body>
 
 </html>
-
-
-
-
-
-
-
-
