@@ -358,6 +358,38 @@ https://www.tooplate.com/view/2119-gymso-fitness
     cursor: pointer;
     font-size: 1.2em;
 }
+/* Estilo general de los mensajes */
+.message {
+  max-width: 70%;
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: 15px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* Mensajes del bot */
+
+.message.bot {
+  background-color: #f1f1f1;
+  color: #222;
+  font-style: italic;   /* Opcional */
+  font-weight: 500;
+  align-self: flex-start;
+  text-align: left;
+  border-bottom-left-radius: 0;
+}
+
+
+/* Mensajes del usuario */
+.message.user {
+  background-color: #e63946;
+  color: #fff;
+  align-self: flex-end;
+  text-align: right;
+  border-bottom-right-radius: 0;
+}
+
 #messages-container {
   display: flex;
   flex-direction: column;
