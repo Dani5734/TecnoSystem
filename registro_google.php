@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_POST['credential'])) {
+/*if (isset($_POST['credential'])) {
     $id_token = $_POST['credential'];
 
     // Decodificar token JWT (payload)
@@ -32,9 +32,8 @@ if (isset($_POST['credential'])) {
     }
 } else {
     echo 'No se recibió el token de Google';
-}
-
-/* <?php
+}*/
+ 
 
 if(isset($_POST['credential'])){
     $id_token = $_POST['credential'];
@@ -43,13 +42,12 @@ if(isset($_POST['credential'])){
     // Decodificar token (JWT)
     $token_parts = explode('.', $id_token);
     $payload = json_decode(base64_decode($token_parts[1]), true);
-    
+
     $email = $payload['email'];
     $nombre = $payload['name'];
     $foto = $payload['picture'];
 
     echo "Usuario: $nombre ($email)";
 }
-?>
-*/
+
 ?>
