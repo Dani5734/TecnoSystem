@@ -35,24 +35,19 @@ if (isset($_POST['credential'])) {
 }
 
 /* <?php
-// registro_google.php
 
 if(isset($_POST['credential'])){
     $id_token = $_POST['credential'];
 
-    // Validar token usando Google API (opcional: librería o endpoint)
-    // Por ejemplo, verificarlo en: https://oauth2.googleapis.com/tokeninfo?id_token=ID_TOKEN
 
     // Decodificar token (JWT)
     $token_parts = explode('.', $id_token);
     $payload = json_decode(base64_decode($token_parts[1]), true);
-
-    // Datos del usuario
+    
     $email = $payload['email'];
     $nombre = $payload['name'];
     $foto = $payload['picture'];
 
-    // Aquí haces tu lógica: registrar usuario en DB o iniciar sesión
     echo "Usuario: $nombre ($email)";
 }
 ?>
