@@ -33,101 +33,68 @@
     <div class="container">
 
       <!-- Logo con icono -->
-      <a class="navbar-brand" href="index.html">
+    <a class="navbar-brand" href="index.html">
         <img src="images/logo4.png" alt="HealthBot" width="45" height="45" class="d-inline-block align-text-top">
       </a>
-
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-lg-auto">
-          <li class="nav-item">
-            <a href="#home" class="nav-link smoothScroll">Home</a>
-          </li>
-
-          <li class="nav-item">
-            <a href="#about" class="nav-link smoothScroll">Nosotros</a>
-          </li>
-
-          <li class="nav-item">
-            <a href="#class" class="nav-link smoothScroll">Beneficios</a>
-          </li>
-
-          <li class="nav-item">
-            <a href="#schedule" class="nav-link smoothScroll">Testimonios</a>
-          </li>
-
-          <li class="nav-item">
-            <a href="#contact" class="nav-link smoothScroll">Contact</a>
-          </li>
-
-          <li class="nav-item">
-            <a href="#" class="nav-link smoothScroll" data-toggle="modal" data-target="#IniciarSesion">Login</a>
-          </li>
-        </ul>
-      </div>
+      <div class="collapse navbar-collapse" id="navbarNav"></div>
     </div>
   </nav>
 
   <!-- PERFIL DE ADMIN-->
-  <div class="admin-profile-container">
-    <div class="profile-card user-summary">
+  <section class="section" id="perfiladmin">
+    <div class="admin-profile-container">
+      <div class="profile-card user-summary">
         <div class="profile-avatar-wrapper">
-            <img src="URL_DEL_AVATAR_ADMIN" alt="Avatar del Administrador" class="profile-avatar">
-            <div class="edit-icon-overlay">
-                </div>
+          <img src="images/logo3.png" alt="Avatar del Administrador" class="profile-avatar">
+          <div class="edit-icon-overlay" title="Editar Perfil">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          </div>
         </div>
         <h2 class="user-name">Administrador</h2>
         <p class="user-email">admin@healthbot.com</p>
         <span class="admin-badge">Super Admin</span>
-    </div>
+      </div>
 
-    <div class="profile-card admin-dashboard-summary">
+      <div class="profile-card admin-dashboard-summary">
         <h3 class="card-title">Resumen del Panel de Control</h3>
         <div class="dashboard-stats">
-            <div class="stat-item">
-                <span class="stat-value">125</span>
-                <span class="stat-label">Usuarios Registrados</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-value">48</span>
-                <span class="stat-label">Consultas Pendientes</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-value">3</span>
-                <span class="stat-label">Chatbots Activos</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-value">12</span>
-                <span class="stat-label">Reportes Recientes</span>
-            </div>
+          <div class="stat-item">
+            <span class="stat-value">125</span>
+            <span class="stat-label">Usuarios Registrados</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">48</span>
+            <span class="stat-label">Consultas Pendientes</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">3</span>
+            <span class="stat-label">Chatbots Activos</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">12</span>
+            <span class="stat-label">Reportes Recientes</span>
+          </div>
         </div>
+      </div>
+      <div class="profile-card quick-actions">
+        <h3 class="card-title">Acciones Rápidas</h3>
+        <div class="actions-grid">
+          <a href="usuarios.html" class="action-button">Gestionar Usuarios</a>
+          <a href="crud-consultas.html" class="action-button">Ver Consultas</a>
+          <a href="reportes.html" class="action-button">Ver Reportes</a>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <div class="profile-card quick-actions">
-    <h3 class="card-title">Acciones Rápidas</h3>
-    <div class="actions-grid">
-        <a href="crud-usuarios.html" class="action-button">Gestionar Usuarios</a>
-        <a href="crud-consultas.html" class="action-button">Ver Consultas</a>
-        <a href="reportes.html" class="action-button">Ver Reportes</a>
-    </div>
-</div>
-  </div>
-  <p> </p>
   <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container">
       <div class="row">
-
         <div class="ml-auto col-lg-4 col-md-5">
           <p class="copyright-text">Copyright &copy; 2025 TecnoSystem
-
           </p>
         </div>
-
         <div class="d-flex justify-content-center mx-auto col-lg-5 col-md-7 col-12">
           <ul class="social-icon ml-lg-3">
             <li><a href="#" class="fa fa-facebook"></a></li>
