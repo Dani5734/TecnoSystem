@@ -6,46 +6,43 @@ https://www.tooplate.com/view/2119-gymso-fitness
 
 */
 
-  @font-face {
-      font-family: 'Plain';
-      src: url('../fonts/Plain-Regular.woff2') format('woff2'),
-          url('../fonts/Plain-Regular.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
-  }
+@font-face {
+    font-family: 'Plain';
+    src: url('../fonts/Plain-Regular.woff2') format('woff2'),
+        url('../fonts/Plain-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
-  @font-face {
-      font-family: 'Plain';
-      src: url('../fonts/Plain-Light.woff2') format('woff2'),
-          url('../fonts/Plain-Light.woff') format('woff');
-      font-weight: 300;
-      font-style: normal;
-  }
+@font-face {
+    font-family: 'Plain';
+    src: url('../fonts/Plain-Light.woff2') format('woff2'),
+        url('../fonts/Plain-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
 
-  @font-face {
-      font-family: 'Plain';
-      src: url('../fonts/Plain-Bold.woff2') format('woff2'),
-          url('../fonts/Plain-Bold.woff') format('woff');
-      font-weight: bold;
-      font-style: normal;
-  }
+@font-face {
+    font-family: 'Plain';
+    src: url('../fonts/Plain-Bold.woff2') format('woff2'),
+        url('../fonts/Plain-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
 
-  :root {
+:root {
     --primary-color:        rgb(251, 17, 17);
     --white-color:          #ffffff;
     --dark-color:           #171819;
     --about-bg-color:       #f9f9f9;
-
     --gray-color:           #909090;
     --link-color:           #404040;
     --p-color:              #666262;
-
     --base-font-family:     'Plain', sans-serif;
     --font-weight-bold:     bold;
     --font-weight-normal:   normal;
     --font-weight-light:    300;
     --font-weight-thin:     100;
-
     --h1-font-size:         48px;
     --h2-font-size:         36px;
     --h3-font-size:         28px;
@@ -55,84 +52,83 @@ https://www.tooplate.com/view/2119-gymso-fitness
     --p-font-size:          18px;
     --base-font-size:       16px;
     --menu-font-size:       14px;
-
     --border-radius-large:  100%;
     --border-radius-small:  2px;
-  }
+}
 
 
-  body {
+body {
     background: var(--white-color);
     font-family: var(--base-font-family);
-  }
+}
 
 
-  /*---------------------------------------
-     TYPOGRAPHY              
-  -----------------------------------------*/
+/*---------------------------------------
+   TYPOGRAPHY
+-----------------------------------------*/
 
-  h1,h2,h3,h4,h5,h6 {
+h1,h2,h3,h4,h5,h6 {
     font-weight: var(--font-weight-thin);
     line-height: normal;
-  }
+}
 
-  h1 {
+h1 {
     font-size: var(--h1-font-size);
     font-weight: var(--font-weight-bold);
     letter-spacing: -1px;
     text-transform: uppercase;
     margin: 20px 0;
-  }
+}
 
-  h2 {
+h2 {
     font-size: var(--h2-font-size);
     font-weight: var(--font-weight-bold);
     letter-spacing: -2px;
-  }
+}
 
-  h3 {
+h3 {
     font-size: var(--h3-font-size);
     font-weight: var(--font-weight-bold);
     letter-spacing: -1px;
     margin: 0;
-  }
+}
 
-  h4 {
+h4 {
     font-size: var(--h4-font-size);
-  }
+}
 
-  h5 {
+h5 {
     font-size: var(--h5-font-size);
-  }
+}
 
-  h6 {
+h6 {
     color: var(--gray-color);
     font-size: var(--h6-font-size);
     line-height: inherit;
     margin: 0;
-  }
+}
 
-  p {
+p {
     color: var(--p-color);
     font-size: var(--p-font-size);
     font-weight: var(--font-weight-light);
     line-height: 1.5em;
-  }
+}
 
-  b, 
-  strong {
+b,
+strong {
     font-weight: var(--font-weight-bold);
     letter-spacing: 0;
-  }
+}
 
-  .section {
+.section {
     padding: 7rem 0;
-  }
+}
 
 
-  /* BUTTON */
+/* BUTTON */
 
-  .custom-btn {
+.custom-btn {
     background: transparent;
     border-radius: var(--border-radius-small);
     padding: 14px 24px;
@@ -143,35 +139,34 @@ https://www.tooplate.com/view/2119-gymso-fitness
     letter-spacing: 0.5px;
     white-space: nowrap;
     transition: all 0.3s ease;
-  }
+}
 
-  .custom-btn:hover {
+.custom-btn:hover {
     color: var(--primary-color);
-  }
+}
 
-  .custom-btn:focus {
+.custom-btn:focus {
     box-shadow: none;
-  }
+}
 
-  .custom-btn.bordered:hover,
-  .custom-btn.bordered:focus,
-
-  .custom-btn.bg-color:hover,
-  .custom-btn.bg-color:focus {
+.custom-btn.bordered:hover,
+.custom-btn.bordered:focus,
+.custom-btn.bg-color:hover,
+.custom-btn.bg-color:focus {
     background: var(--primary-color);
     border-color: transparent;
     color: var(--white-color);
-  }
+}
 
-  .bordered {
+.bordered {
     border: 1px solid var(--primary-color);
     color: var(--primary-color);
-  }
+}
 
-  .bg-color {
+.bg-color {
     background: var(--dark-color);
     color: var(--white-color);
-  }
+}
 
 .bg-color.btn-rojo {
     background-color: var(--primary-color) !important;
@@ -181,55 +176,55 @@ https://www.tooplate.com/view/2119-gymso-fitness
     background-color: var(--dark-color) !important;
 }
 
-
-
 /* Estilo del logo en la navbar */
 .navbar-brand img {
-  width: 200px;              /* tamaño del logo */
-  height: 50px;
-
-  object-fit: cover;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 200px;
+    height: 50px;
+    object-fit: cover;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/*---------------------------------------
+   GENERAL
+-----------------------------------------*/
 
-
-  /*---------------------------------------
-     GENERAL               
-  -----------------------------------------*/
-
-  * {
+* {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-  }
+}
 
-  *::before,
-  *::after {
+*::before,
+*::after {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-  }
+}
 
-  a {
+a {
     color: var(--link-color);
     font-weight: normal;
     text-decoration: none;
     transition: all 0.3s ease;
-  }
+}
 
-  a:hover, 
-  a:active, 
-  a:focus {
+a:hover,
+a:active,
+a:focus {
     color: var(--primary-color);
     outline: none;
     text-decoration: none;
-  }
+}
 
+.about-section {
+    background-color: #000;
+    color: #d8d8d8;
+    text-align: center;
+    padding: 50px 20px;
+}
 
-  /* BG OVERLAY */
-
-  .bg-overlay {
+/* BG OVERLAY */
+.bg-overlay {
     background: var(--dark-color);
     position: absolute;
     top: 0;
@@ -239,9 +234,9 @@ https://www.tooplate.com/view/2119-gymso-fitness
     width: 100%;
     height: 100%;
     opacity: 0.85;
-  }
+}
 
-/*Estilos de chat  */
+/* Estilos de chat */
 .chat-button {
     position: fixed;
     bottom: 20px;
@@ -269,7 +264,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    display: none; /* Inicia oculto */
+    display: none;
     flex-direction: column;
     overflow: hidden;
     z-index: 1000;
@@ -310,7 +305,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
 }
 
 .welcome-message {
-    background-color:#f1f1f1; 
+    background-color: #f1f1f1;
     padding: 15px;
     border-radius: 10px;
     margin-bottom: 10px;
@@ -358,90 +353,86 @@ https://www.tooplate.com/view/2119-gymso-fitness
     cursor: pointer;
     font-size: 1.2em;
 }
+
 /* Estilo general de los mensajes */
 .message {
-  max-width: 70%;
-  padding: 10px 15px;
-  margin: 5px;
-  border-radius: 15px;
-  font-size: 14px;
-  line-height: 1.4;
+    max-width: 70%;
+    padding: 10px 15px;
+    margin: 5px;
+    border-radius: 15px;
+    font-size: 14px;
+    line-height: 1.4;
 }
 
 /* Mensajes del bot */
-
 .message.bot {
-  background-color: #f1f1f1;
-  color: #222;
-  font-style: italic;   /* Opcional */
-  font-weight: 500;
-  align-self: flex-start;
-  text-align: left;
-  border-bottom-left-radius: 0;
+    background-color: #f1f1f1;
+    color: #222;
+    font-style: italic;
+    font-weight: 500;
+    align-self: flex-start;
+    text-align: left;
+    border-bottom-left-radius: 0;
 }
-
 
 /* Mensajes del usuario */
 .message.user {
-  background-color: #e63946;
-  color: #fff;
-  align-self: flex-end;
-  text-align: right;
-  border-bottom-right-radius: 0;
+    background-color: var(--primary-color);
+    color: #fff;
+    align-self: flex-end;
+    text-align: right;
+    border-bottom-right-radius: 0;
 }
 
 #messages-container {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 10px;
-  height: 350px;
-  
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px;
+    height: 350px;
 }
 
+/*---------------------------------------
+   MENU
+-----------------------------------------*/
 
-  /*---------------------------------------
-     MENU             
-  -----------------------------------------*/
-
-  .navbar {
+.navbar {
     background-color: #000000;
-    /*background: var(--dark-color);*/
     padding: 1rem;
-  }
+}
 
-  .navbar-expand-lg .navbar-nav .nav-link {
+.navbar-expand-lg .navbar-nav .nav-link {
     padding-right: 1.5rem;
     padding-left: 1.5rem;
-  }
+}
 
-  .navbar-brand {
+.navbar-brand {
     color: var(--white-color);
     font-size: var(--h3-font-size);
     font-weight: var(--font-weight-bold);
     line-height: normal;
     padding-top: 0;
-  }
+}
 
-  .nav-item .nav-link {
+.nav-item .nav-link {
     display: block;
     color: var(--white-color);
     font-size: var(--menu-font-size);
     font-weight: var(--font-weight-normal);
     text-transform: uppercase;
     padding: 2px 6px;
-  }
+}
 
-  .nav-item .nav-link.active,
-  .nav-item .nav-link:hover {
+.nav-item .nav-link.active,
+.nav-item .nav-link:hover {
     color: var(--primary-color);
-  }
+}
 
-  .navbar .social-icon li a {
+.navbar .social-icon li a {
     color: var(--white-color);
-  }
+}
 
-  .navbar-toggler {
+.navbar-toggler {
     border: 0;
     padding: 0;
     cursor: pointer;
@@ -449,43 +440,43 @@ https://www.tooplate.com/view/2119-gymso-fitness
     width: 30px;
     height: 35px;
     outline: none;
-  }
+}
 
-  .navbar-toggler:focus {
+.navbar-toggler:focus {
     outline: none;
-  }
+}
 
-  .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
     background: transparent;
-  }
+}
 
-  .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before,
-  .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before,
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
     transition: top 300ms 50ms ease, -webkit-transform 300ms 350ms ease;
     transition: top 300ms 50ms ease, transform 300ms 350ms ease;
     transition: top 300ms 50ms ease, transform 300ms 350ms ease, -webkit-transform 300ms 350ms ease;
     top: 0;
-  }
+}
 
-  .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
     transform: rotate(45deg);
-  }
+}
 
-  .navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
     transform: rotate(-45deg);
-  }
+}
 
-  .navbar-toggler .navbar-toggler-icon {
+.navbar-toggler .navbar-toggler-icon {
     background: var(--primary-color);
     transition: background 10ms 300ms ease;
     display: block;
     width: 30px;
     height: 2px;
     position: relative;
-  }
+}
 
-  .navbar-toggler .navbar-toggler-icon::before,
-  .navbar-toggler .navbar-toggler-icon::after {
+.navbar-toggler .navbar-toggler-icon::before,
+.navbar-toggler .navbar-toggler-icon::after {
     transition: top 300ms 350ms ease, -webkit-transform 300ms 50ms ease;
     transition: top 300ms 350ms ease, transform 300ms 50ms ease;
     transition: top 300ms 350ms ease, transform 300ms 50ms ease, -webkit-transform 300ms 50ms ease;
@@ -496,21 +487,20 @@ https://www.tooplate.com/view/2119-gymso-fitness
     width: 30px;
     height: 2px;
     content: '';
-  }
+}
 
-  .navbar-toggler .navbar-toggler-icon::before {
+.navbar-toggler .navbar-toggler-icon::before {
     top: -8px;
-  }
+}
 
-  .navbar-toggler .navbar-toggler-icon::after {
+.navbar-toggler .navbar-toggler-icon::after {
     top: 8px;
-  }
+}
 
-  /*---------------------------------------
-     HERO              
-  -----------------------------------------*/
-
-  .hero {
+/*---------------------------------------
+   HERO
+-----------------------------------------*/
+.hero {
     background-image: url('../images/car1.jpg');
     background-size: cover;
     background-position: top;
@@ -518,30 +508,29 @@ https://www.tooplate.com/view/2119-gymso-fitness
     vertical-align: middle;
     min-height: 100vh;
     position: relative;
-  }
+}
 
+/*---------------------------------------
+   CLASS
+-----------------------------------------*/
 
-  /*---------------------------------------
-     CLASS               
-  -----------------------------------------*/
-
-  .class-info {
+.class-info {
     background: var(--white-color);
-    box-shadow: 6px 0 38px rgba(20,20,20,0.10);
+    box-shadow: 6px 0 38px rgba(20, 20, 20, 0.10);
     border-radius: 0 0 2px 2px;
     padding: 1rem 2rem;
     position: relative;
-  }
+}
 
-  .class-info img {
+.class-info img {
     border-radius: 2px 2px 0 0;
-  }
+}
 
-  .class-info strong {
+.class-info strong {
     color: var(--gray-color);
-  }
+}
 
-  .class-price {
+.class-price {
     background: var(--primary-color);
     border-radius: var(--border-radius-large);
     color: var(--white-color);
@@ -554,262 +543,206 @@ https://www.tooplate.com/view/2119-gymso-fitness
     height: 3.5rem;
     line-height: 3.5rem;
     text-align: center;
-  }
-
-
-  /*---------------------------------------
-     SCHEDULE             
-  -----------------------------------------*/
-
-  .schedule {
-    background: var(--dark-color);
-  }
-
-  .schedule-table {
-    display: table;
-    border: 0;
-    text-align: center;
-  }
-
-  .schedule-table strong,
-  .schedule-table span {
-    display: block;
-    text-align: center;
-  }
-
-  .schedule-table strong {
-    color: var(--white-color);
-  }
-
-  .schedule-table span {
-    color: var(--gray-color);
-  }
-
-  .schedule-table span,
-  .schedule-table small {
-    font-size: var(--menu-font-size);
-    text-transform: uppercase;
-  }
-
-  .schedule-table small {
-    position: relative;
-    top: 10px;
-  }
-
-  .table .thead-light th,
-  .schedule-table tr td:first-child {
-    background: var(--primary-color);
-    border: 1px solid #212122;
-    color: var(--white-color);
-  }
-
-  .schedule-table .thead-light th {
-    border-bottom: 0;
-    text-transform: uppercase;
-  }
-
-  .table-bordered td, 
-  .table-bordered th {
-    border: 1px solid #212122;
-  }
-
-  .table-bordered td {
-    padding-bottom: 22px;
-  }
-
-  .table td, .table th {
-    padding: 1rem;
-  }
-.testimonios-section {
-  background-color: #000;
-  color: #fff;
-  padding: 60px 0;
 }
 
 
+/*---------------------------------------
+   BENEFITS
+-----------------------------------------*/
+
+.table .thead-light th,
+.schedule-table tr td:first-child {
+    background: var(--primary-color);
+    border: 1px solid var(--dark-color);
+    color: var(--white-color);
+}
+
+.schedule-table .thead-light th {
+    border-bottom: 0;
+    text-transform: uppercase;
+}
+
+.table-bordered td,
+.table-bordered th {
+    border: 1px solid var(--dark-color);
+}
+
+.table-bordered td {
+    padding-bottom: 22px;
+}
+
+.table td,
+.table th {
+    padding: 1rem;
+}
+
+.testimonios-section {
+    background-color: var(--dark-color);
+    color: #fff;
+    padding: 60px 0;
+}
 
 .testimonio-img {
-  width: 180px;
-  height: 180px;
-  object-fit: cover;
-  border: 4px solid #f50808;
-  padding: 2px;
-  box-shadow: 0px 4px 12px rgba(0,0,0,0.5);
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border: 4px solid var(--primary-color);
+    padding: 2px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
 }
 
 .testimonio-texto {
-  max-width: 650px;
-  margin: 0 auto;
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #000000;
+    max-width: 650px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #000000;
 }
 
 .cargo {
-  color: #000000;
-  font-size: 0.95rem;
+    color: #000000;
+    font-size: 0.95rem;
 }
 
-/* Indicadores (puntitos abajo) */
 .carousel-indicators li {
-  background-color: #fff;
+    background-color: #fff;
 }
 
 .carousel-indicators .active {
-  background-color: #f50505; /* Rojo activo */
+    background-color: var(--primary-color);
 }
+
 #carruselTestimonios {
-  background-color: #ffffff; /* Fondo negro solo en el carrusel */
-  padding: 40px 20px;
-  border-radius: 12px; /* opcional, para que se vea más bonito */
+    background-color: #ffffff;
+    padding: 40px 20px;
+    border-radius: 12px;
 }
 
 
+/*---------------------------------------
+   CONTACT
+-----------------------------------------*/
 
-
-
-
-  /*---------------------------------------
-     CONTACT              
-  -----------------------------------------*/
-
-/* Sección de contacto */
 .contact {
-  font-family: 'Arial', sans-serif;
-  padding: 60px 0;
+    font-family: 'Arial', sans-serif;
+    padding: 60px 0;
 }
 
-/* Título principal */
 .contact-info h2 {
-  font-weight: bold;
-  color: #111;
-  margin-bottom: 15px;
+    font-weight: bold;
+    color: #111;
+    margin-bottom: 15px;
 }
 
-/* Texto descriptivo */
 .contact-info p {
-  color: #444;
-  font-size: 15px;
-  margin-bottom: 12px;
+    color: #444;
+    font-size: 15px;
+    margin-bottom: 12px;
 }
 
-/* Íconos de información */
 .contact-info i {
-  color: #111; /* Sobrio y elegante */
-  margin-right: 6px;
+    color: #111;
+    margin-right: 6px;
 }
 
-/* Formulario */
 .contact-form {
-  background: linear-gradient(to bottom, #f73232, #443636); /* Degradado rojo → negro */
-  border: none;
-  border-radius: 12px;
-  color: #fff;
-  padding: 20px;              /* menos padding (antes 15px/60px) */
-  max-width: 500px;           /* ancho máximo */
-  margin: 0 auto;             /* centrado */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* sombra ligera */
+    background: linear-gradient(to bottom, var(--primary-color), var(--dark-color));
+    border: none;
+    border-radius: 12px;
+    color: #fff;
+    padding: 20px;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
-
 
 .contact-form h5 {
-  font-weight: bold;
-  color: #ffffff;
-  text-align: center;
-  margin-bottom: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-/* Campos de formulario más pequeños */
 .contact-form input,
 .contact-form textarea {
-  border: 1px solid #ddd;
-  font-size: 14px;       /* un poco más chico */
-  background: #fff;
-  color: #111;
-  border-radius: 8px;
-  width: 70%;            /* más estrechos */
-  max-width: 400px;      /* límite para pantallas grandes */
-  padding: 8px 10px;     /* menos altura */
-  margin: 8px auto;      /* centrados y con menos separación */
-  display: block;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    background: #fff;
+    color: var(--dark-color);
+    border-radius: 8px;
+    width: 70%;
+    max-width: 400px;
+    padding: 8px 10px;
+    margin: 8px auto;
+    display: block;
 }
 
-/* Placeholders */
 .contact-form input::placeholder,
 .contact-form textarea::placeholder {
-  color: #888;
-  font-style: italic;
+    color: #888;
+    font-style: italic;
 }
 
-/* Foco */
 .contact-form input:focus,
 .contact-form textarea:focus {
-  border-color: #ff6f91;
-  box-shadow: 0 0 6px rgba(255, 0, 60, 0.6);
-  outline: none;
+    border-color: #ff6f91;
+    box-shadow: 0 0 6px var(--primary-color);
+    outline: none;
 }
 
-/* Botón */
 .contact-form button {
-  background: #111;
-  border: none;
-  transition: 0.3s;
-  border-radius: 8px;
-  padding: 10px 20px;   /* botón más compacto */
-  margin-top: 10px;
+    background: #111;
+    border: none;
+    transition: 0.3s;
+    border-radius: 8px;
+    padding: 10px 20px;
+    margin-top: 10px;
 }
 
 .contact-form button:hover {
-  background: #f50505;
-  color: #fff;
-  transform: scale(1.03);
+    background: var(--primary-color);
+    color: #fff;
+    transform: scale(1.03);
 }
- /*---------------------------------------
-     finalCONTACT              
-  -----------------------------------------*/
 
-  
-
-  /*---------------------------------------
-     FOOTER              
-  -----------------------------------------*/
-
-  .site-footer {
+/*---------------------------------------
+   FOOTER
+-----------------------------------------*/
+.site-footer {
     border-top: 1px solid #efebeb;
-    padding: 3rem 0;
-  }
+    padding: 1.5rem 0;
+}
 
-  .site-footer a {
+.site-footer a {
     color: var(--p-color);
     font-weight: var(--font-weight-light);
-  }
+}
 
-  .site-footer p {
+.site-footer p {
     font-size: var(--base-font-size);
-  }
+}
 
-  .contact .fa,
-  .site-footer .fa {
+.contact .fa,
+.site-footer .fa {
     color: var(--primary-color);
-  }
+}
 
 
-  /*---------------------------------------
-     SOCIAL ICON              
-  -----------------------------------------*/
-
-  .social-icon {
+/*---------------------------------------
+   SOCIAL ICON
+-----------------------------------------*/
+.social-icon {
     position: relative;
     padding: 0;
     margin: 5px 0 0 0;
-  }
+}
 
-  .social-icon li {
+.social-icon li {
     display: inline-block;
     list-style: none;
-  }
+}
 
-  .social-icon li a {
+.social-icon li a {
     text-decoration: none;
     display: inline-block;
     color: var(--p-color);
@@ -817,89 +750,75 @@ https://www.tooplate.com/view/2119-gymso-fitness
     font-weight: var(--font-weight-bold);
     margin: 5px 10px;
     text-align: center;
-  }
+}
 
-  .social-icon li a:hover {
+.social-icon li a:hover {
     color: var(--primary-color);
-  }
+}
 
-  /*Mensajes del chat*/
-
+/*Mensajes del chat*/
 .message {
-  max-width: 70%;
-  padding: 10px 5px;
-  margin: 5px;
-  border-radius: 15px;
-  font-size: 14px;
-  line-height: 1.4;
+    max-width: 70%;
+    padding: 10px 5px;
+    margin: 5px;
+    border-radius: 15px;
+    font-size: 14px;
+    line-height: 1.4;
 }
 
-/* Mensajes del bot */
 .message.bot {
-  background-color: #f1f1f1;
-  align-self: flex-start;
-  text-align: left;
-  border-bottom-left-radius: 0;
+    background-color: #f1f1f1;
+    align-self: flex-start;
+    text-align: left;
+    border-bottom-left-radius: 0;
 }
 
-/* Mensajes del usuario */
 .message.user {
-  background-color: #e63946;
-  color: #fff;
-  align-self: flex-end;
-  text-align: right;
-  border-bottom-right-radius: 0;
+    background-color: var(--primary-color);
+    color: #fff;
+    align-self: flex-end;
+    text-align: right;
+    border-bottom-right-radius: 0;
 }
 
 
-
-  /*---------------------------------------
-     RESPONSIVE STYLES              
-  -----------------------------------------*/
-
-  @media screen and (max-width: 992px) {
-
+/*---------------------------------------
+   RESPONSIVE STYLES
+-----------------------------------------*/
+@media screen and (max-width: 992px) {
     .section {
-      padding: 5rem 0;
+        padding: 5rem 0;
     }
-
     .nav-item .nav-link {
-      padding: 6px;
+        padding: 6px;
     }
-
     .navbar .social-icon {
-      margin-top: 22px;
+        margin-top: 22px;
     }
-
     .navbar-collapse,
     .site-footer {
-      text-align: center;
+        text-align: center;
     }
-
     .schedule-table {
-      display: block;
+        display: block;
     }
-
     .modal-content {
-      padding: 2rem;
+        padding: 2rem;
     }
-  }
+}
 
-  @media screen and (max-width: 767px) {
-
+@media screen and (max-width: 767px) {
     h1 {
-      font-size: 38px;
+        font-size: 38px;
     }
-
     .about-working-hours {
-      border-left: 0;
-      padding: 22px 0 0 0;
+        border-left: 0;
+        padding: 22px 0 0 0;
     }
-
     .contact h2 span {
-      display: block;
+        display: block;
     }
-  }
+}
 
 /* Estilos para la sección de perfil */
 .profile-card {
@@ -912,7 +831,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
     width: 120px;
     height: 120px;
     object-fit: cover;
-    border: 3px solid #dd241a;
+    border: 3px solid var(--primary-color);
 }
 
 .avatar-container {
@@ -923,7 +842,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
     position: absolute;
     bottom: 5px;
     right: 5px;
-    background-color: #dd241a;
+    background-color: var(--primary-color);
     color: white;
     border-radius: 50%;
     padding: 8px;
@@ -963,23 +882,23 @@ https://www.tooplate.com/view/2119-gymso-fitness
 @media (max-width: 768px) {
     .profile-card,
     .info-card {
-        padding: 15px; /* Reducir el relleno para pantallas pequeñas */
-        box-shadow: none; /* Eliminar la sombra para un diseño más limpio */
+        padding: 15px;
+        box-shadow: none;
     }
 
     .info-item {
-        flex-direction: column; /* Apilar la etiqueta y el valor verticalmente */
-        align-items: flex-start; /* Alinear el texto a la izquierda */
+        flex-direction: column;
+        align-items: flex-start;
         padding: 8px 0;
     }
 
     .info-label {
-        font-size: 14px; /* Reducir el tamaño de la fuente de la etiqueta */
-        margin-bottom: 4px; /* Agregar un pequeño espacio debajo de la etiqueta */
+        font-size: 14px;
+        margin-bottom: 4px;
     }
 
     .info-value {
-        font-size: 16px; /* Ajustar el tamaño de la fuente del valor */
+        font-size: 16px;
     }
 }
 
@@ -988,11 +907,11 @@ https://www.tooplate.com/view/2119-gymso-fitness
     padding: 40px 20px;
     display: flex;
     flex-direction: column;
-    gap: 30px; /* Espacio entre las tarjetas */
+    gap: 30px;
     max-width: 900px;
     margin: 0 auto;
-    background-color: #f8f9fa; /* Color de fondo ligero */
-    min-height: calc(100vh - 80px); /* Ajusta según la altura de tu navbar si es fija */
+    background-color: #f8f9fa;
+    min-height: calc(100vh - 80px);
 }
 
 /* Estilos generales para las tarjetas del perfil */
@@ -1021,7 +940,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
 
 .profile-avatar-wrapper {
     position: relative;
-    width: 100px; /* Tamaño del avatar */
+    width: 100px;
     height: 100px;
     margin-bottom: 15px;
 }
@@ -1031,14 +950,14 @@ https://www.tooplate.com/view/2119-gymso-fitness
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid var(--primary-color); /* Borde de color de marca */
+    border: 3px solid var(--primary-color);
 }
 
 .edit-icon-overlay {
     position: absolute;
     bottom: 0;
     right: 0;
-    background-color: #e20000; /* Color del icono de editar de la imagen original */
+    background-color: var(--primary-color);
     border-radius: 50%;
     padding: 5px;
     display: flex;
@@ -1046,8 +965,6 @@ https://www.tooplate.com/view/2119-gymso-fitness
     justify-content: center;
     cursor: pointer;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    /* Aquí iría un icono SVG o font-awesome */
-    /* Ejemplo de un círculo rojo como placeholder */
     width: 28px;
     height: 28px;
 }
@@ -1066,7 +983,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
 }
 
 .admin-badge {
-    background-color: var(--dark-color); /* Color verde para el badge de admin */
+    background-color: var(--dark-color);
     color: #fff;
     padding: 6px 15px;
     border-radius: 20px;
@@ -1104,7 +1021,7 @@ https://www.tooplate.com/view/2119-gymso-fitness
     display: block;
     font-size: 2.5em;
     font-weight: 700;
-    color: var(--primary-color); /* Color de marca */
+    color: var(--primary-color);
     margin-bottom: 5px;
 }
 
@@ -1114,7 +1031,11 @@ https://www.tooplate.com/view/2119-gymso-fitness
     font-weight: 500;
 }
 
-/* Estilos para las acciones rápidas */
+/* 
+-----------------------------------------------------
+Estilos para las acciones rápidas 
+-----------------------------------------------------
+*/
 .quick-actions {
     text-align: left;
 }
@@ -1127,8 +1048,8 @@ https://www.tooplate.com/view/2119-gymso-fitness
 }
 
 .action-button {
-    background-color: var(--dark-color); /* Color principal de marca */
-    color: #ffffff;
+    background-color: var(--dark-color);
+    color: var(--white-color);
     padding: 15px 20px;
     border: none;
     border-radius: 8px;
@@ -1136,11 +1057,12 @@ https://www.tooplate.com/view/2119-gymso-fitness
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 2px 8px var(--primary-color, 0, 123, 255, 0.3);
+    box-shadow: 0 2px 8px var(--gray-color);
 }
 
 .action-button:hover {
-    background-color: var(--primary-color); /* Tono más oscuro al pasar el ratón */
+    background-color: var(--primary-color);
+    color: var(--dark-color);
     transform: translateY(-2px);
 }
 
@@ -1150,25 +1072,21 @@ https://www.tooplate.com/view/2119-gymso-fitness
         padding: 20px 15px;
         gap: 20px;
     }
-
     .profile-card {
         padding: 25px;
     }
-
     .card-title {
         font-size: 1.4em;
         margin-bottom: 20px;
     }
-
     .user-name {
         font-size: 1.8em;
     }
-
-    .dashboard-stats, .actions-grid {
-        grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
+    .dashboard-stats,
+    .actions-grid {
+        grid-template-columns: 1fr;
         gap: 15px;
     }
-
     .stat-value {
         font-size: 2em;
     }
@@ -1196,5 +1114,129 @@ https://www.tooplate.com/view/2119-gymso-fitness
     }
     .user-email {
         font-size: 1em;
+    }
+}
+
+/* Estilos para la sección de bienvenida (feature) */
+.feature-section-bg {
+    background: #fff;
+}
+
+.bienvenida-heading {
+    color: #111;
+    font-size: 2rem;
+}
+
+.bienvenida-text {
+    color: #444;
+}
+
+.divider-line {
+    width: 5px;
+    background: var(--primary-color);
+    height: 350px;
+}
+
+.feature-image {
+    width: 300px;
+    border: 6px solid var(--primary-color);
+    border-radius: 15px;
+    box-shadow: 0 0 15px var(--primary-color), 0 0 30px var(--primary-color), 0 0 45px var(--primary-color);
+    display: block;
+    margin: 0 auto;
+}
+
+/* Estilos para las tarjetas de beneficios */
+.card-img-custom {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+/* Estilos para la sección de testimonios */
+.testimonios-carrusel {
+    background-color: #ffffff;
+    padding: 40px 20px;
+    border-radius: 12px;
+}
+
+.testimonio-texto {
+    color: #000000;
+}
+
+.cargo {
+    color: #000000;
+}
+
+/* Estilos para la sección de contacto */
+.contact-form {
+    background: linear-gradient(to bottom, #f73232, #443636);
+}
+
+.contact-form button {
+    background: #111;
+}
+
+.contact-submit-btn {
+    background: #111;
+    border: none;
+    transition: 0.3s;
+    border-radius: 8px;
+    padding: 10px 20px;
+    margin-top: 10px;
+}
+
+.contact-submit-btn:hover {
+    background: #f50505;
+    color: #fff;
+    transform: scale(1.03);
+}
+
+/* Estilos para las vistas CRUD de administrador */
+.crud-container {
+    padding-top: 100px;
+    padding-bottom: 50px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.crud-title {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 0 15px;
+}
+
+.table .btn-modificar {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #212529;
+}
+
+.table .btn-resolver {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: #fff;
+}
+
+.table .btn-eliminar {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .crud-container {
+        padding-top: 80px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .crud-title {
+        font-size: 2em;
+    }
+    .table th, .table td {
+        font-size: 0.9em;
     }
 }
