@@ -21,6 +21,8 @@
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/font-awesome.min.css">
   <link rel="stylesheet" href="css/aos.css">
+  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="css/user.css">
 
   <!-- MAIN CSS -->
   <link rel="stylesheet" href="css/tooplate-gymso-style.css">
@@ -72,24 +74,26 @@
     </div>
   </nav>
 
-  <!-- PERFIL DE USUARIO -->    
+  <!-- PERFIL DE USUARIO -->
   <section class="section" id="perfiluser">
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-6 col-md-8 col-12" data-aos="fade-up" data-aos-delay="100">
-          <div class="profile-card text-center p-4">
-            <div class="avatar-container position-relative mb-3">
-              <img src="images/perfil.jpg" class="img-fluid rounded-circle profile-avatar" alt="Avatar del usuario">
-              <a href="#" class="edit-icon"><i class="fa fa-pencil"></i></a>
+          <div class="profile-card user-summary">
+            <div class="profile-avatar-wrapper">
+              <img src="images/testi2.jpg" alt="Avatar del Usuario" class="profile-avatar">
+              <div class="edit-icon-overlay" title="Editar Perfil">
+                <i class="fa fa-pencil" aria-hidden="true"></i>
+              </div>
             </div>
-            <h4 id="userName" class="mt-2 mb-1">Nombre de Usuario</h4>
-            <small id="userEmail" class="text-muted">usuario@example.com</small>
+            <h2 class="user-name">Nombre de Usuario</h2>
+            <p class="user-email">usuario@example.com</p>
           </div>
         </div>
       </div>
 
-      <div class="row justify-content-center mt-5">
-        <div class="col-lg-6 col-md-8 col-12" data-aos="fade-up" data-aos-delay="200">
+      <div class="row mt-5">
+        <div class="col-lg-6 col-md-6 col-12 mb-4" data-aos="fade-right" data-aos-delay="200">
           <div class="info-card p-4">
             <h5 class="card-title text-center mb-4">Datos del usuario</h5>
             <div class="info-item mb-3">
@@ -110,10 +114,8 @@
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="row justify-content-center mt-4">
-        <div class="col-lg-6 col-md-8 col-12" data-aos="fade-up" data-aos-delay="300">
+        <div class="col-lg-6 col-md-6 col-12 mb-4" data-aos="fade-left" data-aos-delay="200">
           <div class="info-card p-4">
             <h5 class="card-title text-center mb-4">Análisis</h5>
             <div class="info-item mb-3">
@@ -135,18 +137,46 @@
           </div>
         </div>
       </div>
+
+      <div class="row justify-content-center mt-4">
+        <div class="col-lg-12 col-md-12 col-12">
+          <div class="plan-card p-5 text-center" data-aos="zoom-in" data-aos-delay="300">
+            <h3 class="card-title">Mi Plan de Salud</h3>
+            <p class="mb-4">"Aquí puedes ver y gestionar tus planes de nutrición y rutinas de ejercicio."</p>
+          <button class="btn btn-lg custom-btn" data-aos="fade-up">Ver Mi Plan</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center mt-4">
+        <div class="col-lg-12 col-md-12 col-12">
+          <div class="progress-card p-5 text-center" data-aos="zoom-in" data-aos-delay="400">
+            <h3 class="card-title">Seguimiento de Progreso</h3>
+            <p class="mb-4">"Registra tus comidas y ejercicios para mantener un control preciso."</p>
+            <button class="btn btn-primary btn-lg custom-btn">Registrar Progreso</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row justify-content-center mt-4">
+        <div class="col-lg-12 col-md-12 col-12">
+          <div class="info-card p-4 text-center" data-aos="fade-up" data-aos-delay="500">
+            <h3 class="card-title">Generar Nuevo Plan</h3>
+            <p class="mb-4">"¿Estás listo para un nuevo desafío? Genera un plan personalizado."</p>
+            <button class="btn btn-primary btn-lg custom-btn">Generar Nuevo Plan</button>
+          </div>
+        </div>
+      </div>
+
     </div>
   </section>
 
-  <!-- FOOTER -->
   <footer class="site-footer">
     <div class="container">
       <div class="row">
 
         <div class="ml-auto col-lg-4 col-md-5">
-          <p class="copyright-text">Copyright &copy; 2025 TecnoSystem
-
-          </p>
+          <p class="copyright-text">Copyright &copy; 2025 TecnoSystem</p>
         </div>
 
         <div class="d-flex justify-content-center mx-auto col-lg-5 col-md-7 col-12">
@@ -160,7 +190,6 @@
     </div>
   </footer>
 
-  <!-- SCRIPTS -->
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/aos.js"></script>
@@ -172,7 +201,6 @@
     <i class="fa fa-commenting" aria-hidden="true"></i>
   </div>
 
-  <!-- VENTANA CHATBOT -->
   <div id="chat-container" class="chat-container">
     <div class="chat-header">
       <span class="chat-logo">
