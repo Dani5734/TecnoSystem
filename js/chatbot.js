@@ -62,3 +62,15 @@ document.addEventListener("DOMContentLoaded", function () {
     messagesContainer.scrollTop = messagesContainer.scrollHeight;
   }
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const chatContainer = document.getElementById('chat-container');
+    const expandChatBtn = document.getElementById('expand-chat');
+    
+    // Función para alternar el modo de pantalla completa
+    expandChatBtn.addEventListener('click', () => {
+        chatContainer.classList.toggle('expanded');
+    });
+
+    // ... aquí va el resto de tu código JavaScript ...
+});

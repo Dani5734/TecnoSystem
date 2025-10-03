@@ -416,10 +416,9 @@
             <!-- Botones de registro con APIs -->
             <div class="text-center mt-3">
               <p>O regístrate con:</p>
-              <div id="g_id_onload" 
+              <div id="g_id_onload"
                 data-client_id="163821559797-7rjdchh3lfasip35j7j46lfjnstne84s.apps.googleusercontent.com"
-                data-login_uri="http://localhost/TecnoSystem/registro_google.php" 
-                data-auto_prompt="false">
+                data-login_uri="http://localhost/TecnoSystem/registro_google.php" data-auto_prompt="false">
               </div>
               <div class="g_id_signin"></div>
               <!--
@@ -474,7 +473,12 @@
         <img src="images/logo.png" alt="Logo del Chatbot">
       </span>
       <h3 class="chat-title">HealthBot</h3>
-      <span id="close-chat" class="close-chat">&times;</span>
+      <div class="chat-controls">
+        <span id="expand-chat" class="chat-control-btn">
+          <i class="fa fa-expand" aria-hidden="true"></i>
+        </span>
+        <span id="close-chat" class="chat-control-btn">&times;</span>
+      </div>
     </div>
 
     <div class="chat-body">
@@ -492,7 +496,6 @@
 
       <div id="messages-container" class="messages-container">
       </div>
-
     </div>
 
     <div class="chat-input-area">

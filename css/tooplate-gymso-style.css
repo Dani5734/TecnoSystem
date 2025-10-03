@@ -356,14 +356,15 @@ a:focus {
 
 /* Estilo general de los mensajes */
 .message {
-    max-width: 70%;
-    padding: 10px 15px;
-    margin: 5px;
-    border-radius: 15px;
-    font-size: 14px;
-    line-height: 1.4;
+  max-width: 70%;
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: 15px;
+  font-size: 25px; /* Cambiado a 25px para mayor legibilidad */
+  line-height: 1.4;
+    word-wrap: break-word; /* Asegura que las palabras largas se dividan */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Añade una sombra sutil para mejorar la visibilidad */
 }
-
 /* Mensajes del bot */
 .message.bot {
     background-color: #f1f1f1;
@@ -391,7 +392,51 @@ a:focus {
     padding: 10px;
     height: 350px;
 }
+/* Nuevo CSS para la funcionalidad de expandir/minimizar el chatbot */
 
+.chat-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chat-control-btn {
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.chat-control-btn:hover {
+    color: #f1f1f1;
+}
+
+/* Estilos para el modo de pantalla completa */
+.chat-container.expanded {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    box-shadow: none;
+    z-index: 1001; /* Asegura que esté por encima de todo lo demás */
+    display: flex; /* Asegura que la distribución de los elementos sea correcta */
+}
+
+.chat-container.expanded .chat-header,
+.chat-container.expanded .chat-body,
+.chat-container.expanded .chat-input-area {
+    width: 100%; /* El contenido se expande para llenar la pantalla */
+}
+
+.chat-container.expanded .messages-container {
+    height: calc(100vh - 200px); /* Ajusta la altura del área de mensajes */
+    max-height: none;
+}
+
+.chat-container.expanded .fa-expand:before {
+    content: "\f066"; /* Cambia el icono de "expandir" a "minimizar" */
+}
 /*---------------------------------------
    MENU
 -----------------------------------------*/
