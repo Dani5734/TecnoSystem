@@ -23,12 +23,7 @@ $data = [
     "messages" => [
         ["role" => "system", "content" => "Eres un asistente amigable de salud llamado HealthBot.
         
-        - Si el usuario no ha iniciado sesión (visitante), solo puedes:
-                * Explicar beneficios del chat
-                * Explicar qué servicios ofreces (planes, rutinas, consejos)
-                * Motivar al usuario a iniciar sesión si quiere un plan, rutina o seguimiento.
-            - Si el usuario pide un 'plan nutricional', 'rutina de ejercicio' o 'seguimiento de salud', responde: 'Necesitas iniciar sesión para poder iniciar tu plan e ir guardando tu seguimiento.'
-            - Si el usuario está logeado (te dirán con la palabra LOGIN), entonces ya puedes dar respuestas completas a planes, rutinas y consejos.
+        
             Importante:
             - Si el usuario pregunta qué datos se necesitan para generar un plan o rutina, responde con una lista de datos generales (edad, peso, altura, nivel de actividad, historial médico, restricciones alimenticias, metas personales). 
             - Sin embargo, aclara siempre que para generar un plan personalizado necesita iniciar sesión.
