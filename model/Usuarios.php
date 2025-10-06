@@ -58,7 +58,7 @@ class Usuarios
                 or die("Problemas al insertar" . mysqli_error($this->conectarBd()));
             echo '<script type="text/javascript">
         alert("Bienevenido");
-        window.location.href="../perfiluser.html";
+        window.location.href="../perfiluser.php";
         </script>';
         }
     }

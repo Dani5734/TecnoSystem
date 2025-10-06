@@ -400,40 +400,109 @@
                   required>
               </div>
             </div>
+            
             <div class="form-group">
               <label for="reg-correo">Correo Electrónico</label>
               <input type="email" class="form-control" name="correousuario" id="correousuario" aria-describedby="helpId"
                 required>
             </div>
 
-            <div class="mb-3">
-              <label for="reg-contrasena" class="form-label">Contraseña</label>
-              <div class="input-group">
-                <input type="password" class="form-control" id="reg-contrasena" placeholder="Contraseña"
-                  name="contrasena" required>
-                <span class="input-group-text">
-                  <i id="toggleRegisterPassword" class="fa-solid fa-eye" style="cursor:pointer;"></i>
-                </span>
-              </div>
-            </div>
-            <!-- Botones de registro con APIs -->
-            <div class="text-center mt-3">
-              <p>O regístrate con:</p>
-              <div id="g_id_onload"
-                data-client_id="163821559797-7rjdchh3lfasip35j7j46lfjnstne84s.apps.googleusercontent.com"
-                data-login_uri="http://localhost/TecnoSystem/registro_google.php" data-auto_prompt="false">
-              </div>
-              <div class="g_id_signin"></div>
-              <!--
-              <button type="button" class="btn btn-outline-primary w-100">
-                <i class="fab fa-facebook-f me-2"></i> Facebook
-              </button>-->
-            </div>
-            <input type="hidden" name="opcion" value="1" />
-            <div class="mb-3">
-              <button type="submit" class="custom-btn bg-color mt-3 w-100 rounded-pill"
-                name="submit">Registrarse</button>
-            </div>
+            <!-- Campo contraseña -->
+<div class="mb-3">
+  <label for="reg-contrasena" class="form-label">Contraseña</label>
+  <div class="input-group">
+    <input 
+      type="password" 
+      class="form-control" 
+      id="reg-contrasena" 
+      placeholder="Contraseña"
+      name="contrasena" 
+      required>
+    <span class="input-group-text">
+      <i id="toggleRegisterPassword" class="fa-solid fa-eye" style="cursor:pointer;"></i>
+    </span>
+  </div>
+
+  <!-- Reglas de validación -->
+  <div id="passwordTooltip" style="display:none; font-size:14px; margin-top:5px;">
+    <strong>La contraseña debe cumplir:</strong>
+    <ul style="margin:5px 0 0 15px; padding:0;">
+      <li id="lower">Al menos una letra minúscula</li>
+      <li id="upper">Al menos una letra mayúscula</li>
+      <li id="number">Al menos un número</li>
+      <li id="length">Mínimo 8 caracteres</li>
+      <li id="space">Sin espacios</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Botones de registro con APIs -->
+<div class="text-center mt-3">
+  <p>O regístrate con:</p>
+  <div id="g_id_onload"
+    data-client_id="163821559797-7rjdchh3lfasip35j7j46lfjnstne84s.apps.googleusercontent.com"
+    data-login_uri="http://localhost/TecnoSystem/registro_google.php" 
+    data-auto_prompt="false">
+  </div>
+  <div class="g_id_signin"></div>
+</div>
+
+<input type="hidden" name="opcion" value="1" />
+
+<div class="mb-3">
+  <button type="submit" class="custom-btn bg-color mt-3 w-100 rounded-pill" name="submit">
+    Registrarse
+  </button>
+</div>
+
+<!-- Font Awesome -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+
+<script>
+  const passwordInput = document.getElementById('reg-contrasena');
+  const tooltip = document.getElementById('passwordTooltip');
+  const togglePassword = document.getElementById('toggleRegisterPassword');
+  const form = document.getElementById('registroForm'); // Asegúrate que el <form> tenga este id
+
+  // Mostrar / ocultar contraseña
+  togglePassword.addEventListener('click', () => {
+    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordInput.setAttribute('type', type);
+    togglePassword.classList.toggle('fa-eye');
+    togglePassword.classList.toggle('fa-eye-slash');
+  });
+
+  // Mostrar reglas al enfocar
+  passwordInput.addEventListener('focus', () => {
+    tooltip.style.display = 'block';
+  });
+
+  // Ocultar reglas al perder foco
+  passwordInput.addEventListener('blur', () => {
+    tooltip.style.display = 'none';
+  });
+
+  // Validación en tiempo real
+  passwordInput.addEventListener('input', () => {
+    const val = passwordInput.value;
+    document.getElementById('lower').style.color = /[a-z]/.test(val) ? 'green' : 'red';
+    document.getElementById('upper').style.color = /[A-Z]/.test(val) ? 'green' : 'red';
+    document.getElementById('number').style.color = /\d/.test(val) ? 'green' : 'red';
+    document.getElementById('length').style.color = val.length >= 8 ? 'green' : 'red';
+    document.getElementById('space').style.color = /\s/.test(val) ? 'red' : 'green';
+  });
+
+  // Validar antes de enviar
+  form.addEventListener('submit', (event) => {
+    const val = passwordInput.value;
+    const valid = /[a-z]/.test(val) && /[A-Z]/.test(val) && /\d/.test(val) && val.length >= 8 && !/\s/.test(val);
+
+    if (!valid) {
+      event.preventDefault();
+      alert('⚠️ La contraseña no cumple con los requisitos solicitados.');
+    }
+  });
+</script>
           </form>
         </div>
       </div>
