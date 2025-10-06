@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -67,7 +71,7 @@
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link smoothScroll" data-toggle="modal" data-target="#IniciarSesion">Login</a>
+            <a href="controller/ctrlUsuario.php" class="nav-link" type="button">Cerrar Sesion</a>
           </li>
         </ul>
       </div>
@@ -86,8 +90,8 @@
                 <i class="fa fa-pencil" aria-hidden="true"></i>
               </div>
             </div>
-            <h2 class="user-name">Nombre de Usuario</h2>
-            <p class="user-email">usuario@example.com</p>
+            <h2 class="user-name"><?php echo $_SESSION['nombre'].' '. $_SESSION['apellidos']; ?></h2>
+            <p class="user-email"><?php echo $_SESSION['correousuario']; ?></p>
           </div>
         </div>
       </div>
@@ -98,7 +102,7 @@
             <h5 class="card-title text-center mb-4">Datos del usuario</h5>
             <div class="info-item mb-3">
               <div class="info-label">Edad:</div>
-              <div class="info-value" id="userAge">25</div>
+              <div class="info-value" id="userAge"><?php echo $_SESSION['edad']; ?></div>
             </div>
             <div class="info-item mb-3">
               <div class="info-label">Estatura:</div>
