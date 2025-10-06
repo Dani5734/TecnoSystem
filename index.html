@@ -322,7 +322,7 @@
         </div>
 
         <div class="modal-body">
-          <form action="model/login.php" method="post">
+          <form action="controller/ctrlUsuario.php" method="post">
             <div class="mb-3">
               <label for="login-contrasena" class="form-label">Correo </label>
               <input type="email" class="form-control" name="correousuario" id="correousuario"
@@ -332,13 +332,14 @@
             <div class="mb-3">
               <label for="login-contrasena" class="form-label">Contraseña</label>
               <div class="input-group">
-                <input type="password" class="form-control" id="login-contrasena" placeholder="Contraseña" required>
+                <input type="password" class="form-control" id="login-contrasena" name="contrasena" placeholder="Contraseña" required>
                 <span class="input-group-text">
                   <i id="toggleLoginPassword" class="fa-solid fa-eye" style="cursor:pointer;"></i>
                 </span>
               </div>
             </div>
 
+            <input type="hidden" name="opcion" value="7" />
             <div class="mb-3">
               <button type="submit" class="custom-btn bg-color mt-3 w-100 rounded-pill" name="submit">Iniciar
                 Sesión</button>

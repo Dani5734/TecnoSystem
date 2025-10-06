@@ -55,9 +55,9 @@
             break;
 
         case '7':
-            $correo = $_REQUEST['correo_e'];
+            $correousuario = $_REQUEST['correousuario'];
             $contrasena = $_REQUEST['contrasena'];
-            $usu->iniciarSesion($correo, $contrasena);
+            $usu->iniciarSesion($correousuario, $contrasena);
             break;
     }
     ?>

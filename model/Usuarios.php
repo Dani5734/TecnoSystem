@@ -62,6 +62,55 @@ class Usuarios
         </script>';
         }
     }
+
+    public function iniciarSesion($correousuario, $contrasena)
+    {
+        require_once("config_seguridad.php");
+        session_start();
+
+
+        $consulta = mysqli_query($this->conectarBd(), "SELECT * FROM usuarios WHERE correousuario = '$correousuario'")
+            or die(mysqli_error($this->conectarBd()));
+
+        if ($reg = mysqli_fetch_array($consulta)) {
+
+            $contrasenaCifrada = $reg['contrasena'];
+            $contrasenaReal = openssl_decrypt($contrasenaCifrada, 'AES-256-CBC', AES_KEY, 0, AES_IV);
+
+
+            if ($contrasenaReal === $contrasena) {
+                $_SESSION['id'] = $reg['id'];
+                $_SESSION['nombre'] = $reg['nombre'];
+                $_SESSION['apellidos'] = $reg['apellidos'];
+                $_SESSION['telefono'] = $reg['telefono'];
+                $_SESSION['correousuario'] = $reg['correousuario'];
+                $_SESSION['nomusuario'] = $reg['nombre'] . ' ' . $reg['apellidos'];
+
+                echo '<script type="text/javascript">
+                window.location.href="../perfiluser.php";
+            </script>';
+            } else {
+                echo '<script type="text/javascript">
+                alert("Contraseña incorrecta.");
+                window.history.back();
+            </script>';
+            }
+        } else {
+            echo '<script type="text/javascript">
+            alert("Correo no registrado.");
+            window.history.back();
+        </script>';
+        }
+    }
+
+    public function cerrarSesion()
+    {
+        session_start();
+        session_unset();
+        session_destroy();
+        header("Location: ../index.html");
+        exit();
+    }
 }
 
 ?>
