@@ -4,7 +4,8 @@
 <link rel="stylesheet" href="../Css/style.css">
 
 <?php
-class Usuarios{
+class Usuarios
+{
     private $id;
     private $nombre;
     private $apellidos;
@@ -20,7 +21,8 @@ class Usuarios{
     }
 
 
-    public function inicializar($id = null, $nombre = null, $apellidos = null, $telefono = null, $edad = null, $correousuario = null, $contrasena = null){
+    public function inicializar($id = null, $nombre = null, $apellidos = null, $telefono = null, $edad = null, $correousuario = null, $contrasena = null)
+    {
         $this->id = $id;
         $this->nombre = $nombre;
         $this->apellidos = $apellidos;
@@ -41,7 +43,8 @@ class Usuarios{
         return openssl_decrypt($textoCifrado, 'AES-256-CBC', AES_KEY, 0, AES_IV);
     }
 
-    public function registrarUsuario(){
+    public function registrarUsuario()
+    {
         $registrar = mysqli_query($this->conectarBd(), "SELECT * FROM usuarios WHERE correousuario = '$this->correousuario'") or die(mysqli_error($this->conectarBd()));
         if ($reg = mysqli_fetch_array($registrar)) {
             echo '<a href="../Vista/panelAdmin.php"><i class="fa-solid fa-arrow-left-long"></i></a><br><br>';
