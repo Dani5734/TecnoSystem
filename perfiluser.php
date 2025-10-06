@@ -145,33 +145,12 @@ session_start();
       <div class="row justify-content-center mt-4">
         <div class="col-lg-12 col-md-12 col-12">
           <div class="plan-card p-5 text-center" data-aos="zoom-in" data-aos-delay="300">
-            <h3 class="card-title">Mi Plan de Salud</h3>
-            <p class="mb-4">"Aquí puedes ver y gestionar tus planes de nutrición y rutinas de ejercicio."</p>
+            <h3 class="card-title">Resumen Semanal</h3>
+            <p class="mb-4">"Aquí puedes ver tus logros y áreas de mejora."</p>
           <button class="btn btn-lg custom-btn" data-aos="fade-up">Ver Mi Plan</button>
           </div>
         </div>
       </div>
-
-      <div class="row justify-content-center mt-4">
-        <div class="col-lg-12 col-md-12 col-12">
-          <div class="progress-card p-5 text-center" data-aos="zoom-in" data-aos-delay="400">
-            <h3 class="card-title">Seguimiento de Progreso</h3>
-            <p class="mb-4">"Registra tus comidas y ejercicios para mantener un control preciso."</p>
-            <button class="btn btn-primary btn-lg custom-btn">Registrar Progreso</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="row justify-content-center mt-4">
-        <div class="col-lg-12 col-md-12 col-12">
-          <div class="info-card p-4 text-center" data-aos="fade-up" data-aos-delay="500">
-            <h3 class="card-title">Generar Nuevo Plan</h3>
-            <p class="mb-4">"¿Estás listo para un nuevo desafío? Genera un plan personalizado."</p>
-            <button class="btn btn-primary btn-lg custom-btn">Generar Nuevo Plan</button>
-          </div>
-        </div>
-      </div>
-
     </div>
   </section>
 
