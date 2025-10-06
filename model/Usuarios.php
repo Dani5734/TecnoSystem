@@ -83,6 +83,7 @@ class Usuarios
                 $_SESSION['nombre'] = $reg['nombre'];
                 $_SESSION['apellidos'] = $reg['apellidos'];
                 $_SESSION['telefono'] = $reg['telefono'];
+                $_SESSION['edad'] = $reg['edad'];
                 $_SESSION['correousuario'] = $reg['correousuario'];
                 $_SESSION['nomusuario'] = $reg['nombre'] . ' ' . $reg['apellidos'];
 
@@ -110,6 +111,13 @@ class Usuarios
         session_destroy();
         header("Location: ../index.html");
         exit();
+    }
+
+
+    public function consultarUsuarios($correousuario)
+    {
+        $consulta = mysqli_query($this->conectarBd(), "SELECT * FROM usuarios WHERE correousuario = '$correousuario'") or die(mysqli_error($this->conectarBd()));
+        return mysqli_fetch_array($consulta);
     }
 }
 

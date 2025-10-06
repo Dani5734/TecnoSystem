@@ -28,7 +28,7 @@
             break;
 
         case '2':
-            $usu->consultarUsuarios($_REQUEST['correo_e']);
+            $usu->consultarUsuarios($_REQUEST['correousuario']);
             break;
 
         case '3':
@@ -59,6 +59,12 @@
             $contrasena = $_REQUEST['contrasena'];
             $usu->iniciarSesion($correousuario, $contrasena);
             break;
+
+        default:
+            session_start();
+            session_destroy();
+            header("Location:../index.html");
+            break;   
     }
     ?>
 </body>
