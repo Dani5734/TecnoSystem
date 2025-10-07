@@ -437,6 +437,68 @@ a:focus {
 .chat-container.expanded .fa-expand:before {
     content: "\f066"; /* Cambia el icono de "expandir" a "minimizar" */
 }
+
+/* Estilos para los controles del chat */
+.chat-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Espacio entre los botones de control */
+}
+
+.chat-control-btn {
+    font-size: 1.2em;
+    cursor: pointer;
+    color: var(--white-color); /* Color blanco para los íconos en el header rojo */
+    transition: color 0.3s ease;
+}
+
+.chat-control-btn:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* ------------------------------------------- */
+/* ESTILOS DE PANTALLA COMPLETA (.expanded) */
+/* ------------------------------------------- */
+
+/* Estilo principal para expandir a pantalla completa */
+.chat-container.expanded {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 0;
+    box-shadow: none;
+    z-index: 9999; /* Máximo z-index para estar sobre todo */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ajuste del cuerpo del chat en modo expandido */
+.chat-container.expanded .chat-body {
+    flex-grow: 1;
+    overflow-y: hidden; /* Ocultamos el scroll del cuerpo para que solo lo tenga el contenedor de mensajes */
+    padding: 20px;
+}
+
+/* Ajuste del contenedor de mensajes para que ocupe el espacio restante */
+.chat-container.expanded .messages-container {
+    /* Calculamos la altura: 100% de la altura - header - input - padding */
+    height: calc(100vh - 180px);
+    max-height: none; 
+    overflow-y: auto; /* Hacemos que solo el área de mensajes tenga scroll */
+    padding: 10px;
+    border: 1px solid #ddd; /* Borde visual para el área de mensajes */
+    border-radius: 8px;
+    background-color: #fcfcfc;
+}
+
+/* Cambiar el ícono de EXPANDIR a MINIMIZAR cuando está expandido */
+.chat-container.expanded #expand-chat .fa:before {
+    content: "\f066"; /* Código Unicode para el ícono de Minimizar (compress) */
+}
 /*---------------------------------------
    MENU
 -----------------------------------------*/
