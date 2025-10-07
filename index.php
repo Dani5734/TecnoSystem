@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <title>HealthBot</title>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <!-- Login -->
+  <script src="https://kit.fontawesome.com/274421acc6.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="plugins/sweetalert2/sweetalert2.min.css">
+
+  <!-- Fin Login -->
+
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/aos.css">
+
+  <!-- MAIN CSS -->
+  <link rel="stylesheet" href="css/tooplate-gymso-style.css">
+</head>
+
+<body data-spy="scroll" data-target="#navbarNav" data-offset="50">
+
+  <!-- MENU BAR -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+
+      <!-- Logo con icono -->
+      <a class="navbar-brand" href="index.php">
+        <img src="images/logo4.png" alt="HealthBot" width="45" height="45" class="d-inline-block align-text-top">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-lg-auto">
+          <li class="nav-item">
+            <a href="#home" class="nav-link smoothScroll">Home</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#about" class="nav-link smoothScroll">Nosotros</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#class" class="nav-link smoothScroll">Beneficios</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#schedule" class="nav-link smoothScroll">Testimonios </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#contact" class="nav-link smoothScroll">Contacto</a>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link smoothScroll" data-toggle="modal" data-target="#IniciarSesion">Login</a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero d-flex flex-column justify-content-center align-items-center" id="home">
+    <div class="bg-overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto col-12">
+          <div class="hero-text mt-5 text-center">
+            <h1 class="text-white" data-aos="fade-up" data-aos-delay="500">Bienvenido a HealthBot</h1>
+            <a href="#about" class="btn custom-btn bordered mt-3" data-aos="fade-up" data-aos-delay="700">Comenzar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="feature py-5" id="feature" style="background:#fff;">
+    <div class="container">
+      <div class="row align-items-center">
+
+        <!-- Texto -->
+        <div class="col-lg-5 col-md-6 mb-4 mb-lg-0 text-center">
+          <h2 class="mb-3 fw-bold" style="color:#111; font-size:2rem;" data-aos="fade-up">
+            Bienvenido
+          </h2>
+          <p class="lead" style="color:#444;" data-aos="fade-up" data-aos-delay="150">
+            Tu bienestar es nuestra prioridad. Aquí encontrarás un espacio confiable,
+            pensado para guiarte con recomendaciones seguras y prácticas que te ayudarán
+            a cuidar tu salud y alcanzar tus metas con tranquilidad.
+          </p>
+        </div>
+
+        <!-- Línea divisoria -->
+        <div class="col-lg-2 d-none d-lg-flex justify-content-center">
+          <div style="width:5px; background:var(--primary-color); height:350px;"></div>
+        </div>
+
+        <img src="images/Imag1.jpg" alt="Trainer" style="width:300px; border:6px solid var(--primary-color); border-radius:15px;
+            box-shadow:0 0 15px var(--primary-color),0 0 30px var(--primary-color),0 0 45px var(--primary-color);
+            display:block; margin:0 auto;">
+
+      </div>
+    </div>
+    </div>
+  </section>
+
+
+  <!-- ABOUT -->
+  <section class="about section" id="about"
+    style="background-color: #000; color: #d8d8d8; text-align: center; padding: 50px 20px;">
+    <div class="container">
+      <div class="row">
+        <div class="mt-lg-5 mb-lg-0 mb-4 col-lg-8 col-md-10 mx-auto col-12">
+          <h2 class="mb-4" data-aos="fade-up" data-aos-delay="300">¡Hola! Soy HealthBot.</h2>
+          <p data-aos="fade-up" data-aos-delay="400">
+            Creado para ser tu acompañante virtual en salud y bienestar.
+          </p>
+          <p>
+            Mi objetivo es apoyarte con rutinas de ejercicio personalizadas, planes de alimentación balanceados y
+            consejos
+            prácticos que te ayuden a mejorar tu estilo de vida. Siempre estoy disponible para escucharte y motivarte,
+            convirtiéndome en ese compañero que te impulsa a mantenerte constante y alcanzar tus metas de forma segura y
+            amigable.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- Beneficios - Tarjetas -->
+  <section class="class section" id="class">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-12 text-center mb-5">
+          <h6 data-aos="fade-up">Te Ofrezcco</h6>
+          <h2 data-aos="fade-up" data-aos-delay="200">Beneficios</h2>
+        </div>
+      </div>
+
+      <div class="row text-center">
+
+        <!-- Tarjeta 1 -->
+        <div class="col-lg-4 col-md-6 col-12 mb-4">
+          <div class="card shadow h-100">
+            <img src="images/class/consejos.jpg" class="card-img-top" alt="Consejos"
+              style="width:100%; height:250px; object-fit:cover;">
+            <div class="card-body">
+              <h3 class="card-title">Consejos</h3>
+              <p class="card-text">"Mantente hidratado durante tu entrenamiento para maximizar tu rendimiento."</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 2 -->
+        <div class="col-lg-4 col-md-6 col-12 mb-4">
+          <div class="card shadow h-100">
+            <img src="images/class/comid.png" class="card-img-top" alt="Salud"
+              style="width:100%; height:250px; object-fit:cover;">
+            <div class="card-body">
+              <h3 class="card-title">Salud</h3>
+              <p class="card-text">Mantenerte activo reduce el estrés y mejora la calidad del sueño.</p>
+            </div>
+          </div>
+        </div>
+
+        
+
+        <!-- Tarjeta 3 -->
+        <div class="col-lg-4 col-md-6 col-12 mb-4">
+          <div class="card shadow h-100">
+            <img src="images/class/ejercicio.png" class="card-img-top" alt="Cardio"
+              style="width:100%; height:250px; object-fit:cover;">
+            <div class="card-body">
+              <h3 class="card-title">Ejercicio</h3>
+              <p class="card-text">Ideal para bajar de peso y mejorar tu estado de ánimo.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!--Sección de testimonios-->
+  <section id="schedule" class="testimonios-section">
+    <div class="container">
+      <h2 class="text-center mb-5">Lo que opinan nuestros clientes</h2>
+
+      <!-- Carrusel -->
+      <div id="carruselTestimonios" class="carousel slide" data-ride="carousel" data-interval="4000">
+        <div class="carousel-inner text-center">
+
+          <!-- Testimonio 1 -->
+          <div class="carousel-item active">
+            <img src="images/testi2.jpg" class="rounded-circle mx-auto d-block testimonio-img" alt="Testimonio 1">
+            <p class="testimonio-texto mt-4">
+              Me encanta usar este chat bot, siempre tiene la respuesta exacta y me ahorra mucho tiempo.
+            </p>
+            <h5 class="mt-3 fw-bold">María</h5>
+            <p class="cargo">Consultora en bienestar</p>
+          </div>
+
+          <!-- Testimonio 2 -->
+          <div class="carousel-item">
+            <img src="images/testi3.jpg" class="rounded-circle mx-auto d-block testimonio-img" alt="Testimonio 2">
+            <p class="testimonio-texto mt-4">
+              Es muy práctico, me ayuda a organizar mis tareas y siento que tengo un asistente personal.
+            </p>
+            <h5 class="mt-3 fw-bold">Ana</h5>
+            <p class="cargo">Diseñadora UX/UI</p>
+          </div>
+
+          <!-- Testimonio 3 -->
+          <div class="carousel-item">
+            <img src="images/testi1.jpg" class="rounded-circle mx-auto d-block testimonio-img" alt="Testimonio 3">
+            <p class="testimonio-texto mt-4">
+              Lo recomiendo totalmente, es sencillo de usar y me ha dado muy buenos resultados.
+            </p>
+            <h5 class="mt-3 fw-bold">Carolina</h5>
+            <p class="cargo">Project Manager</p>
+          </div>
+        </div>
+
+        <!-- Indicadores (los puntitos) -->
+        <ol class="carousel-indicators">
+          <li data-target="#carruselTestimonios" data-slide-to="0" class="active"></li>
+          <li data-target="#carruselTestimonios" data-slide-to="1"></li>
+          <li data-target="#carruselTestimonios" data-slide-to="2"></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+
+
+
+  <!-- CONTACT -->
+  <section class="contact section py-5" id="contact">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10 contact-info text-center">
+
+          <!-- Información -->
+          <h2 class="mb-3">Contáctanos</h2>
+          <p class="mb-4">Para mayor información, complete el siguiente formulario.</p>
+
+
+          <!-- Formulario -->
+          <form action="#" method="post" class="contact-form p-4 rounded shadow-lg text-start">
+            <h5 class="mb-4 text-center">Déjanos tu mensaje</h5>
+
+            <!-- Nombre -->
+            <div class="mb-3">
+              <label for="nombre" class="form-label">
+                <i class="bi bi-person-fill me-2"></i> Nombre
+              </label>
+              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Tu nombre" required>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+              <label for="email" class="form-label">
+                <i class="bi bi-envelope-fill me-2"></i> Correo electrónico
+              </label>
+              <input type="email" class="form-control" id="email" name="email" placeholder="Tu correo" required>
+            </div>
+
+
+
+            <!-- Mensaje -->
+            <div class="mb-3">
+              <label for="asunto" class="form-label">
+                <i class="bi bi-pencil-fill me-2"></i> Asunto
+              </label>
+              <textarea class="form-control" id="mensaje" name="mensaje" rows="5" placeholder="Escribe tu mensaje..."
+                required></textarea>
+            </div>
+
+            <!-- Botón -->
+            <div class="d-grid">
+              <button type="submit" class="btn btn-dark btn-lg">Enviar mensaje</button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+
+
+
+  <!-- Modal Inicio de sesión-->
+  <div class="modal fade" id="IniciarSesion" tabindex="-1" role="dialog" aria-labelledby="IniciarSesionLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="IniciarSesionLabel">Iniciar Sesión</h2>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+          <form action="controller/ctrlUsuario.php" method="post">
+            <div class="mb-3">
+              <label for="login-contrasena" class="form-label">Correo </label>
+              <input type="email" class="form-control" name="correousuario" id="correousuario"
+                placeholder="Correo Electrónico" required>
+            </div>
+
+            <div class="mb-3">
+              <label for="login-contrasena" class="form-label">Contraseña</label>
+              <div class="input-group">
+                <input type="password" class="form-control" id="login-contrasena" name="contrasena" placeholder="Contraseña" required>
+                <span class="input-group-text">
+                  <i id="toggleLoginPassword" class="fa-solid fa-eye" style="cursor:pointer;"></i>
+                </span>
+              </div>
+            </div>
+
+            <input type="hidden" name="opcion" value="7" />
+            <div class="mb-3">
+              <button type="submit" class="custom-btn bg-color mt-3 w-100 rounded-pill" name="submit">Iniciar
+                Sesión</button>
+            </div>
+            <p class="text-center mt-3">
+              ¿No tienes cuenta?
+              <a href="#" data-bs-toggle="modal" data-toggle="modal" data-target="#registerModal"
+                data-bs-dismiss="modal">
+                Regístrate
+              </a>
+            </p>
+
+          </form>
+        </div>
+
+        </form>
+      </div>
+      <div class="modal-footer"></div>
+    </div>
+  </div>
+  </div>
+
+  <!-- Fin Modal y Formulario -->
+
+  <!-- Modal de registro -->
+  <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="registerModalLabel">Formulario de Registro</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="controller/ctrlUsuario.php" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="reg-nombre">Nombre</label>
+                <input type="text" class="form-control" name="nombre" id="nombre" aria-describedby="helpId" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="reg-apellidos">Apellidos</label>
+                <input type="text" class="form-control" name="apellidos" id="apellidos" aria-describedby="helpId"
+                  required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="reg-apellidos">Teléfono</label>
+                <input type="tel" class="form-control" name="telefono" id="telefono" aria-describedby="helpId"
+                  required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="reg-apellidos">Edad</label>
+                <input type="number" class="form-control" name="edad" id="edad" aria-describedby="helpId"
+                  required>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="reg-correo">Correo Electrónico</label>
+              <input type="email" class="form-control" name="correousuario" id="correousuario" aria-describedby="helpId"
+                required>
+            </div>
+
+            <!-- Campo contraseña -->
+<div class="mb-3">
+  <label for="reg-contrasena" class="form-label">Contraseña</label>
+  <div class="input-group">
+    <input 
+      type="password" 
+      class="form-control" 
+      id="reg-contrasena" 
+      placeholder="Contraseña"
+      name="contrasena" 
+      required>
+    <span class="input-group-text">
+      <i id="toggleRegisterPassword" class="fa-solid fa-eye" style="cursor:pointer;"></i>
+    </span>
+  </div>
+
+  <!-- Reglas de validación -->
+  <div id="passwordTooltip" style="display:none; font-size:14px; margin-top:5px;">
+    <strong>La contraseña debe cumplir:</strong>
+    <ul style="margin:5px 0 0 15px; padding:0;">
+      <li id="lower">Al menos una letra minúscula</li>
+      <li id="upper">Al menos una letra mayúscula</li>
+      <li id="number">Al menos un número</li>
+      <li id="length">Mínimo 8 caracteres</li>
+      <li id="space">Sin espacios</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Botones de registro con APIs -->
+<div class="text-center mt-3">
+  <p>O regístrate con:</p>
+  <div id="g_id_onload"
+    data-client_id="163821559797-7rjdchh3lfasip35j7j46lfjnstne84s.apps.googleusercontent.com"
+    data-login_uri="http://localhost/TecnoSystem/registro_google.php" 
+    data-auto_prompt="false">
+  </div>
+  <div class="g_id_signin"></div>
+</div>
+
+<input type="hidden" name="opcion" value="1" />
+
+<div class="mb-3">
+  <button type="submit" class="custom-btn bg-color mt-3 w-100 rounded-pill" name="submit">
+    Registrarse
+  </button>
+</div>
+
+<!-- Font Awesome -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+
+<script>
+  const passwordInput = document.getElementById('reg-contrasena');
+  const tooltip = document.getElementById('passwordTooltip');
+  const togglePassword = document.getElementById('toggleRegisterPassword');
+  const form = document.getElementById('registroForm'); // Asegúrate que el <form> tenga este id
+
+  // Mostrar / ocultar contraseña
+  togglePassword.addEventListener('click', () => {
+    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+    passwordInput.setAttribute('type', type);
+    togglePassword.classList.toggle('fa-eye');
+    togglePassword.classList.toggle('fa-eye-slash');
+  });
+
+  // Mostrar reglas al enfocar
+  passwordInput.addEventListener('focus', () => {
+    tooltip.style.display = 'block';
+  });
+
+  // Ocultar reglas al perder foco
+  passwordInput.addEventListener('blur', () => {
+    tooltip.style.display = 'none';
+  });
+
+  // Validación en tiempo real
+  passwordInput.addEventListener('input', () => {
+    const val = passwordInput.value;
+    document.getElementById('lower').style.color = /[a-z]/.test(val) ? 'green' : 'red';
+    document.getElementById('upper').style.color = /[A-Z]/.test(val) ? 'green' : 'red';
+    document.getElementById('number').style.color = /\d/.test(val) ? 'green' : 'red';
+    document.getElementById('length').style.color = val.length >= 8 ? 'green' : 'red';
+    document.getElementById('space').style.color = /\s/.test(val) ? 'red' : 'green';
+  });
+
+  // Validar antes de enviar
+  form.addEventListener('submit', (event) => {
+    const val = passwordInput.value;
+    const valid = /[a-z]/.test(val) && /[A-Z]/.test(val) && /\d/.test(val) && val.length >= 8 && !/\s/.test(val);
+
+    if (!valid) {
+      event.preventDefault();
+      alert('⚠️ La contraseña no cumple con los requisitos solicitados.');
+    }
+  });
+</script>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="ml-auto col-lg-4 col-md-5">
+          <p class="copyright-text">Copyright &copy; 2025 TecnoSystem
+        </div>
+        <div class="d-flex justify-content-center mx-auto col-lg-5 col-md-7 col-12">
+          <ul class="social-icon ml-lg-3">
+            <li><a href="#" class="fa fa-facebook"></a></li>
+            <li><a href="#" class="fa fa-twitter"></a></li>
+            <li><a href="#" class="fa fa-instagram"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/smoothscroll.js"></script>
+  <script src="js/custom.js"></script>
+  <script src="js/chatbot.js"></script>
+
+  <div id="chat-button" class="chat-button">
+    <i class="fa fa-commenting" aria-hidden="true"></i>
+  </div>
+  
+  <!--Aqui estaba el chatbot-->
+<?php include 'modal-chatbot.php'; ?>
+    
+  <!--Script de Api Google-->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</body>
+
+<!-- Script Login-->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+  integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+  integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const toggleLogin = document.getElementById('toggleLoginPassword');
+    const loginPass = document.getElementById('login-contrasena');
+
+    toggleLogin.addEventListener('click', function () {
+      const type = loginPass.getAttribute('type') === 'password' ? 'text' : 'password';
+      loginPass.setAttribute('type', type);
+      toggleLogin.classList.toggle('fa-eye');
+      toggleLogin.classList.toggle('fa-eye-slash');
+    });
+  });
+
+  //Script de registro 
+  document.addEventListener('DOMContentLoaded', function () {
+    const toggleRegister = document.getElementById('toggleRegisterPassword');
+    const registerPass = document.getElementById('reg-contrasena');
+
+    toggleRegister.addEventListener('click', function () {
+      const type = registerPass.getAttribute('type') === 'password' ? 'text' : 'password';
+      registerPass.setAttribute('type', type);
+      toggleRegister.classList.toggle('fa-eye');
+      toggleRegister.classList.toggle('fa-eye-slash');
+    });
+  });
+
+</script>
+</html>
