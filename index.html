@@ -455,54 +455,7 @@
   </button>
 </div>
 
-<!-- Font Awesome -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
 
-<script>
-  const passwordInput = document.getElementById('reg-contrasena');
-  const tooltip = document.getElementById('passwordTooltip');
-  const togglePassword = document.getElementById('toggleRegisterPassword');
-  const form = document.getElementById('registroForm'); // Asegúrate que el <form> tenga este id
-
-  // Mostrar / ocultar contraseña
-  togglePassword.addEventListener('click', () => {
-    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
-    passwordInput.setAttribute('type', type);
-    togglePassword.classList.toggle('fa-eye');
-    togglePassword.classList.toggle('fa-eye-slash');
-  });
-
-  // Mostrar reglas al enfocar
-  passwordInput.addEventListener('focus', () => {
-    tooltip.style.display = 'block';
-  });
-
-  // Ocultar reglas al perder foco
-  passwordInput.addEventListener('blur', () => {
-    tooltip.style.display = 'none';
-  });
-
-  // Validación en tiempo real
-  passwordInput.addEventListener('input', () => {
-    const val = passwordInput.value;
-    document.getElementById('lower').style.color = /[a-z]/.test(val) ? 'green' : 'red';
-    document.getElementById('upper').style.color = /[A-Z]/.test(val) ? 'green' : 'red';
-    document.getElementById('number').style.color = /\d/.test(val) ? 'green' : 'red';
-    document.getElementById('length').style.color = val.length >= 8 ? 'green' : 'red';
-    document.getElementById('space').style.color = /\s/.test(val) ? 'red' : 'green';
-  });
-
-  // Validar antes de enviar
-  form.addEventListener('submit', (event) => {
-    const val = passwordInput.value;
-    const valid = /[a-z]/.test(val) && /[A-Z]/.test(val) && /\d/.test(val) && val.length >= 8 && !/\s/.test(val);
-
-    if (!valid) {
-      event.preventDefault();
-      alert('⚠️ La contraseña no cumple con los requisitos solicitados.');
-    }
-  });
-</script>
           </form>
         </div>
       </div>
@@ -595,7 +548,6 @@
   </script>
 
 
-
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const toggleLogin = document.getElementById('toggleLoginPassword');
@@ -620,6 +572,45 @@
       toggleRegister.classList.toggle('fa-eye');
       toggleRegister.classList.toggle('fa-eye-slash');
     });
+  });
+  <!-- Font Awesome -->
+
+
+  const passwordInput = document.getElementById('reg-contrasena');
+  const tooltip = document.getElementById('passwordTooltip');
+  const togglePassword = document.getElementById('toggleRegisterPassword');
+  const form = document.getElementById('registroForm'); // Asegúrate que el <form> tenga este id
+
+
+  // Mostrar reglas al enfocar
+  passwordInput.addEventListener('focus', () => {
+    tooltip.style.display = 'block';
+  });
+
+  // Ocultar reglas al perder foco
+  passwordInput.addEventListener('blur', () => {
+    tooltip.style.display = 'none';
+  });
+
+  // Validación en tiempo real
+  passwordInput.addEventListener('input', () => {
+    const val = passwordInput.value;
+    document.getElementById('lower').style.color = /[a-z]/.test(val) ? 'green' : 'red';
+    document.getElementById('upper').style.color = /[A-Z]/.test(val) ? 'green' : 'red';
+    document.getElementById('number').style.color = /\d/.test(val) ? 'green' : 'red';
+    document.getElementById('length').style.color = val.length >= 8 ? 'green' : 'red';
+    document.getElementById('space').style.color = /\s/.test(val) ? 'red' : 'green';
+  });
+
+  // Validar antes de enviar
+  form.addEventListener('submit', (event) => {
+    const val = passwordInput.value;
+    const valid = /[a-z]/.test(val) && /[A-Z]/.test(val) && /\d/.test(val) && val.length >= 8 && !/\s/.test(val);
+
+    if (!valid) {
+      event.preventDefault();
+      alert('⚠️ La contraseña no cumple con los requisitos solicitados.');
+    }
   });
 
 
