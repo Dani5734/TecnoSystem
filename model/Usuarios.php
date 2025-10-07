@@ -11,6 +11,7 @@ class Usuarios
     private $apellidos;
     private $telefono;
     private $edad;
+    private $genero;
     private $correousuario;
     private $contrasena;
 
@@ -21,13 +22,14 @@ class Usuarios
     }
 
 
-    public function inicializar($id = null, $nombre = null, $apellidos = null, $telefono = null, $edad = null, $correousuario = null, $contrasena = null)
+    public function inicializar($id = null, $nombre = null, $apellidos = null, $telefono = null, $edad = null, $genero = null, $correousuario = null, $contrasena = null)
     {
         $this->id = $id;
         $this->nombre = $nombre;
         $this->apellidos = $apellidos;
         $this->telefono = $telefono;
         $this->edad = $edad;
+        $this->genero = $genero;
         $this->correousuario = $correousuario;
         $this->contrasena = $contrasena;
     }
@@ -47,18 +49,18 @@ class Usuarios
     {
         $registrar = mysqli_query($this->conectarBd(), "SELECT * FROM usuarios WHERE correousuario = '$this->correousuario'") or die(mysqli_error($this->conectarBd()));
         if ($reg = mysqli_fetch_array($registrar)) {
-            echo '<a href="../Vista/panelAdmin.php"><i class="fa-solid fa-arrow-left-long"></i></a><br><br>';
+            echo '<a href="../index.html"><i class="fa-solid fa-arrow-left-long"></i></a><br><br>';
             echo "Usuario registrado anteriormente";
         } else {
 
             $contrasenaCifrada = $this->encriptarAES($this->contrasena);
 
-            $usuarios = mysqli_query($this->conectarBd(), "INSERT INTO usuarios(nombre, apellidos, telefono, edad, correousuario, contrasena) 
-            VALUES ('$this->nombre', '$this->apellidos', '$this->telefono','$this->edad', '$this->correousuario', '$contrasenaCifrada')")
+            $usuarios = mysqli_query($this->conectarBd(), "INSERT INTO usuarios(nombre, apellidos, telefono, edad, genero, correousuario, contrasena) 
+            VALUES ('$this->nombre', '$this->apellidos', '$this->telefono', '$this->edad', '$this->genero', '$this->correousuario', '$contrasenaCifrada')")
                 or die("Problemas al insertar" . mysqli_error($this->conectarBd()));
             echo '<script type="text/javascript">
-        alert("Bienevenido");
-        window.location.href="../perfiluser.php";
+        alert("Registro exitoso, bienvenido, Inicie sesión para continuar.");
+        window.location.href="../index.html";
         </script>';
         }
     }
@@ -84,6 +86,7 @@ class Usuarios
                 $_SESSION['apellidos'] = $reg['apellidos'];
                 $_SESSION['telefono'] = $reg['telefono'];
                 $_SESSION['edad'] = $reg['edad'];
+                $_SESSION['genero'] = $reg['genero'];
                 $_SESSION['correousuario'] = $reg['correousuario'];
                 $_SESSION['nomusuario'] = $reg['nombre'] . ' ' . $reg['apellidos'];
 

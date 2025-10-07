@@ -180,7 +180,7 @@
           </div>
         </div>
 
-        
+
 
         <!-- Tarjeta 3 -->
         <div class="col-lg-4 col-md-6 col-12 mb-4">
@@ -334,7 +334,10 @@
             <div class="mb-3">
               <label for="login-contrasena" class="form-label">Contraseña</label>
               <div class="input-group">
-                <input type="password" class="form-control" id="login-contrasena" name="contrasena" placeholder="Contraseña" required>
+                <input type="password" class="form-control" id="login-contrasena" name="contrasena"
+                  placeholder="Contraseña" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^\s]{8,}$"
+                  title="Debe tener al menos una letra minúscula, una mayúscula, un número, mínimo 8 caracteres y sin espacios"
+                  required>
                 <span class="input-group-text">
                   <i id="toggleLoginPassword" class="fa-solid fa-eye" style="cursor:pointer;"></i>
                 </span>
@@ -391,16 +394,23 @@
               </div>
               <div class="form-group col-md-6">
                 <label for="reg-apellidos">Teléfono</label>
-                <input type="tel" class="form-control" name="telefono" id="telefono" aria-describedby="helpId"
-                  required>
+                <input type="tel" class="form-control" name="telefono" id="telefono" aria-describedby="helpId" required>
               </div>
               <div class="form-group col-md-6">
                 <label for="reg-apellidos">Edad</label>
-                <input type="number" class="form-control" name="edad" id="edad" aria-describedby="helpId"
-                  required>
+                <input type="number" class="form-control" name="edad" id="edad" aria-describedby="helpId" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="reg-genero">Género</label>
+                <select class="form-control" name="genero" id="genero" style="width: 466px;" required>
+                  <option value="" disabled selected>Selecciona tu género</option>
+                  <option value="Hombre">Hombre</option>
+                  <option value="Mujer">Mujer</option>
+                  <option value="Otro">Otro</option>
+                </select>
               </div>
             </div>
-            
+
             <div class="form-group">
               <label for="reg-correo">Correo Electrónico</label>
               <input type="email" class="form-control" name="correousuario" id="correousuario" aria-describedby="helpId"
@@ -408,52 +418,48 @@
             </div>
 
             <!-- Campo contraseña -->
-<div class="mb-3">
-  <label for="reg-contrasena" class="form-label">Contraseña</label>
-  <div class="input-group">
-    <input 
-      type="password" 
-      class="form-control" 
-      id="reg-contrasena" 
-      placeholder="Contraseña"
-      name="contrasena" 
-      required>
-    <span class="input-group-text">
-      <i id="toggleRegisterPassword" class="fa-solid fa-eye" style="cursor:pointer;"></i>
-    </span>
-  </div>
+            <div class="mb-3">
+              <label for="reg-contrasena" class="form-label">Contraseña</label>
+              <div class="input-group">
+                <input type="password" class="form-control" id="reg-contrasena" placeholder="Contraseña"
+                  name="contrasena" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^\s]{8,}$"
+                  title="Debe tener al menos una letra minúscula, una mayúscula, un número, mínimo 8 caracteres y sin espacios"
+                  required>
+                <span class="input-group-text">
+                  <i id="toggleRegisterPassword" class="fa-solid fa-eye" style="cursor:pointer;"></i>
+                </span>
+              </div>
 
-  <!-- Reglas de validación -->
-  <div id="passwordTooltip" style="display:none; font-size:14px; margin-top:5px;">
-    <strong>La contraseña debe cumplir:</strong>
-    <ul style="margin:5px 0 0 15px; padding:0;">
-      <li id="lower">Al menos una letra minúscula</li>
-      <li id="upper">Al menos una letra mayúscula</li>
-      <li id="number">Al menos un número</li>
-      <li id="length">Mínimo 8 caracteres</li>
-      <li id="space">Sin espacios</li>
-    </ul>
-  </div>
-</div>
+              <!-- Reglas de validación -->
+              <div id="passwordTooltip" style="display:none; font-size:14px; margin-top:5px;">
+                <strong>La contraseña debe cumplir:</strong>
+                <ul style="margin:5px 0 0 15px; padding:0;">
+                  <li id="lower">Al menos una letra minúscula</li>
+                  <li id="upper">Al menos una letra mayúscula</li>
+                  <li id="number">Al menos un número</li>
+                  <li id="length">Mínimo 8 caracteres</li>
+                  <li id="space">Sin espacios</li>
+                </ul>
+              </div>
+            </div>
 
-<!-- Botones de registro con APIs -->
-<div class="text-center mt-3">
-  <p>O regístrate con:</p>
-  <div id="g_id_onload"
-    data-client_id="163821559797-7rjdchh3lfasip35j7j46lfjnstne84s.apps.googleusercontent.com"
-    data-login_uri="http://localhost/TecnoSystem/registro_google.php" 
-    data-auto_prompt="false">
-  </div>
-  <div class="g_id_signin"></div>
-</div>
+            <!-- Botones de registro con APIs -->
+            <div class="text-center mt-3">
+              <p>O regístrate con:</p>
+              <div id="g_id_onload"
+                data-client_id="163821559797-7rjdchh3lfasip35j7j46lfjnstne84s.apps.googleusercontent.com"
+                data-login_uri="http://localhost/TecnoSystem/registro_google.php" data-auto_prompt="false">
+              </div>
+              <div class="g_id_signin"></div>
+            </div>
 
-<input type="hidden" name="opcion" value="1" />
+            <input type="hidden" name="opcion" value="1" />
 
-<div class="mb-3">
-  <button type="submit" class="custom-btn bg-color mt-3 w-100 rounded-pill" name="submit">
-    Registrarse
-  </button>
-</div>
+            <div class="mb-3">
+              <button type="submit" class="custom-btn bg-color mt-3 w-100 rounded-pill" name="submit">
+                Registrarse
+              </button>
+            </div>
 
 
           </form>
@@ -573,12 +579,12 @@
       toggleRegister.classList.toggle('fa-eye-slash');
     });
   });
-  <!-- Font Awesome -->
+  // <!-- Font Awesome -->
 
 
   const passwordInput = document.getElementById('reg-contrasena');
   const tooltip = document.getElementById('passwordTooltip');
-  const togglePassword = document.getElementById('toggleRegisterPassword');
+  // const togglePassword = document.getElementById('toggleRegisterPassword');
   const form = document.getElementById('registroForm'); // Asegúrate que el <form> tenga este id
 
 
@@ -603,16 +609,15 @@
   });
 
   // Validar antes de enviar
-  form.addEventListener('submit', (event) => {
-    const val = passwordInput.value;
-    const valid = /[a-z]/.test(val) && /[A-Z]/.test(val) && /\d/.test(val) && val.length >= 8 && !/\s/.test(val);
+  // form.addEventListener('submit', (event) => {
+  //   const val = passwordInput.value;
+  //   const valid = /[a-z]/.test(val) && /[A-Z]/.test(val) && /\d/.test(val) && val.length >= 8 && !/\s/.test(val);
 
-    if (!valid) {
-      event.preventDefault();
-      alert('⚠️ La contraseña no cumple con los requisitos solicitados.');
-    }
-  });
-
+  //   if (!valid) {
+  //     event.preventDefault();
+  //     alert('⚠️ La contraseña no cumple con los requisitos solicitados.');
+  //   }
+  // });
 
 </script>
 

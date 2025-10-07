@@ -114,7 +114,7 @@ session_start();
             </div>
             <div class="info-item mb-3">
               <div class="info-label">Género:</div>
-              <div class="info-value" id="userGender">Masculino</div>
+              <div class="info-value" id="userGender"><?php echo $_SESSION['genero']; ?></div>
             </div>
           </div>
         </div>

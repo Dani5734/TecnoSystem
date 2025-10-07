@@ -21,6 +21,7 @@
                 $_REQUEST['apellidos'],
                 $_REQUEST['telefono'],
                 $_REQUEST['edad'],
+                $_REQUEST['genero'],
                 $_REQUEST['correousuario'],
                 $_REQUEST['contrasena']
             );
