@@ -72,5 +72,4 @@ document.addEventListener('DOMContentLoaded', () => {
         chatContainer.classList.toggle('expanded');
     });
 
-    // ... aquí va el resto de tu código JavaScript ...
 });
