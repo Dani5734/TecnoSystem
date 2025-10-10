@@ -85,13 +85,31 @@ session_start();
         <div class="col-lg-6 col-md-8 col-12" data-aos="fade-up" data-aos-delay="100">
           <div class="profile-card user-summary">
             <div class="profile-avatar-wrapper">
-              <img src="images/testi2.jpg" alt="Avatar del Usuario" class="profile-avatar">
+              <img src="images/Perfil.gif" alt="Avatar del Usuario" class="profile-avatar">
               <div class="edit-icon-overlay" title="Editar Perfil">
                 <i class="fa fa-pencil" aria-hidden="true"></i>
               </div>
             </div>
-            <h2 class="user-name"><?php echo $_SESSION['nombre'].' '. $_SESSION['apellidos']; ?></h2>
+            <h2 class="user-name"><?php echo $_SESSION['nombre'] . ' ' . $_SESSION['apellidos']; ?></h2>
             <p class="user-email"><?php echo $_SESSION['correousuario']; ?></p>
+            <a href="" ata-bs-toggle="modal" data-toggle="modal" data-target="#registerModal"
+              data-bs-dismiss="modal">Editar Perfil</a>
+            <!-- <div class="password-wrapper">
+              <input type="password" id="userPassword" value="<?php echo $_SESSION['contrasena']; ?>" readonly>
+              <button type="button" onclick="togglePassword()">👁</button>
+            </div> -->
+
+            <script>
+              function togglePassword() {
+                let passField = document.getElementById("userPassword");
+                if (passField.type === "password") {
+                  passField.type = "text";
+                } else {
+                  passField.type = "password";
+                }
+              }
+            </script>
+
           </div>
         </div>
       </div>
@@ -147,12 +165,110 @@ session_start();
           <div class="plan-card p-5 text-center" data-aos="zoom-in" data-aos-delay="300">
             <h3 class="card-title">Resumen Semanal</h3>
             <p class="mb-4">"Aquí puedes ver tus logros y áreas de mejora."</p>
-          <button class="btn btn-lg custom-btn" data-aos="fade-up">Ver Mi Plan</button>
+            <button class="btn btn-lg custom-btn" data-aos="fade-up">Ver Mi Plan</button>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Modal Editar Usuarios -->
+  <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="registerModalLabel">Editar Datos</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="controller/ctrlUsuario.php" method="post" enctype="multipart/form-data">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="reg-nombre">Nombre</label>
+                <input value="<?php echo $_SESSION['nombre']; ?>" type="text" class="form-control" name="nombre"
+                  id="nombre" aria-describedby="helpId" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="reg-apellidos">Apellidos</label>
+                <input value="<?php echo $_SESSION['apellidos']; ?>" type="text" class="form-control" name="apellidos"
+                  id="apellidos" aria-describedby="helpId" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="reg-apellidos">Teléfono</label>
+                <input value="<?php echo $_SESSION['telefono']; ?>" type="tel" class="form-control" name="telefono"
+                  id="telefono" aria-describedby="helpId" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="reg-apellidos">Edad</label>
+                <input value="<?php echo $_SESSION['edad']; ?>" type="tetx" class="form-control" name="edad" id="edad"
+                  aria-describedby="helpId" required>
+              </div>
+
+              <div class="form-group col-md-6">
+                <label for="reg-genero">Género</label>
+                <select class="form-control" name="genero" id="genero" style="width: 466px;" required>
+                  <option value="<?php echo $_SESSION['genero']; ?>" disabled selected>
+                    <?php echo $_SESSION['genero']; ?></option>
+                  <option value="Hombre">Hombre</option>
+                  <option value="Mujer">Mujer</option>
+                  <option value="Otro">Otro</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="reg-correo">Correo Electrónico</label>
+              <input type="hidden" name="correo_actual" value="<?php echo $_SESSION['correousuario']; ?>">
+              <input value="<?php echo $_SESSION['correousuario']; ?>" type="email" class="form-control"
+                name="correousuario" id="correousuario" aria-describedby="helpId" required>
+            </div>
+
+            <!-- Campo contraseña -->
+            <div class="mb-3">
+              <label for="reg-contrasena" class="form-label">Contraseña</label>
+              <div class="input-group">
+                <input value="<?php echo $_SESSION['contrasena']; ?>" type="password" class="form-control"
+                  id="reg-contrasena" placeholder="Contraseña" name="contrasena"
+                  pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^\s]{8,}$"
+                  title="Debe tener al menos una letra minúscula, una mayúscula, un número, mínimo 8 caracteres y sin espacios"
+                  required>
+                <span class="input-group-text">
+                  <i id="toggleRegisterPassword" class="fa-solid fa-eye" style="cursor:pointer;"></i>
+                </span>
+              </div>
+
+              <!-- Reglas de validación -->
+              <div id="passwordTooltip" style="display:none; font-size:14px; margin-top:5px;">
+                <strong>La contraseña debe cumplir:</strong>
+                <ul style="margin:5px 0 0 15px; padding:0;">
+                  <li id="lower">Al menos una letra minúscula</li>
+                  <li id="upper">Al menos una letra mayúscula</li>
+                  <li id="number">Al menos un número</li>
+                  <li id="length">Mínimo 8 caracteres</li>
+                  <li id="space">Sin espacios</li>
+                </ul>
+              </div>
+            </div>
+
+            <input type="hidden" name="opcion" value="5" />
+            <div class="mb-3">
+              <button type="submit" class="custom-btn bg-color mt-3 w-100 rounded-pill" name="submit">
+                Guardar Cambios
+              </button>
+              <a href="perfiluser.php" type="button" class="custom-btn bg-secondary mt-3 w-100 rounded-pill"
+                data-bs-dismiss="modal" aria-label="Close">
+                Cancelar
+              </a>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <footer class="site-footer">
     <div class="container">
@@ -180,8 +296,76 @@ session_start();
   <script src="js/custom.js"></script>
   <script src="js/chatbot.js"></script>
 
-    <!--Aqui estaba el chatbot-->
-<?php include 'modal-chatbot.php'; ?>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggleLogin = document.getElementById('toggleLoginPassword');
+      const loginPass = document.getElementById('login-contrasena');
+
+      toggleLogin.addEventListener('click', function () {
+        const type = loginPass.getAttribute('type') === 'password' ? 'text' : 'password';
+        loginPass.setAttribute('type', type);
+        toggleLogin.classList.toggle('fa-eye');
+        toggleLogin.classList.toggle('fa-eye-slash');
+      });
+    });
+
+    //Script de registro 
+    document.addEventListener('DOMContentLoaded', function () {
+      const toggleRegister = document.getElementById('toggleRegisterPassword');
+      const registerPass = document.getElementById('reg-contrasena');
+
+      toggleRegister.addEventListener('click', function () {
+        const type = registerPass.getAttribute('type') === 'password' ? 'text' : 'password';
+        registerPass.setAttribute('type', type);
+        toggleRegister.classList.toggle('fa-eye');
+        toggleRegister.classList.toggle('fa-eye-slash');
+      });
+    });
+    // <!-- Font Awesome -->
+
+
+    const passwordInput = document.getElementById('reg-contrasena');
+    const tooltip = document.getElementById('passwordTooltip');
+    // const togglePassword = document.getElementById('toggleRegisterPassword');
+    const form = document.getElementById('registroForm'); // Asegúrate que el <form> tenga este id
+
+
+    // Mostrar reglas al enfocar
+    passwordInput.addEventListener('focus', () => {
+      tooltip.style.display = 'block';
+    });
+
+    // Ocultar reglas al perder foco
+    passwordInput.addEventListener('blur', () => {
+      tooltip.style.display = 'none';
+    });
+
+    // Validación en tiempo real
+    passwordInput.addEventListener('input', () => {
+      const val = passwordInput.value;
+      document.getElementById('lower').style.color = /[a-z]/.test(val) ? 'green' : 'red';
+      document.getElementById('upper').style.color = /[A-Z]/.test(val) ? 'green' : 'red';
+      document.getElementById('number').style.color = /\d/.test(val) ? 'green' : 'red';
+      document.getElementById('length').style.color = val.length >= 8 ? 'green' : 'red';
+      document.getElementById('space').style.color = /\s/.test(val) ? 'red' : 'green';
+    });
+
+    // Validar antes de enviar
+    // form.addEventListener('submit', (event) => {
+    //   const val = passwordInput.value;
+    //   const valid = /[a-z]/.test(val) && /[A-Z]/.test(val) && /\d/.test(val) && val.length >= 8 && !/\s/.test(val);
+
+    //   if (!valid) {
+    //     event.preventDefault();
+    //     alert('⚠️ La contraseña no cumple con los requisitos solicitados.');
+    //   }
+    // });
+
+  </script>
+
+  <!--Aqui estaba el chatbot-->
+  <?php include 'modal-chatbot.php'; ?>
 
 </body>
 

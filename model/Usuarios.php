@@ -45,12 +45,22 @@ class Usuarios
         return openssl_decrypt($textoCifrado, 'AES-256-CBC', AES_KEY, 0, AES_IV);
     }
 
+
     public function registrarUsuario()
     {
         $registrar = mysqli_query($this->conectarBd(), "SELECT * FROM usuarios WHERE correousuario = '$this->correousuario'") or die(mysqli_error($this->conectarBd()));
         if ($reg = mysqli_fetch_array($registrar)) {
-            echo '<a href="../index.html"><i class="fa-solid fa-arrow-left-long"></i></a><br><br>';
-            echo "Usuario registrado anteriormente";
+            echo '<script>
+                Swal.fire({
+                icon: "error",
+                title: "Usuario registrado anteriormente",
+                confirmButtonText: "Aceptar"
+                }).then(function(){
+                window.location.href="../index.html";
+                });
+            </script>';
+
+
         } else {
 
             $contrasenaCifrada = $this->encriptarAES($this->contrasena);
@@ -58,10 +68,15 @@ class Usuarios
             $usuarios = mysqli_query($this->conectarBd(), "INSERT INTO usuarios(nombre, apellidos, telefono, edad, genero, correousuario, contrasena) 
             VALUES ('$this->nombre', '$this->apellidos', '$this->telefono', '$this->edad', '$this->genero', '$this->correousuario', '$contrasenaCifrada')")
                 or die("Problemas al insertar" . mysqli_error($this->conectarBd()));
-            echo '<script type="text/javascript">
-        alert("Registro exitoso, bienvenido, Inicie sesión para continuar.");
-        window.location.href="../index.html";
-        </script>';
+            echo '<script>
+                Swal.fire({
+                icon: "success",
+                title: "Registro exitoso, bienvenido, Inicie sesión para continuar.",
+                confirmButtonText: "Aceptar"
+                }).then(function(){
+                window.location.href="../index.html";
+                });
+            </script>';
         }
     }
 
@@ -89,21 +104,34 @@ class Usuarios
                 $_SESSION['genero'] = $reg['genero'];
                 $_SESSION['correousuario'] = $reg['correousuario'];
                 $_SESSION['nomusuario'] = $reg['nombre'] . ' ' . $reg['apellidos'];
+                $_SESSION['contrasena'] = $contrasenaReal;
 
                 echo '<script type="text/javascript">
-                window.location.href="../perfiluser.php";
-            </script>';
+                    window.location.href="../perfiluser.php";
+                </script>';
             } else {
                 echo '<script type="text/javascript">
-                alert("Contraseña incorrecta.");
-                window.history.back();
-            </script>';
+                    Swal.fire({
+                    icon: "error",
+                    title: "Contraseña incorrecta",
+                    text: "Por favor, verifique su contraseña e inténtalo de nuevo.",
+                    confirmButtonText: "Intentar de nuevo"
+                    }).then(function(){
+                    window.history.back();
+                    });
+                </script>';
             }
         } else {
             echo '<script type="text/javascript">
-            alert("Correo no registrado.");
-            window.history.back();
-        </script>';
+                Swal.fire({
+                icon: "info",
+                title: "Correo no registrado",
+                text: "Por favor, verifique su correo o regístrate si aún no tienes una cuenta.",
+                confirmButtonText: "Intentar de nuevo"
+                }).then(function(){
+                window.history.back();
+                });
+            </script>';
         }
     }
 
@@ -122,6 +150,48 @@ class Usuarios
         $consulta = mysqli_query($this->conectarBd(), "SELECT * FROM usuarios WHERE correousuario = '$correousuario'") or die(mysqli_error($this->conectarBd()));
         return mysqli_fetch_array($consulta);
     }
+
+    public function modificarUsuario($correo_actual)
+    {
+        $conexion = $this->conectarBd();
+        $contrasenaCifrada = $this->encriptarAES($this->contrasena);
+
+        $sql = "UPDATE usuarios SET nombre='$this->nombre', apellidos='$this->apellidos', telefono='$this->telefono', edad='$this->edad', genero='$this->genero', correousuario='$this->correousuario', contrasena='$contrasenaCifrada' WHERE correousuario = '$correo_actual'";
+        $resultado = mysqli_query($conexion, $sql);
+
+        if ($resultado && mysqli_affected_rows($conexion) > 0) {
+            session_start();
+            $_SESSION['nombre'] = $this->nombre;
+            $_SESSION['apellidos'] = $this->apellidos;
+            $_SESSION['telefono'] = $this->telefono;
+            $_SESSION['edad'] = $this->edad;
+            $_SESSION['genero'] = $this->genero;
+            $_SESSION['correousuario'] = $this->correousuario;
+            $_SESSION['contrasena'] = $this->contrasena;
+
+            echo '<script>
+                Swal.fire({
+                icon: "success",
+                title: "Datos actualizados correctamente",
+                confirmButtonText: "Aceptar"
+                }).then(function(){
+                window.location.href="../perfiluser.php";
+                });
+            </script>';
+        } else {
+            echo '<script>
+                Swal.fire({
+                icon: "error",
+                title: "No se realizaron cambios en la base de datos",
+                text: "Verifica si los datos ingresados son diferentes o si el correo actual coincide.",
+                confirmButtonText: "Aceptar"
+                });
+            </script>';
+        }
+    }
+
 }
 
 ?>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
