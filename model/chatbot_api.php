@@ -20,13 +20,25 @@ $afirmatives = ['Si', 'sí', 'claro', 'afirmativo', 'por su puesto', 'Adelante',
 // Endpoint de OpenAI
 $url = "https://api.openai.com/v1/chat/completions";
 
-$data = [
-    "model" => "gpt-3.5-turbo",
-    "messages" => [
-        [
-            "role" => "system",
-            "content" => "Eres un bot de salud llamado HealthBot. 
-            Puedes conversar con cualquier usuario sobre beneficios de salud, ejercicio y nutrición. 
+
+$isLoggedIn = isset($_SESSION['nombre']);
+
+
+if ($isLoggedIn) {
+    $userName = $_SESSION['nombre'] . ' ' . $_SESSION['apellidos'];
+    $userEmail = $_SESSION['correousuario'];
+    $userEdad = $_SESSION['edad'] ?? 'no especificada';
+    $userGenero = $_SESSION['genero'] ?? 'no especificado';
+
+    $systemPrompt = "Eres un bot de salud llamado HealthBot.
+    El usuario ha iniciado sesión. 
+    Su nombre completo es $userName, su correo es $userEmail, tiene $userEdad años y su género es $userGenero.
+    Puedes dirigirte a él por su nombre. 
+    Ahora puedes generar planes personalizados de nutrición o rutinas de ejercicio cuando te lo solicite.
+    Asegúrate de ser amigable, profesional y motivador en tus respuestas.";
+} else {
+    $systemPrompt = "Eres un bot de salud llamado HealthBot.
+    Puedes conversar con cualquier usuario sobre beneficios de salud, ejercicio y nutrición. 
             
             Si el usuario pregunta por 'plan nutricional', responde solo con: PLAN. 
             Si pregunta por 'rutina de ejercicio', responde solo con: RUTINA. 
@@ -36,18 +48,25 @@ $data = [
             - Sin embargo, aclara siempre que para generar un plan personalizado necesita iniciar sesión.
             - Nunca generes el plan ni la rutina si el usuario no ha iniciado sesión. 
             - Tu objetivo en modo invitado es solo informar, dar ejemplos y beneficios, pero NO crear planes reales.
-            - Depende del plan que te pida, Crea frases que animen o emocinen al usuario a empezar una rutina o plan."
+            - Depende del plan que te pida, Crea frases que animen o emocinen al usuario a empezar una rutina o plan.";
+}
 
-            
+$data = [
+    "model" => "gpt-3.5-turbo",
+    "messages" => [
+        [
+            "role" => "system",
+            "content" => $systemPrompt
         ],
         [
-            "role" => "user", 
+            "role" => "user",
             "content" => $userMessage
         ]
     ],
     "max_tokens" => 200,
     "temperature" => 0.7
 ];
+
 
 
 
@@ -73,7 +92,7 @@ curl_close($ch);
 $result = json_decode($response, true);
 
 if (isset($result["choices"][0]["message"]["content"])) {
-    echo json_encode(["response" => trim($result["choices"][0]["message"]["content"])]); 
+    echo json_encode(["response" => trim($result["choices"][0]["message"]["content"])]);
 } else {
     echo json_encode(["response" => "No hubo respuesta del modelo."]);
 }

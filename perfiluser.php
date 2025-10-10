@@ -269,6 +269,7 @@ session_start();
       </div>
     </div>
   </div>
+  
 
   <footer class="site-footer">
     <div class="container">
@@ -288,6 +289,48 @@ session_start();
       </div>
     </div>
   </footer>
+  <!-- VENTANA CHATBOT -->
+  <div id="chat-button" class="chat-button">
+    <i class="fa fa-commenting" aria-hidden="true"></i>
+  </div>
+  <div id="chat-container" class="chat-container">
+    <div class="chat-header">
+      <span class="chat-logo">
+        <img src="images/logo.png" alt="Logo del Chatbot">
+      </span>
+      <h3 class="chat-title">HealthBot</h3>
+      <div class="chat-controls">
+        <span id="expand-chat" class="chat-control-btn">
+          <i class="fa fa-expand" aria-hidden="true"></i>
+        </span>
+        <span id="close-chat" class="chat-control-btn">&times;</span>
+      </div>
+    </div>
+
+    <div class="chat-body">
+      <div class="welcome-message">
+        <p>👋 ¡Hola! <?php echo $_SESSION['nombre']?> </p>
+        <p>¡Bienvenido de nuevo! ¿Listo para empezar una nueva rutina?</p>
+      </div>
+
+      <div class="chat-options">
+        <button class="chat-option-button">📝 Obten Plan nutricional</button>
+        <button class="chat-option-button">🚀 Ejercicios</button>
+        <button class="chat-option-button">📅 Genera una rutina</button>
+        <button class="chat-option-button">💬 Consejos</button>
+      </div>
+
+      <div id="messages-container" class="messages-container">
+      </div>
+    </div>
+
+    <div class="chat-input-area">
+      <input type="text" id="user-input" placeholder="Preguntame...">
+      <button id="send-button">
+        <i class="fa fa-paper-plane" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
 
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
@@ -364,8 +407,8 @@ session_start();
 
   </script>
 
-  <!--Aqui estaba el chatbot-->
-  <?php include 'modal-chatbot.php'; ?>
+  
+  
 
 </body>
 
