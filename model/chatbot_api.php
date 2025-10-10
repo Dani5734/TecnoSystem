@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 header('Content-Type: application/json; charset=UTF-8');
 
 
@@ -19,23 +21,34 @@ $afirmatives = ['Si', 'sí', 'claro', 'afirmativo', 'por su puesto', 'Adelante',
 $url = "https://api.openai.com/v1/chat/completions";
 
 $data = [
-    "model" => "gpt-3.5-turbo", 
+    "model" => "gpt-3.5-turbo",
     "messages" => [
-        ["role" => "system", "content" => "Eres un asistente amigable de salud llamado HealthBot.
-        
-        
-            Importante:
-            - Si el usuario pregunta qué datos se necesitan para generar un plan o rutina, responde con una lista de datos generales (edad, peso, altura, nivel de actividad, historial médico, restricciones alimenticias, metas personales). 
+        [
+            "role" => "system",
+            "content" => "Eres un bot de salud llamado HealthBot. 
+            Puedes conversar con cualquier usuario sobre beneficios de salud, ejercicio y nutrición. 
+            
+            Si el usuario pregunta por 'plan nutricional', responde solo con: PLAN. 
+            Si pregunta por 'rutina de ejercicio', responde solo con: RUTINA. 
+            Si pregunta por 'salud general', responde solo con: SALUD. 
+
+            - Si el usuario pregunta qué datos se necesitan para generar un plan o rutina, responde con una lista de datos generales (edad, peso, altura, nivel de actividad, historial médico). 
             - Sin embargo, aclara siempre que para generar un plan personalizado necesita iniciar sesión.
             - Nunca generes el plan ni la rutina si el usuario no ha iniciado sesión. 
             - Tu objetivo en modo invitado es solo informar, dar ejemplos y beneficios, pero NO crear planes reales.
-        -Si el usuario responde 'gracias', 'muchas gracias', 'Hasta pronto', 'perfecto', responde: 'Que tengas un buen día, estoy aquí para apoyarte y brindarte la mejor guía para tener una vida saludable'.
-        "],
-        ["role" => "user", "content" => $userMessage]
+            - Depende del plan que te pida, Crea frases que animen o emocinen al usuario a empezar una rutina o plan."
+
+            
+        ],
+        [
+            "role" => "user", 
+            "content" => $userMessage
+        ]
     ],
     "max_tokens" => 200,
     "temperature" => 0.7
 ];
+
 
 
 $ch = curl_init($url);
