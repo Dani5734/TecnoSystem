@@ -1,5 +1,13 @@
 <?php
+require_once("model/Usuarios.php");
 session_start();
+if (!isset($_SESSION['nombre'])) {
+    header("Location: index.html");
+    exit();
+}
+
+$usuario = new Usuarios();
+$datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
 ?>
 
 <!DOCTYPE html>
@@ -124,11 +132,11 @@ session_start();
             </div>
             <div class="info-item mb-3">
               <div class="info-label">Estatura:</div>
-              <div class="info-value" id="userHeight">1.68</div>
+              <div class="info-value" id="userHeight"><?= isset($datosSalud['estatura']) ? $datosSalud['estatura'] . ' m' : 'No registrada' ?></div>
             </div>
             <div class="info-item mb-3">
               <div class="info-label">Peso:</div>
-              <div class="info-value" id="userWeight">70 kg</div>
+              <div class="info-value" id="userWeight"><?= htmlspecialchars($datosSalud['peso']) ?> kg</div>
             </div>
             <div class="info-item mb-3">
               <div class="info-label">Género:</div>
@@ -142,7 +150,7 @@ session_start();
             <h5 class="card-title text-center mb-4">Análisis</h5>
             <div class="info-item mb-3">
               <div class="info-label">IMC:</div>
-              <div class="info-value" id="userIMC">22.86</div>
+              <div class="info-value" id="userIMC"><?= htmlspecialchars($datosSalud['imc']) ?></div>
             </div>
             <div class="info-item mb-3">
               <div class="info-label">TBM:</div>
