@@ -3,7 +3,7 @@ session_start();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 
@@ -19,7 +19,7 @@ session_start();
   <!-- Login -->
   <script src="https://kit.fontawesome.com/274421acc6.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="plugins/sweetalert2/sweetalert2.min.css">
-  <link rel="stylesheet" href="model/login.php">
+  
   <!-- Fin Login -->
 
   <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -113,18 +113,18 @@ session_start();
           </div>
         </div>
       </div>
-
+      
       <div class="row mt-5">
         <div class="col-lg-6 col-md-6 col-12 mb-4" data-aos="fade-right" data-aos-delay="200">
           <div class="info-card p-4">
-            <h5 class="card-title text-center mb-4">Datos del usuario</h5>
+            <h5 class="card-title text-center mb-4">Tus datos</h5>
             <div class="info-item mb-3">
               <div class="info-label">Edad:</div>
               <div class="info-value" id="userAge"><?php echo $_SESSION['edad']; ?></div>
             </div>
             <div class="info-item mb-3">
               <div class="info-label">Estatura:</div>
-              <div class="info-value" id="userHeight">1.75 m</div>
+              <div class="info-value" id="userHeight">1.68</div>
             </div>
             <div class="info-item mb-3">
               <div class="info-label">Peso:</div>
@@ -163,9 +163,9 @@ session_start();
       <div class="row justify-content-center mt-4">
         <div class="col-lg-12 col-md-12 col-12">
           <div class="plan-card p-5 text-center" data-aos="zoom-in" data-aos-delay="300">
-            <h3 class="card-title">Resumen Semanal</h3>
-            <p class="mb-4">"Aquí puedes ver tus logros y áreas de mejora."</p>
-            <button class="btn btn-lg custom-btn" data-aos="fade-up">Ver Mi Plan</button>
+            <h3 class="card-title">Mis planes</h3>
+            <p class="mb-4">"Aquí puedes ver tus planes generados por HealthBot"</p>
+            <a href="view/planesUsuario.php"><button class="btn bg-danger border-danger text-white btn-lg">Ver Mi Plan</button></a>
           </div>
         </div>
       </div>
@@ -211,7 +211,8 @@ session_start();
                 <label for="reg-genero">Género</label>
                 <select class="form-control" name="genero" id="genero" style="width: 466px;" required>
                   <option value="<?php echo $_SESSION['genero']; ?>" disabled selected>
-                    <?php echo $_SESSION['genero']; ?></option>
+                    <?php echo $_SESSION['genero']; ?>
+                  </option>
                   <option value="Hombre">Hombre</option>
                   <option value="Mujer">Mujer</option>
                   <option value="Otro">Otro</option>
@@ -269,7 +270,7 @@ session_start();
       </div>
     </div>
   </div>
-  
+
 
   <footer class="site-footer">
     <div class="container">
@@ -309,7 +310,7 @@ session_start();
 
     <div class="chat-body">
       <div class="welcome-message">
-        <p>👋 ¡Hola! <?php echo $_SESSION['nombre']?> </p>
+        <p>👋 ¡Hola! <?php echo $_SESSION['nombre'] ?> </p>
         <p>¡Bienvenido de nuevo! ¿Listo para empezar una nueva rutina?</p>
       </div>
 
@@ -407,8 +408,8 @@ session_start();
 
   </script>
 
-  
-  
+
+
 
 </body>
 
