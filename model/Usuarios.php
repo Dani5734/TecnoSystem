@@ -200,6 +200,33 @@ class Usuarios
     return mysqli_fetch_array($resultado);
     }
 
+    public function listaUsuarios()
+    {
+        $consulta = mysqli_query($this->conectarBd(), "SELECT * FROM usuarios") or die(mysqli_error($this->conectarBd()));
+        $usuarios = [];
+        while ($reg = mysqli_fetch_array($consulta)) {
+            $usuarios[] = $reg;
+        }
+        return $usuarios;
+    }
+
+    public function eliminarUsuario($id)
+    {
+        $conexion = $this->conectarBd();
+        $sql = "DELETE FROM usuarios WHERE id = '$id'";
+        $resultado = mysqli_query($conexion, $sql);
+
+        if ($resultado && mysqli_affected_rows($conexion) > 0) {
+            // Cerrar sesión si el usuario se eliminó correctamente
+            session_start();
+            session_unset();
+            session_destroy();
+
+            echo "Usuario eliminado correctamente";
+        } else {
+            echo "Error al eliminar el usuario";
+        }
+    }
 
 }
 

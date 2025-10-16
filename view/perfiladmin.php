@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,17 +18,17 @@
 
   <!-- Login -->
   <script src="https://kit.fontawesome.com/274421acc6.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="plugins/sweetalert2/sweetalert2.min.css">
-  <link rel="stylesheet" href="model/login.php">
+  <link rel="stylesheet" href="../plugins/sweetalert2/sweetalert2.min.css">
+  <link rel="stylesheet" href="../model/login.php">
   <!-- Fin Login -->
 
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/font-awesome.min.css">
-  <link rel="stylesheet" href="css/aos.css">
-  <link rel="stylesheet" href="css/admin.css">
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/font-awesome.min.css">
+  <link rel="stylesheet" href="../css/aos.css">
+  <link rel="stylesheet" href="../css/admin.css">
 
   <!-- MAIN CSS -->
-  <link rel="stylesheet" href="css/tooplate-gymso-style.css">
+  <link rel="stylesheet" href="../css/tooplate-gymso-style.css">
 </head>
 
 <body data-spy="scroll" data-target="#navbarNav" data-offset="50">
@@ -34,8 +38,8 @@
     <div class="container">
 
       <!-- Logo con icono -->
-    <a class="navbar-brand" href="index.php">
-        <img src="images/logo4.png" alt="HealthBot" width="45" height="45" class="d-inline-block align-text-top">
+      <a class="navbar-brand" href="index.php">
+        <img src="../images/logo4.png" alt="HealthBot" width="45" height="45" class="d-inline-block align-text-top">
       </a>
       <div class="collapse navbar-collapse" id="navbarNav"></div>
     </div>
@@ -46,7 +50,7 @@
     <div class="admin-profile-container">
       <div class="profile-card user-summary">
         <div class="profile-avatar-wrapper">
-          <img src="images/logo3.png" alt="Avatar del Administrador" class="profile-avatar">
+          <img src="../images/Perfil.gif" alt="Avatar del Administrador" class="profile-avatar">
           <div class="edit-icon-overlay" title="Editar Perfil">
             <i class="fa fa-pencil" aria-hidden="true"></i>
           </div>
@@ -80,7 +84,7 @@
       <div class="profile-card quick-actions">
         <h3 class="card-title">Acciones Rápidas</h3>
         <div class="actions-grid">
-          <a href="usuarios.html" class="action-button">Gestionar Usuarios</a>
+          <a href="usuarios.php" class="action-button">Gestionar Usuarios</a>
           <a href="crud-consultas.html" class="action-button">Ver Consultas</a>
           <a href="reportes.html" class="action-button">Ver Reportes</a>
         </div>

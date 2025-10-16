@@ -23,7 +23,7 @@ switch ($_REQUEST["opcion"]) {
         break;
 
     case '3':
-        $usu->listarUsuarios();
+        $usu->listaUsuarios();
         break;
 
     case '4':

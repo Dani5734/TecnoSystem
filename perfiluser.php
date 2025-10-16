@@ -2,8 +2,8 @@
 require_once("model/Usuarios.php");
 session_start();
 if (!isset($_SESSION['nombre'])) {
-    header("Location: index.html");
-    exit();
+  header("Location: index.html");
+  exit();
 }
 
 $usuario = new Usuarios();
@@ -27,7 +27,7 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
   <!-- Login -->
   <script src="https://kit.fontawesome.com/274421acc6.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="plugins/sweetalert2/sweetalert2.min.css">
-  
+
   <!-- Fin Login -->
 
   <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -47,7 +47,7 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
     <div class="container">
 
       <!-- Logo con icono -->
-      <a class="navbar-brand" href="index.php">
+      <a class="navbar-brand" href="index.html">
         <img src="images/logo4.png" alt="HealthBot" width="45" height="45" class="d-inline-block align-text-top">
       </a>
 
@@ -102,6 +102,11 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
             <p class="user-email"><?php echo $_SESSION['correousuario']; ?></p>
             <a href="" ata-bs-toggle="modal" data-toggle="modal" data-target="#registerModal"
               data-bs-dismiss="modal">Editar Perfil</a>
+            <div class="d-grid">
+              <button type="button" class="btn btn-dark btn-lg mt-3" id="btnEliminarCuenta">
+                Eliminar cuenta
+              </button>
+            </div>
             <!-- <div class="password-wrapper">
               <input type="password" id="userPassword" value="<?php echo $_SESSION['contrasena']; ?>" readonly>
               <button type="button" onclick="togglePassword()">👁</button>
@@ -121,7 +126,7 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
           </div>
         </div>
       </div>
-      
+
       <div class="row mt-5">
         <div class="col-lg-6 col-md-6 col-12 mb-4" data-aos="fade-right" data-aos-delay="200">
           <div class="info-card p-4">
@@ -132,7 +137,8 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
             </div>
             <div class="info-item mb-3">
               <div class="info-label">Estatura:</div>
-              <div class="info-value" id="userHeight"><?= isset($datosSalud['estatura']) ? $datosSalud['estatura'] . ' m' : 'No registrada' ?></div>
+              <div class="info-value" id="userHeight">
+                <?= isset($datosSalud['estatura']) ? $datosSalud['estatura'] . ' m' : 'No registrada' ?></div>
             </div>
             <div class="info-item mb-3">
               <div class="info-label">Peso:</div>
@@ -173,7 +179,8 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
           <div class="plan-card p-5 text-center" data-aos="zoom-in" data-aos-delay="300">
             <h3 class="card-title">Mis planes</h3>
             <p class="mb-4">"Aquí puedes ver tus planes generados por HealthBot"</p>
-            <a href="view/planesUsuario.php"><button class="btn bg-danger border-danger text-white btn-lg">Ver Mi Plan</button></a>
+            <a href="view/planesUsuario.php"><button class="btn bg-danger border-danger text-white btn-lg">Ver Mi
+                Plan</button></a>
           </div>
         </div>
       </div>
@@ -416,6 +423,56 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
 
   </script>
 
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const btnEliminar = document.getElementById("btnEliminarCuenta");
+
+      btnEliminar.addEventListener("click", () => {
+        Swal.fire({
+          title: "¿Estás seguro?",
+          text: "Tu cuenta será eliminada permanentemente.",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Sí, eliminar",
+          cancelButtonText: "Cancelar"
+        }).then((result) => {
+          if (result.isConfirmed) {
+            // Enviar petición AJAX
+            fetch("controller/ctrlUsuario.php", {
+              method: "POST",
+              headers: { "Content-Type": "application/x-www-form-urlencoded" },
+              body: "opcion=4&id=<?php echo $_SESSION['id']; ?>"
+            })
+              .then(response => response.text())
+              .then(data => {
+                // Mostrar mensaje de éxito
+                Swal.fire({
+                  icon: "success",
+                  title: "Cuenta eliminada",
+                  text: "Tu cuenta ha sido eliminada exitosamente.",
+                  confirmButtonText: "Aceptar"
+                }).then(() => {
+                  window.location.href = "index.html"; // Redirigir al inicio
+                });
+              })
+              .catch(error => {
+                // Mostrar mensaje de error
+                Swal.fire({
+                  icon: "error",
+                  title: "Error",
+                  text: "Hubo un problema al eliminar tu cuenta. Inténtalo de nuevo.",
+                  confirmButtonText: "Aceptar"
+                });
+              });
+          }
+        });
+      });
+    });
+  </script>
 
 
 
