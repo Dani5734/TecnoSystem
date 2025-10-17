@@ -142,7 +142,8 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
             </div>
             <div class="info-item mb-3">
               <div class="info-label">Peso:</div>
-              <div class="info-value" id="userWeight"><?= htmlspecialchars($datosSalud['peso']) ?> kg</div>
+              <div class="info-value" id="userWeight">
+                <?= isset($datosSalud['peso']) ? $datosSalud['peso'] . 'Kg' : 'No registrada' ?></div>
             </div>
             <div class="info-item mb-3">
               <div class="info-label">Género:</div>
@@ -156,7 +157,8 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
             <h5 class="card-title text-center mb-4">Análisis</h5>
             <div class="info-item mb-3">
               <div class="info-label">IMC:</div>
-              <div class="info-value" id="userIMC"><?= htmlspecialchars($datosSalud['imc']) ?></div>
+              <div class="info-value" id="userIMC">
+                <?= isset($datosSalud['imc']) ? $datosSalud['imc']: 'No registrada' ?></div>
             </div>
             <div class="info-item mb-3">
               <div class="info-label">TBM:</div>
