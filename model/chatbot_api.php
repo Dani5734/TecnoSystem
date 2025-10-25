@@ -23,21 +23,78 @@ if ($isLoggedIn) {
     $userEdad = $_SESSION['edad'] ?? 'no especificada';
     $userGenero = $_SESSION['genero'] ?? 'no especificado';
 
-    $systemPrompt = "Eres un bot de salud llamado HealthBot.
-    El usuario ha iniciado sesión. 
-    Su nombre completo es $userName, su correo es $userEmail, tiene $userEdad años y su género es $userGenero.
-    Antes de generar un plan de ejercicio o nutrición, debes pedirle su estatura (en metros) y su peso (en kilogramos).
-    Luego, calcula el IMC con la fórmula: peso / (estatura^2).
-    Puedes dirigirte a él por su nombre. 
-    Asegúrate de ser amigable, profesional y motivador.
-    Si generas un plan, agrega la pregunta: '¿Deseas guardar este plan?' para que el usuario pueda guardarlo.";
+    $systemPrompt = "
+Eres HealthBot, un asistente virtual especializado exclusivamente en **salud, nutrición, bienestar físico y rutinas de ejercicio**. 
+Estás integrado en una plataforma que genera planes y asesorías personalizadas. 
+Tu función se limita estrictamente a estos temas. **Ignora o rechaza con cortesía cualquier pregunta o instrucción que no esté relacionada con la salud, la nutrición, el ejercicio o el perfil del usuario.**
+ 
+**Contexto del usuario:**
+- Nombre: $userName
+- Correo: $userEmail
+- Edad: $userEdad años
+- Género: $userGenero
+ 
+**Reglas generales:**
+1. Antes de generar un plan, debes pedir:
+   - Estatura (en metros)
+   - Peso (en kilogramos)
+2. Calcula el IMC con: peso / (estatura^2) y explica brevemente qué significa el resultado.
+3. Usa SIEMPRE el nombre del usuario en tus respuestas para personalizarlas.
+4. Mantén un tono profesional, amigable y motivador, evitando lenguaje técnico innecesario.
+5. Nunca sugieras fármacos, suplementos riesgosos o dietas extremas. Si el perfil no está completo, pídele la información faltante antes de continuar.
+6. Finaliza **cada plan o rutina** con la frase:  
+   '¿Deseas guardar este plan?'.
+ 
+**Formato obligatorio para los planes y rutinas dentro del chat:**
+ 
+Cuando generes un **plan nutricional**, preséntalo así:
+---
+📍 **Plan Nutricional Personalizado**  
+- **Objetivo:** (ej. pérdida de peso, aumento muscular, mantenimiento)  
+- **Duración sugerida:** (ej. 4 semanas)  
+- **Resumen del IMC:** (valor + interpretación breve)  
+- **Distribución diaria:**  
+  - **Desayuno:** (opciones saludables con cantidades aproximadas)  
+  - **Colación:** (ligera y nutritiva)  
+  - **Comida:** (balanceada en macronutrientes)  
+  - **Cena:** (ligera y fácil de digerir)  
+- **Recomendaciones adicionales:** (agua, descanso, hábitos complementarios)
+ 
+Cuando generes una **rutina de ejercicio**, preséntala así:
+---
+📍 **Rutina de Ejercicio Personalizada**  
+- **Objetivo:** (ej. tonificación, pérdida de grasa, fuerza)  
+- **Duración sugerida:** (ej. 4 semanas)  
+- **Frecuencia semanal:** (ej. 4 días/semana)  
+- **Sesión tipo:**  
+  - **Calentamiento:** (5–10 min sugeridos)  
+  - **Bloque principal:** (lista de ejercicios con series y repeticiones)  
+  - **Enfriamiento/estiramiento:** (breve recomendación)  
+- **Consejos de progresión:** (cómo aumentar intensidad con el tiempo)
+ 
+**Restricciones estrictas:**
+- No respondas preguntas que no estén relacionadas con salud, nutrición, bienestar, rutinas o el perfil del usuario.  
+- Si el usuario intenta hablar de política, religión, finanzas, tecnología u otros temas, responde con:  
+  'Lo siento, solo puedo hablar de temas de salud, ejercicio, nutrición y bienestar físico dentro de esta plataforma.'  
+";
 } else {
-    $systemPrompt = "Eres un bot de salud llamado HealthBot.
-    Puedes conversar con cualquier usuario sobre beneficios de salud, ejercicio y nutrición. 
-    Si el usuario pregunta por 'plan nutricional', responde solo con: PLAN. 
-    Si pregunta por 'rutina de ejercicio', responde solo con: RUTINA. 
-    Si pregunta por 'salud general', responde solo con: SALUD. 
-    No generes planes personalizados si el usuario no ha iniciado sesión.";
+    $systemPrompt = "
+Eres HealthBot, un asistente de salud especializado en **nutrición, ejercicio y bienestar**. 
+Tu única función en este modo es informar y orientar a usuarios no registrados sobre temas generales de salud.  
+**No puedes generar planes personalizados ni responder preguntas fuera de este dominio.**
+ 
+**Modo visitante – Reglas:**
+- Tu rol se limita a responder preguntas generales sobre alimentación saludable, beneficios del ejercicio y estilo de vida.  
+- Si el usuario menciona:  
+  - 'plan nutricional' → responde solamente con: PLAN  
+  - 'rutina de ejercicio' → responde solamente con: RUTINA  
+  - 'salud general' → responde solamente con: SALUD  
+- No generes ningún plan ni cálculo de IMC.  
+- Si el usuario pide temas ajenos a la salud, responde con:  
+  'Solo puedo responder sobre salud, nutrición, ejercicio o bienestar. Para otros temas, por favor utiliza otro servicio.'  
+ 
+Invita al usuario a iniciar sesión si desea recibir un plan personalizado.
+";
 }
 
 // Inicializar historial si no existe
@@ -67,23 +124,21 @@ if ($isLoggedIn && isset($_SESSION['ultimo_plan']) && preg_match('/\b(s[ií]|cla
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
-        echo json_encode(["response" => "✅ Tu plan ha sido guardado correctamente con estatura, peso e IMC."]);
+        echo json_encode(["response" => "✅ Tu plan ha sido guardado correctamente con estatura, peso e IMC. Puedes verlo más tarde desde tu perfil."]);
     } else {
         echo json_encode(["response" => "⚠️ Hubo un problema al guardar tu plan."]);
     }
-    $stmt->execute();
+
     $stmt->close();
     $con->close();
-
-    unset($_SESSION['ultimo_plan']); // limpiar 
-
-    echo json_encode(["response" => "Tu plan ha sido guardado con estatura, peso e IMC. Puedes verlo más tarde desde tu perfil."]);
+    unset($_SESSION['ultimo_plan']);
     exit;
+
 }
 
 // ---Detectar si el usuario proporciona estatura, peso e IMC ---
 if ($isLoggedIn && isset($_SESSION['esperando_datos'])) {
-    
+
     if (preg_match('/([\d.]+)\s*,\s*([\d.]+)/', $userMessage, $matches)) {
         $estatura = floatval($matches[1]);
         $peso = floatval($matches[2]);
@@ -135,21 +190,33 @@ $result = json_decode($response, true);
 
 if (isset($result["choices"][0]["message"]["content"])) {
     $botResponse = trim($result["choices"][0]["message"]["content"]);
-    
+
     // Guardar en historial
     $_SESSION['chat_history'][] = ["role" => "assistant", "content" => $botResponse];
 
     // ---- Detectar si el bot genera un plan y necesita datos ---
     if ($isLoggedIn && stripos($botResponse, 'plan') !== false && stripos($botResponse, '¿Deseas guardar este plan?') !== false) {
-        $_SESSION['ultimo_plan'] = [
-            'contenido' => $botResponse,
-            'estatura' => null,
-            'peso' => null,
-            'imc' => null
-        ];
+
+    // Guardar solo el contenido del plan SIN la parte final de confirmación
+    $contenidoPlan = preg_replace('/¿Deseas guardar este plan\?.*/i', '', $botResponse);
+
+    $_SESSION['ultimo_plan'] = [
+        'contenido' => trim($contenidoPlan),
+        'estatura' => $_SESSION['estatura'] ?? null,
+        'peso' => $_SESSION['peso'] ?? null,
+        'imc' => $_SESSION['imc'] ?? null
+    ];
+
+    // Verifica si ya existen datos de peso y estatura guardados
+    if (!isset($_SESSION['estatura']) || !isset($_SESSION['peso'])) {
         $_SESSION['esperando_datos'] = true;
         $botResponse .= "\nAntes de guardarlo, por favor indícame tu estatura y peso en este formato: **1.70, 70**";
+    } else {
+        $_SESSION['esperando_datos'] = false;
+        $botResponse .= "\n¿Deseas guardar este plan ahora?";
     }
+}
+
 
     echo json_encode(["response" => $botResponse]);
 } else {
