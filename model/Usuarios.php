@@ -189,15 +189,18 @@ class Usuarios
             </script>';
         }
     }
-    public function obtenerDatosSalud($nombre){
-    $conexion = $this->conectarBd();
-    $query = "SELECT estatura, peso, imc, fecha 
+
+
+    public function obtenerDatosSalud($nombre)
+    {
+        $conexion = $this->conectarBd();
+        $query = "SELECT estatura, peso, imc, fecha 
               FROM planes 
               WHERE usuario = '$nombre' 
               ORDER BY fecha DESC 
-              LIMIT 1";  
-    $resultado = mysqli_query($conexion, $query);
-    return mysqli_fetch_array($resultado);
+              LIMIT 1";
+        $resultado = mysqli_query($conexion, $query);
+        return mysqli_fetch_array($resultado);
     }
 
     public function listaUsuarios()

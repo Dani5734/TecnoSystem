@@ -51,8 +51,6 @@ $lista_usuarios = $usu->listaUsuarios();
                         <th>Correo Electrónico</th>
                         <th>telefono</th>
                         <th>Edad</th>
-                        <th>Peso</th>
-                        <th>Altura</th>
                         <th>Género</th>
                         <th>Contraseña</th>
                         <th>Acciones</th>
@@ -67,8 +65,6 @@ $lista_usuarios = $usu->listaUsuarios();
                                 <td><?= $registro['correousuario'] ?></td>
                                 <td><?= $registro['telefono'] ?></td>
                                 <td><?= $registro['edad'] ?></td>
-                                <td>50 KG</td>
-                                <td>1.70 cm</td>
                                 <td><?= $registro['genero'] ?></td>
                                 <td><?= $registro['contrasena'] ?></td>
                                 <td>

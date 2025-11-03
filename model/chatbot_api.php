@@ -86,9 +86,9 @@ Tu única función en este modo es informar y orientar a usuarios no registrados
 **Modo visitante – Reglas:**
 - Tu rol se limita a responder preguntas generales sobre alimentación saludable, beneficios del ejercicio y estilo de vida.  
 - Si el usuario menciona:  
-  - 'plan nutricional' → responde solamente con: PLAN  
-  - 'rutina de ejercicio' → responde solamente con: RUTINA  
-  - 'salud general' → responde solamente con: SALUD  
+  - 'plan nutricional' → responde solamente con: No lo puedes generar hasta inciar sesión de manera respetuosa
+  - 'rutina de ejercicio' → responde solamente con:  No lo puedes generar hasta inciar sesión de manera respetuosa
+  - 'salud general' → responde solamente con: Solo da consejos más no generes rutinas hasta no logearse 
 - No generes ningún plan ni cálculo de IMC.  
 - Si el usuario pide temas ajenos a la salud, responde con:  
   'Solo puedo responder sobre salud, nutrición, ejercicio o bienestar. Para otros temas, por favor utiliza otro servicio.'  
@@ -124,9 +124,9 @@ if ($isLoggedIn && isset($_SESSION['ultimo_plan']) && preg_match('/\b(s[ií]|cla
     $stmt->execute();
 
     if ($stmt->affected_rows > 0) {
-        echo json_encode(["response" => "✅ Tu plan ha sido guardado correctamente con estatura, peso e IMC. Puedes verlo más tarde desde tu perfil."]);
+        echo json_encode(["response" => "Tu plan ha sido guardado correctamente con estatura, peso e IMC. Puedes verlo más tarde desde tu perfil."]);
     } else {
-        echo json_encode(["response" => "⚠️ Hubo un problema al guardar tu plan."]);
+        echo json_encode(["response" => "Hubo un problema al guardar tu plan."]);
     }
 
     $stmt->close();
