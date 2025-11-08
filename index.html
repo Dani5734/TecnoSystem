@@ -15,6 +15,7 @@
   <!-- Login -->
   <script src="https://kit.fontawesome.com/274421acc6.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="plugins/sweetalert2/sweetalert2.min.css">
+  
 
   <!-- Fin Login -->
 
@@ -313,70 +314,104 @@
 
 
   <!-- Modal Inicio de sesión-->
-  <div class="modal fade" id="IniciarSesion" tabindex="-1" role="dialog" aria-labelledby="IniciarSesionLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2 class="modal-title" id="IniciarSesionLabel">Iniciar Sesión</h2>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
+<div class="modal" id="IniciarSesion" tabindex="-1" role="dialog" aria-labelledby="IniciarSesionLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="IniciarSesionLabel">Iniciar Sesión</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
 
-        <div class="modal-body">
-          <form action="controller/ctrlUsuario.php" method="post">
-            <div class="mb-3">
-              <label for="login-contrasena" class="form-label">Correo </label>
-              <input type="email" class="form-control" name="correousuario" id="correousuario"
-                placeholder="Correo Electrónico" required>
-            </div>
+      <div class="modal-body">
+        <form action="controller/ctrlUsuario.php" method="post">
+          <div class="mb-3">
+            <label for="correousuario" class="form-label">Correo</label>
+            <input type="email" class="form-control" name="correousuario" id="correousuario"
+              placeholder="Correo Electrónico" required>
+          </div>
 
-            <div class="mb-3">
-              <label for="login-contrasena" class="form-label">Contraseña</label>
-              <div class="input-group">
-                <input type="password" class="form-control" id="login-contrasena" name="contrasena"
-                  placeholder="Contraseña" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^\s]{8,}$"
-                  title="Debe tener al menos una letra minúscula, una mayúscula, un número, mínimo 8 caracteres y sin espacios"
-                  required>
+          <div class="mb-3">
+            <label for="login-contrasena" class="form-label">Contraseña</label>
+            <div class="input-group">
+              <input type="password" class="form-control" id="login-contrasena" name="contrasena"
+                placeholder="Contraseña" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^\s]{8,}$"
+                title="Debe tener al menos una letra minúscula, una mayúscula, un número, mínimo 8 caracteres y sin espacios"
+                required>
+              <div class="input-group-append">
                 <span class="input-group-text">
-                  <i id="toggleLoginPassword" class="fa-solid fa-eye" style="cursor:pointer;"></i>
+                  <i id="toggleLoginPassword" class="fa fa-eye" style="cursor:pointer;"></i>
                 </span>
               </div>
             </div>
+          </div>
 
-            <input type="hidden" name="opcion" value="7" />
-            <div class="mb-3">
-              <button type="submit" class="custom-btn bg-color mt-3 w-100 rounded-pill" name="submit">Iniciar
-                Sesión</button>
+          <!-- Enlace para recuperar contraseña -->
+          <p class="text-center mt-2">
+            <a href="#" data-toggle="modal" data-target="#forgotPasswordModal" data-dismiss="modal">
+              ¿Olvidaste tu contraseña?
+            </a>
+          </p>
+
+          <input type="hidden" name="opcion" value="7" />
+          <div class="mb-3">
+            <button type="submit" class="custom-btn bg-color mt-3 w-100 rounded-pill" name="submit">
+              Iniciar Sesión
+            </button>
+          </div>
+
+          <!-- Botones de inicio con APIs -->
+          <div class="text-center mt-3">
+            <p>O inicia sesión con:</p>
+            <div id="g_id_onload"
+              data-client_id="163821559797-7rjdchh3lfasip35j7j46lfjnstne84s.apps.googleusercontent.com"
+              data-login_uri="http://localhost/TecnoSystem/registro_google.php" data-auto_prompt="false">
             </div>
-            <!-- Botones de inicio con APIs -->
-            <div class="text-center mt-3" style="justify-content: center;">
-              <p>O Inicia sesion con:</p>
-              <div id="g_id_onload"
-                data-client_id="163821559797-7rjdchh3lfasip35j7j46lfjnstne84s.apps.googleusercontent.com"
-                data-login_uri="http://localhost/TecnoSystem/registro_google.php" data-auto_prompt="false">
-              </div>
-              <div class="g_id_signin"></div>
-            </div>
+            <div class="g_id_signin"></div>
+          </div>
 
-            <p class="text-center mt-3">
-              ¿No tienes cuenta?
-              <a href="#" data-bs-toggle="modal" data-toggle="modal" data-target="#registerModal"
-                data-bs-dismiss="modal">
-                Regístrate
-              </a>
-            </p>
-
-          </form>
-        </div>
-
+          <p class="text-center mt-3">
+            ¿No tienes cuenta?
+            <a href="#" data-toggle="modal" data-target="#registerModal" data-dismiss="modal">
+              Regístrate
+            </a>
+          </p>
         </form>
       </div>
-      <div class="modal-footer"></div>
     </div>
   </div>
+</div>
+
+<!-- Modal: Recuperar contraseña -->
+<div class="modal fade" id="forgotPasswordModal" tabindex="-1" role="dialog" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="forgotPasswordModalLabel">Recuperar contraseña</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <form action="controller/ctrlUsuario.php" method="POST">
+          <div class="mb-3">
+            <label for="emailRecuperacion" class="form-label">Ingresa tu correo electrónico</label>
+            <input type="email" class="form-control" id="emailRecuperacion" name="correo_recuperacion"
+              placeholder="ejemplo@correo.com" required>
+          </div>
+
+          <input type="hidden" name="opcion" value="9">
+          <button type="submit" class="custom-btn bg-color w-100 mt-3 rounded-pill">
+            Enviar código de recuperación
+          </button>
+        </form>
+      </div>
+    </div>
   </div>
+</div>
+
 
   <!-- Fin Modal y Formulario -->
 

@@ -56,33 +56,15 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-lg-auto">
-          <li class="nav-item">
-            <a href="#home" class="nav-link smoothScroll">Home</a>
-          </li>
-
-          <li class="nav-item">
-            <a href="#about" class="nav-link smoothScroll">Nosotros</a>
-          </li>
-
-          <li class="nav-item">
-            <a href="#class" class="nav-link smoothScroll">Beneficios</a>
-          </li>
-
-          <li class="nav-item">
-            <a href="#schedule" class="nav-link smoothScroll">Testimonios</a>
-          </li>
-
-          <li class="nav-item">
-            <a href="#contact" class="nav-link smoothScroll">Contact</a>
-          </li>
-
-          <li class="nav-item">
-            <a href="controller/ctrlUsuario.php" class="nav-link" type="button">Cerrar Sesion</a>
-          </li>
-        </ul>
-      </div>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarUser">
+      <ul class="navbar-nav mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="perfiluser.php">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="planes.php">Mis Planes</a></li>
+        <li class="nav-item"><a class="nav-link" href="progreso.php">Progreso</a></li>
+        <li class="nav-item"><a class="nav-link" href="configuracion.php">Configuración</a></li>
+        <li class="nav-item"> <a href="controller/ctrlUsuario.php" class="nav-link" type="button">Cerrar Sesion</a> </li>
+      </ul>
+    </div>
     </div>
   </nav>
 
@@ -287,6 +269,85 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
       </div>
     </div>
   </div>
+<!-- Sección: Compartir experiencia -->
+<section class="experience section py-5" id="experience">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8 col-md-10 contact-info text-center">
+
+        <!-- Encabezado -->
+        <h2 class="mb-4 fw-semibold">Comparte tu experiencia</h2>
+        <p class="mb-4 fs-5 text-secondary">
+          Cuéntanos cómo ha sido tu experiencia usando nuestro chatbot. Tus comentarios nos ayudan a mejorar.
+        </p>
+
+        <!-- Formulario -->
+        <form id="experienceForm" class="contact-form p-4 rounded shadow-lg text-start bg-white">
+          <h5 class="mb-4 text-center fw-semibold">Tu opinión cuenta</h5>
+
+          <!-- Nombre -->
+          <div class="mb-3">
+            <label for="nombre" class="form-label">
+              <i class="bi bi-person-fill me-2"></i> Nombre
+            </label>
+            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Tu nombre" required>
+          </div>
+
+          <!-- Tipo de experiencia -->
+          <div class="mb-3">
+            <label for="tipo" class="form-label">
+              <i class="bi bi-emoji-smile-fill me-2"></i> Tipo de experiencia
+            </label>
+            <select class="form-select" id="tipo" name="tipo" required>
+              <option value="" selected disabled>Selecciona una opción</option>
+              <option value="excelente">Excelente</option>
+              <option value="buena">Buena</option>
+              <option value="regular">Regular</option>
+              <option value="mala">Mala</option>
+            </select>
+          </div>
+
+          <!-- Mensaje -->
+          <div class="mb-3">
+            <label for="mensaje" class="form-label">
+              <i class="bi bi-pencil-fill me-2"></i> Cuéntanos más
+            </label>
+            <textarea class="form-control" id="mensaje" name="mensaje" rows="5"
+              placeholder="Describe brevemente cómo fue tu experiencia..." required></textarea>
+          </div>
+
+          <!-- Botón -->
+          <div class="d-grid">
+            <button type="submit" class="btn btn-dark btn-lg">Enviar experiencia</button>
+          </div>
+
+          <!-- Mensaje de confirmación -->
+          <div id="confirmacion" class="alert alert-success mt-4 d-none text-center" role="alert">
+            ¡Gracias por compartir tu experiencia! 
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Script de confirmación -->
+<script>
+  document.getElementById("experienceForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    // Mostrar mensaje de confirmación
+    const confirmacion = document.getElementById("confirmacion");
+    confirmacion.classList.remove("d-none");
+
+    // Reiniciar formulario
+    this.reset();
+
+    // Ocultar mensaje después de unos segundos
+    setTimeout(() => confirmacion.classList.add("d-none"), 4000);
+  });
+</script>
 
 
   <footer class="site-footer">
