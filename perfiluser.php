@@ -63,8 +63,8 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
         <li class="nav-item"><a class="nav-link" href="progreso.php">Progreso</a></li>
         <li class="nav-item"><a class="nav-link" href="configuracion.php">Configuración</a></li>
         <li class="nav-item"> <a href="controller/ctrlUsuario.php" class="nav-link" type="button">Cerrar Sesion</a> </li>
-      </ul>
-    </div>
+        </ul>
+      </div>
     </div>
   </nav>
 
@@ -269,7 +269,7 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
       </div>
     </div>
   </div>
-<!-- Sección: Compartir experiencia -->
+  <!-- Sección: Compartir experiencia -->
 <section class="experience section py-5" id="experience">
   <div class="container">
     <div class="row justify-content-center">
