@@ -2,6 +2,14 @@
 session_start();
 header('Content-Type: application/json; charset=UTF-8');
 
+if (isset($_SESSION['nombre'])) {
+    $usuario = $_SESSION['nombre'];
+} else {
+    $usuario = "Invitado";
+}
+
+
+
 $config = include __DIR__ . "/config.php";
 $apiKey = $config["api_key"];
 
@@ -15,6 +23,12 @@ if (!$userMessage) {
 }
 
 $isLoggedIn = isset($_SESSION['nombre']);
+// 🧠 Detectar si el usuario menciona restricciones alimenticias
+if ($isLoggedIn && preg_match('/(no puedo comer|no me gusta|soy alérgico|soy alergico|evito|alergia a|no consumo)/i', $userMessage)) {
+    $_SESSION['restricciones'] = $userMessage;
+    echo json_encode(["response" => "Gracias, tomaré en cuenta tus restricciones o preferencias alimenticias al generar tu plan."]);
+    exit;
+}
 
 // Prom Logeado o neeee
 if ($isLoggedIn) {
@@ -22,6 +36,7 @@ if ($isLoggedIn) {
     $userEmail = $_SESSION['correousuario'];
     $userEdad = $_SESSION['edad'] ?? 'no especificada';
     $userGenero = $_SESSION['genero'] ?? 'no especificado';
+    $restricciones = $_SESSION['restricciones'] ?? 'ninguna especificada';
 
     $systemPrompt = "
 Eres HealthBot, un asistente virtual especializado exclusivamente en **salud, nutrición, bienestar físico y rutinas de ejercicio**. 
@@ -35,14 +50,16 @@ Tu función se limita estrictamente a estos temas. **Ignora o rechaza con cortes
 - Género: $userGenero
  
 **Reglas generales:**
-1. Antes de generar un plan, debes pedir:
+1. Antes de generar un plan nutricional, si el usuario no ha mencionado restricciones alimenticias o alimentos que no le agradan, pregúntalo con algo como:
+   > “Antes de crear tu plan, ¿tienes alguna restricción alimenticia, alergia o alimento que prefieras evitar?”
+2. Antes de generar un plan, debes pedir e en este formato:
    - Estatura (en metros)
    - Peso (en kilogramos)
-2. Calcula el IMC con: peso / (estatura^2) y explica brevemente qué significa el resultado.
-3. Usa SIEMPRE el nombre del usuario en tus respuestas para personalizarlas.
-4. Mantén un tono profesional, amigable y motivador, evitando lenguaje técnico innecesario.
-5. Nunca sugieras fármacos, suplementos riesgosos o dietas extremas. Si el perfil no está completo, pídele la información faltante antes de continuar.
-6. Finaliza **cada plan o rutina** con la frase:  
+3. Calcula el IMC con: peso / (estatura^2) y explica brevemente qué significa el resultado.
+4. Usa SIEMPRE el nombre del usuario en tus respuestas para personalizarlas.
+5. Mantén un tono profesional, amigable y motivador, evitando lenguaje técnico innecesario.
+6. Nunca sugieras fármacos, suplementos riesgosos o dietas extremas. Si el perfil no está completo, pídele la información faltante antes de continuar.
+7. Finaliza **cada plan o rutina** con la frase:  
    '¿Deseas guardar este plan?'.
  
 **Formato obligatorio para los planes y rutinas dentro del chat:**

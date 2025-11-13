@@ -1,6 +1,7 @@
 <?php
 session_start();
 include("../model/planes.php");
+include("../model/videos.php");
 
 // Verificación de sesión
 if (!isset($_SESSION['nombre'])) {
@@ -11,8 +12,12 @@ if (!isset($_SESSION['nombre'])) {
 $usuario = $_SESSION['nombre'] ?? null;
 
 $planes = new Planes();
+$videosModel = new Videos();
 $planes->inicializar(null, $usuario, null, null, null, null, null);
 $planesUsu = $planes->listarPlanes();
+$videos = $videosModel ->listarVideos();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -93,6 +98,45 @@ $planesUsu = $planes->listarPlanes();
       <?php } ?>
     </div>
   </section>
+  <!-- SECCIÓN VIDEOS -->
+<section class="section bg-white" id="videos">
+  <div class="container py-5">
+    <h2 class="text-center mb-5">Videos recomendados por HealthBot</h2>
+
+    <?php if (count($videos) > 0) { ?>
+      <div class="row">
+        <?php foreach ($videos as $video) { ?>
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card shadow-sm h-100" data-aos="fade-up">
+              <div class="card-body">
+                <h5 class="card-title text-center">
+                  <?php echo htmlspecialchars($video['nombre_ejercicio']); ?>
+                </h5>
+                <p class="card-text text-muted">
+                  <?php echo htmlspecialchars($video['descripcion']); ?>
+                </p>
+
+                <div class="ratio ratio-16x9 mb-3">
+                  <iframe 
+                    src="<?php echo htmlspecialchars($video['video_url']); ?>" 
+                    title="Video de ejercicio"
+                    frameborder="0"
+                    allowfullscreen>
+                  </iframe>
+                </div>
+              </div>
+            </div>
+          </div>
+        <?php } ?>
+      </div>
+    <?php } else { ?>
+      <div class="alert alert-info text-center">
+        Aún no hay videos cargados por el administrador.
+      </div>
+    <?php } ?>
+  </div>
+</section>
+
 
   <!-- FOOTER -->
   <footer class="site-footer">

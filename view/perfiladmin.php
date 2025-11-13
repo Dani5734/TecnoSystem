@@ -86,7 +86,7 @@ session_start();
         <div class="actions-grid">
           <a href="usuarios.php" class="action-button">Gestionar Usuarios</a>
           <a href="crud-consultas.html" class="action-button">Ver Consultas</a>
-          <a href="reportes.html" class="action-button">Ver Reportes</a>
+          <a href="admin_videos.php" class="action-button">Gestionar videos</a>
         </div>
       </div>
     </div>
