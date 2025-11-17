@@ -16,6 +16,8 @@ switch ($_REQUEST["opcion"]) {
             $_REQUEST['contrasena']
         );
         $usu->registrarUsuario();
+        header("Location: ../index.html?registro=success");
+        exit();
         break;
 
     case '2':

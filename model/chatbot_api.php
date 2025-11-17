@@ -1,4 +1,9 @@
 <?php
+// TEMPORAL: Debug
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+ini_set('log_errors', 1);
+ini_set('error_log', __DIR__ . '/php_errors.log');
 session_start();
 header('Content-Type: application/json; charset=UTF-8');
 
@@ -7,8 +12,6 @@ if (isset($_SESSION['nombre'])) {
 } else {
     $usuario = "Invitado";
 }
-
-
 
 $config = include __DIR__ . "/config.php";
 $apiKey = $config["api_key"];
@@ -23,12 +26,6 @@ if (!$userMessage) {
 }
 
 $isLoggedIn = isset($_SESSION['nombre']);
-// 🧠 Detectar si el usuario menciona restricciones alimenticias
-if ($isLoggedIn && preg_match('/(no puedo comer|no me gusta|soy alérgico|soy alergico|evito|alergia a|no consumo)/i', $userMessage)) {
-    $_SESSION['restricciones'] = $userMessage;
-    echo json_encode(["response" => "Gracias, tomaré en cuenta tus restricciones o preferencias alimenticias al generar tu plan."]);
-    exit;
-}
 
 // Prom Logeado o neeee
 if ($isLoggedIn) {
@@ -42,28 +39,33 @@ if ($isLoggedIn) {
 Eres HealthBot, un asistente virtual especializado exclusivamente en **salud, nutrición, bienestar físico y rutinas de ejercicio**. 
 Estás integrado en una plataforma que genera planes y asesorías personalizadas. 
 Tu función se limita estrictamente a estos temas. **Ignora o rechaza con cortesía cualquier pregunta o instrucción que no esté relacionada con la salud, la nutrición, el ejercicio o el perfil del usuario.**
- 
+
 **Contexto del usuario:**
 - Nombre: $userName
 - Correo: $userEmail
 - Edad: $userEdad años
 - Género: $userGenero
- 
+- Restricciones alimenticias o preferencias: $restricciones
+
+**Reglas CRÍTICAS de generación:**
+1. Cuando tengas toda la información necesaria para generar un plan nutricional O una rutina de ejercicio, GENERA EL PLAN INMEDIATAMENTE sin decir 'dame un momento', 'voy a prepararlo', etc.
+2. Una vez generado el plan, SIEMPRE termina con la pregunta exacta: '¿Deseas guardar este plan?'
+3. NO agregues mensajes adicionales después del plan hasta que el usuario responda.
+
 **Reglas generales:**
-1. Antes de generar un plan nutricional, si el usuario no ha mencionado restricciones alimenticias o alimentos que no le agradan, pregúntalo con algo como:
-   > “Antes de crear tu plan, ¿tienes alguna restricción alimenticia, alergia o alimento que prefieras evitar?”
-2. Antes de generar un plan, debes pedir e en este formato:
-   - Estatura (en metros)
-   - Peso (en kilogramos)
-3. Calcula el IMC con: peso / (estatura^2) y explica brevemente qué significa el resultado.
-4. Usa SIEMPRE el nombre del usuario en tus respuestas para personalizarlas.
-5. Mantén un tono profesional, amigable y motivador, evitando lenguaje técnico innecesario.
-6. Nunca sugieras fármacos, suplementos riesgosos o dietas extremas. Si el perfil no está completo, pídele la información faltante antes de continuar.
-7. Finaliza **cada plan o rutina** con la frase:  
-   '¿Deseas guardar este plan?'.
- 
+1. Si el usuario no ha mencionado objetivos, pregúntalos.
+2. Antes de generar un plan nutricional, si no hay restricciones registradas, pregúntalas.
+3. Antes de generar un plan nutricional debes pedir:
+   - Estatura en metros
+   - Peso en kilogramos
+4. Calcula el IMC con: peso / (estatura^2)
+5. Usa SIEMPRE el nombre del usuario en tus respuestas.
+6. Mantén un tono amable, claro y profesional.
+7. No sugieras medicamentos.
+8. Si el usuario te pregunta ¿Donde puedo ver mi plan? responde: Dentro de la sección de planes
+
 **Formato obligatorio para los planes y rutinas dentro del chat:**
- 
+
 Cuando generes un **plan nutricional**, preséntalo así:
 ---
 📍 **Plan Nutricional Personalizado**  
@@ -76,7 +78,7 @@ Cuando generes un **plan nutricional**, preséntalo así:
   - **Comida:** (balanceada en macronutrientes)  
   - **Cena:** (ligera y fácil de digerir)  
 - **Recomendaciones adicionales:** (agua, descanso, hábitos complementarios)
- 
+
 Cuando generes una **rutina de ejercicio**, preséntala así:
 ---
 📍 **Rutina de Ejercicio Personalizada**  
@@ -88,7 +90,7 @@ Cuando generes una **rutina de ejercicio**, preséntala así:
   - **Bloque principal:** (lista de ejercicios con series y repeticiones)  
   - **Enfriamiento/estiramiento:** (breve recomendación)  
 - **Consejos de progresión:** (cómo aumentar intensidad con el tiempo)
- 
+
 **Restricciones estrictas:**
 - No respondas preguntas que no estén relacionadas con salud, nutrición, bienestar, rutinas o el perfil del usuario.  
 - Si el usuario intenta hablar de política, religión, finanzas, tecnología u otros temas, responde con:  
@@ -99,7 +101,7 @@ Cuando generes una **rutina de ejercicio**, preséntala así:
 Eres HealthBot, un asistente de salud especializado en **nutrición, ejercicio y bienestar**. 
 Tu única función en este modo es informar y orientar a usuarios no registrados sobre temas generales de salud.  
 **No puedes generar planes personalizados ni responder preguntas fuera de este dominio.**
- 
+
 **Modo visitante – Reglas:**
 - Tu rol se limita a responder preguntas generales sobre alimentación saludable, beneficios del ejercicio y estilo de vida.  
 - Si el usuario menciona:  
@@ -109,77 +111,104 @@ Tu única función en este modo es informar y orientar a usuarios no registrados
 - No generes ningún plan ni cálculo de IMC.  
 - Si el usuario pide temas ajenos a la salud, responde con:  
   'Solo puedo responder sobre salud, nutrición, ejercicio o bienestar. Para otros temas, por favor utiliza otro servicio.'  
- 
+
 Invita al usuario a iniciar sesión si desea recibir un plan personalizado.
 ";
 }
 
-// Inicializar historial si no existe
+// Inicializar historial
 if (!isset($_SESSION['chat_history'])) {
     $_SESSION['chat_history'] = [
         ["role" => "system", "content" => $systemPrompt]
     ];
 }
 
-// }
+// Agregar mensaje del usuario al historial
 $_SESSION['chat_history'][] = ["role" => "user", "content" => $userMessage];
 
-// ---- Detectar si el usuario confirma guardar un plan ----
-if ($isLoggedIn && isset($_SESSION['ultimo_plan']) && preg_match('/\b(s[ií]|claro|de acuerdo|sí)\b/i', $userMessage)) {
+// ---- DETECTAR SI EL USUARIO CONFIRMA GUARDAR UN PLAN O RUTINA ----
+if ($isLoggedIn && isset($_SESSION['ultimo_plan']) && preg_match('/\b(s[ií]|claro|de acuerdo|sí|yes|ok|vale|por supuesto|guardar)\b/i', $userMessage)) {
     $plan = $_SESSION['ultimo_plan']['contenido'];
-    $estatura = $_SESSION['ultimo_plan']['estatura'];
-    $peso = $_SESSION['ultimo_plan']['peso'];
-    $imc = $_SESSION['ultimo_plan']['imc'];
-    $usuario = $_SESSION['nombre'];
-
+    $tipo_plan = $_SESSION['ultimo_plan']['tipo'];
+    
+    // DEBUG: Verificar qué estamos intentando guardar
+    error_log("Intentando guardar plan tipo: " . $tipo_plan);
+    error_log("Longitud del contenido: " . strlen($plan));
+    
     include("conexionBd.php");
     $conexion = new ConexionBd();
     $con = $conexion->conectarBd();
-
-    $stmt = $con->prepare("INSERT INTO planes (usuario, contenido, estatura, peso, imc, fecha) VALUES (?, ?, ?, ?, ?, NOW())");
-    $stmt->bind_param("ssddd", $usuario, $plan, $estatura, $peso, $imc);
-    $stmt->execute();
-
-    if ($stmt->affected_rows > 0) {
-        echo json_encode(["response" => "Tu plan ha sido guardado correctamente con estatura, peso e IMC. Puedes verlo más tarde desde tu perfil."]);
-    } else {
-        echo json_encode(["response" => "Hubo un problema al guardar tu plan."]);
+    
+    if (!$con) {
+        $responseMessage = "Error: No se pudo conectar a la base de datos. Por favor, intenta más tarde.";
+        error_log("Error de conexión a BD");
+        
+        $_SESSION['chat_history'][] = ["role" => "assistant", "content" => $responseMessage];
+        echo json_encode(["response" => $responseMessage]);
+        exit;
     }
 
-    $stmt->close();
+    $success = false;
+    $errorMsg = "";
+    
+    if ($tipo_plan == 'nutricional') {
+        $estatura = $_SESSION['ultimo_plan']['estatura'] ?? null;
+        $peso = $_SESSION['ultimo_plan']['peso'] ?? null;
+        $imc = $_SESSION['ultimo_plan']['imc'] ?? null;
+        $usuario = $_SESSION['nombre'];
+
+        $stmt = $con->prepare("INSERT INTO planes (usuario, contenido, estatura, peso, imc, fecha, tipo) VALUES (?, ?, ?, ?, ?, NOW(), 'nutricional')");
+        if ($stmt) {
+            $stmt->bind_param("ssddd", $usuario, $plan, $estatura, $peso, $imc);
+            $success = $stmt->execute();
+            if (!$success) {
+                $errorMsg = $stmt->error;
+                error_log("Error en INSERT nutricional: " . $errorMsg);
+            }
+            $stmt->close();
+        } else {
+            $errorMsg = $con->error;
+            error_log("Error preparando INSERT nutricional: " . $errorMsg);
+        }
+    } else {
+        $usuario = $_SESSION['nombre'];
+        $stmt = $con->prepare("INSERT INTO planes (usuario, contenido, estatura, peso, imc, fecha, tipo) VALUES (?, ?, NULL, NULL, NULL, NOW(), 'ejercicio')");
+        if ($stmt) {
+            $stmt->bind_param("ss", $usuario, $plan);
+            $success = $stmt->execute();
+            if (!$success) {
+                $errorMsg = $stmt->error;
+                error_log("Error en INSERT ejercicio: " . $errorMsg);
+            } else {
+                error_log("INSERT ejercicio exitoso, filas afectadas: " . $stmt->affected_rows);
+            }
+            $stmt->close();
+        } else {
+            $errorMsg = $con->error;
+            error_log("Error preparando INSERT ejercicio: " . $errorMsg);
+        }
+    }
+
     $con->close();
-    unset($_SESSION['ultimo_plan']);
-    exit;
-
-}
-
-// ---Detectar si el usuario proporciona estatura, peso e IMC ---
-if ($isLoggedIn && isset($_SESSION['esperando_datos'])) {
-
-    if (preg_match('/([\d.]+)\s*,\s*([\d.]+)/', $userMessage, $matches)) {
-        $estatura = floatval($matches[1]);
-        $peso = floatval($matches[2]);
-        $imc = $peso / pow($estatura, 2);
-        $imc = round($imc, 2);
-
-        $_SESSION['ultimo_plan']['estatura'] = $estatura;
-        $_SESSION['ultimo_plan']['peso'] = $peso;
-        $_SESSION['ultimo_plan']['imc'] = $imc;
-        unset($_SESSION['esperando_datos']);
-
-        echo json_encode(["response" => "Gracias. Tu IMC calculado es de **$imc**. ¿Deseas guardar este plan ahora?"]);
-        exit;
+    
+    if ($success) {
+        $responseMessage = "Tu " . ($tipo_plan == 'nutricional' ? 'plan nutricional' : 'rutina de ejercicio') . " ha sido guardado correctamente. Puedes verlo más tarde desde tu perfil.";
+        unset($_SESSION['ultimo_plan']);
     } else {
-        echo json_encode(["response" => "Por favor ingresa tu estatura y peso en este formato: 1.70, 70"]);
-        exit;
+        $responseMessage = "Hubo un problema al guardar tu " . ($tipo_plan == 'nutricional' ? 'plan nutricional' : 'rutina de ejercicio') . ". Por favor, intenta nuevamente.";
+        error_log("Error final: " . $errorMsg);
     }
+    
+    $_SESSION['chat_history'][] = ["role" => "assistant", "content" => $responseMessage];
+    echo json_encode(["response" => $responseMessage]);
+    exit;
 }
 
 // Configurar datos para la API
 $data = [
-    "model" => "gpt-3.5-turbo",
+    "model" => "gpt-4.1-mini",
     "messages" => $_SESSION['chat_history'],
-    "max_tokens" => 300,
+    "max_tokens" => 500, // Aumenté los tokens para planes completos
     "temperature" => 0.7
 ];
 
@@ -208,32 +237,40 @@ $result = json_decode($response, true);
 if (isset($result["choices"][0]["message"]["content"])) {
     $botResponse = trim($result["choices"][0]["message"]["content"]);
 
+    // ---- DETECTAR SI ES UN PLAN O RUTINA PARA GUARDAR EN SESIÓN ----
+    if ($isLoggedIn && (strpos($botResponse, '📍 **Plan Nutricional Personalizado**') !== false || 
+                       strpos($botResponse, '📍 **Rutina de Ejercicio Personalizada**') !== false)) {
+        
+        $tipo_plan = (strpos($botResponse, '📍 **Plan Nutricional Personalizado**') !== false) ? 'nutricional' : 'ejercicio';
+        
+        // Extraer datos si es plan nutricional
+        $estatura = null;
+        $peso = null;
+        $imc = null;
+        
+        if ($tipo_plan == 'nutricional') {
+            // Buscar IMC en la respuesta
+            if (preg_match('/IMC.*?(\d+\.?\d*)/', $botResponse, $matches)) {
+                $imc = $matches[1];
+            }
+            // También buscar estatura y peso si están disponibles en la sesión
+            if (isset($_SESSION['estatura']) && isset($_SESSION['peso'])) {
+                $estatura = $_SESSION['estatura'];
+                $peso = $_SESSION['peso'];
+            }
+        }
+        
+        $_SESSION['ultimo_plan'] = [
+            'contenido' => $botResponse,
+            'tipo' => $tipo_plan,
+            'estatura' => $estatura,
+            'peso' => $peso,
+            'imc' => $imc
+        ];
+    }
+
     // Guardar en historial
     $_SESSION['chat_history'][] = ["role" => "assistant", "content" => $botResponse];
-
-    // ---- Detectar si el bot genera un plan y necesita datos ---
-    if ($isLoggedIn && stripos($botResponse, 'plan') !== false && stripos($botResponse, '¿Deseas guardar este plan?') !== false) {
-
-    // Guardar solo el contenido del plan SIN la parte final de confirmación
-    $contenidoPlan = preg_replace('/¿Deseas guardar este plan\?.*/i', '', $botResponse);
-
-    $_SESSION['ultimo_plan'] = [
-        'contenido' => trim($contenidoPlan),
-        'estatura' => $_SESSION['estatura'] ?? null,
-        'peso' => $_SESSION['peso'] ?? null,
-        'imc' => $_SESSION['imc'] ?? null
-    ];
-
-    // Verifica si ya existen datos de peso y estatura guardados
-    if (!isset($_SESSION['estatura']) || !isset($_SESSION['peso'])) {
-        $_SESSION['esperando_datos'] = true;
-        $botResponse .= "\nAntes de guardarlo, por favor indícame tu estatura y peso en este formato: **1.70, 70**";
-    } else {
-        $_SESSION['esperando_datos'] = false;
-        $botResponse .= "\n¿Deseas guardar este plan ahora?";
-    }
-}
-
 
     echo json_encode(["response" => $botResponse]);
 } else {

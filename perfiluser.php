@@ -57,12 +57,13 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
       </button>
 
       <div class="collapse navbar-collapse justify-content-end" id="navbarUser">
-      <ul class="navbar-nav mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link" href="perfiluser.php">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" href="planes.php">Mis Planes</a></li>
-        <li class="nav-item"><a class="nav-link" href="progreso.php">Progreso</a></li>
-        <li class="nav-item"><a class="nav-link" href="configuracion.php">Configuración</a></li>
-        <li class="nav-item"> <a href="controller/ctrlUsuario.php" class="nav-link" type="button">Cerrar Sesion</a> </li>
+        <ul class="navbar-nav mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="perfiluser.php">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="planes.php">Mis Planes</a></li>
+          <li class="nav-item"><a class="nav-link" href="progreso.php">Progreso</a></li>
+          <li class="nav-item"><a class="nav-link" href="configuracion.php">Configuración</a></li>
+          <li class="nav-item"> <a href="controller/ctrlUsuario.php" class="nav-link" type="button">Cerrar Sesion</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -82,6 +83,21 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
             </div>
             <h2 class="user-name"><?php echo $_SESSION['nombre'] . ' ' . $_SESSION['apellidos']; ?></h2>
             <p class="user-email"><?php echo $_SESSION['correousuario']; ?></p>
+            <div id="camara-check" style="text-align:center; margin-top:20px;">
+
+              <button id="btnCamara"
+                style="padding:10px 20px; border:none; background:#4CAF50; color:white; border-radius:8px; cursor:pointer;">
+                Activar cámara
+              </button>
+
+              <video id="video" autoplay playsinline width="320" height="240"
+                style="border-radius:10px; display:none; margin-top:15px;"></video>
+
+              <p id="estado-centro"
+                style="font-weight:bold; padding:10px; border-radius:10px; display:none; margin-top:10px;">
+                Verificando posición...
+              </p>
+            </div>
             <a href="" ata-bs-toggle="modal" data-toggle="modal" data-target="#registerModal"
               data-bs-dismiss="modal">Editar Perfil</a>
             <div class="d-grid">
@@ -120,12 +136,14 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
             <div class="info-item mb-3">
               <div class="info-label">Estatura:</div>
               <div class="info-value" id="userHeight">
-                <?= isset($datosSalud['estatura']) ? $datosSalud['estatura'] . ' m' : 'No registrada' ?></div>
+                <?= isset($datosSalud['estatura']) ? $datosSalud['estatura'] . ' m' : 'No registrada' ?>
+              </div>
             </div>
             <div class="info-item mb-3">
               <div class="info-label">Peso:</div>
               <div class="info-value" id="userWeight">
-                <?= isset($datosSalud['peso']) ? $datosSalud['peso'] . 'Kg' : 'No registrada' ?></div>
+                <?= isset($datosSalud['peso']) ? $datosSalud['peso'] . 'Kg' : 'No registrada' ?>
+              </div>
             </div>
             <div class="info-item mb-3">
               <div class="info-label">Género:</div>
@@ -140,7 +158,8 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
             <div class="info-item mb-3">
               <div class="info-label">IMC:</div>
               <div class="info-value" id="userIMC">
-                <?= isset($datosSalud['imc']) ? $datosSalud['imc']: 'No registrada' ?></div>
+                <?= isset($datosSalud['imc']) ? $datosSalud['imc'] : 'No registrada' ?>
+              </div>
             </div>
             <div class="info-item mb-3">
               <div class="info-label">TBM:</div>
@@ -270,84 +289,84 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
     </div>
   </div>
   <!-- Sección: Compartir experiencia -->
-<section class="experience section py-5" id="experience">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-8 col-md-10 contact-info text-center">
+  <section class="experience section py-5" id="experience">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10 contact-info text-center">
 
-        <!-- Encabezado -->
-        <h2 class="mb-4 fw-semibold">Comparte tu experiencia</h2>
-        <p class="mb-4 fs-5 text-secondary">
-          Cuéntanos cómo ha sido tu experiencia usando nuestro chatbot. Tus comentarios nos ayudan a mejorar.
-        </p>
+          <!-- Encabezado -->
+          <h2 class="mb-4 fw-semibold">Comparte tu experiencia</h2>
+          <p class="mb-4 fs-5 text-secondary">
+            Cuéntanos cómo ha sido tu experiencia usando nuestro chatbot. Tus comentarios nos ayudan a mejorar.
+          </p>
 
-        <!-- Formulario -->
-        <form id="experienceForm" class="contact-form p-4 rounded shadow-lg text-start bg-white">
-          <h5 class="mb-4 text-center fw-semibold">Tu opinión cuenta</h5>
+          <!-- Formulario -->
+          <form id="experienceForm" class="contact-form p-4 rounded shadow-lg text-start bg-white">
+            <h5 class="mb-4 text-center fw-semibold">Tu opinión cuenta</h5>
 
-          <!-- Nombre -->
-          <div class="mb-3">
-            <label for="nombre" class="form-label">
-              <i class="bi bi-person-fill me-2"></i> Nombre
-            </label>
-            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Tu nombre" required>
-          </div>
+            <!-- Nombre -->
+            <div class="mb-3">
+              <label for="nombre" class="form-label">
+                <i class="bi bi-person-fill me-2"></i> Nombre
+              </label>
+              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Tu nombre" required>
+            </div>
 
-          <!-- Tipo de experiencia -->
-          <div class="mb-3">
-            <label for="tipo" class="form-label">
-              <i class="bi bi-emoji-smile-fill me-2"></i> Tipo de experiencia
-            </label>
-            <select class="form-select" id="tipo" name="tipo" required>
-              <option value="" selected disabled>Selecciona una opción</option>
-              <option value="excelente">Excelente</option>
-              <option value="buena">Buena</option>
-              <option value="regular">Regular</option>
-              <option value="mala">Mala</option>
-            </select>
-          </div>
+            <!-- Tipo de experiencia -->
+            <div class="mb-3">
+              <label for="tipo" class="form-label">
+                <i class="bi bi-emoji-smile-fill me-2"></i> Tipo de experiencia
+              </label>
+              <select class="form-select" id="tipo" name="tipo" required>
+                <option value="" selected disabled>Selecciona una opción</option>
+                <option value="excelente">Excelente</option>
+                <option value="buena">Buena</option>
+                <option value="regular">Regular</option>
+                <option value="mala">Mala</option>
+              </select>
+            </div>
 
-          <!-- Mensaje -->
-          <div class="mb-3">
-            <label for="mensaje" class="form-label">
-              <i class="bi bi-pencil-fill me-2"></i> Cuéntanos más
-            </label>
-            <textarea class="form-control" id="mensaje" name="mensaje" rows="5"
-              placeholder="Describe brevemente cómo fue tu experiencia..." required></textarea>
-          </div>
+            <!-- Mensaje -->
+            <div class="mb-3">
+              <label for="mensaje" class="form-label">
+                <i class="bi bi-pencil-fill me-2"></i> Cuéntanos más
+              </label>
+              <textarea class="form-control" id="mensaje" name="mensaje" rows="5"
+                placeholder="Describe brevemente cómo fue tu experiencia..." required></textarea>
+            </div>
 
-          <!-- Botón -->
-          <div class="d-grid">
-            <button type="submit" class="btn btn-dark btn-lg">Enviar experiencia</button>
-          </div>
+            <!-- Botón -->
+            <div class="d-grid">
+              <button type="submit" class="btn btn-dark btn-lg">Enviar experiencia</button>
+            </div>
 
-          <!-- Mensaje de confirmación -->
-          <div id="confirmacion" class="alert alert-success mt-4 d-none text-center" role="alert">
-            ¡Gracias por compartir tu experiencia! 
-          </div>
-        </form>
+            <!-- Mensaje de confirmación -->
+            <div id="confirmacion" class="alert alert-success mt-4 d-none text-center" role="alert">
+              ¡Gracias por compartir tu experiencia!
+            </div>
+          </form>
 
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Script de confirmación -->
-<script>
-  document.getElementById("experienceForm").addEventListener("submit", function (e) {
-    e.preventDefault();
+  <!-- Script de confirmación -->
+  <script>
+    document.getElementById("experienceForm").addEventListener("submit", function (e) {
+      e.preventDefault();
 
-    // Mostrar mensaje de confirmación
-    const confirmacion = document.getElementById("confirmacion");
-    confirmacion.classList.remove("d-none");
+      // Mostrar mensaje de confirmación
+      const confirmacion = document.getElementById("confirmacion");
+      confirmacion.classList.remove("d-none");
 
-    // Reiniciar formulario
-    this.reset();
+      // Reiniciar formulario
+      this.reset();
 
-    // Ocultar mensaje después de unos segundos
-    setTimeout(() => confirmacion.classList.add("d-none"), 4000);
-  });
-</script>
+      // Ocultar mensaje después de unos segundos
+      setTimeout(() => confirmacion.classList.add("d-none"), 4000);
+    });
+  </script>
 
 
   <footer class="site-footer">
@@ -536,7 +555,142 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
       });
     });
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_detection/face_detection.js"></script>
 
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+
+    const btnCamara = document.getElementById("btnCamara");
+    const video = document.getElementById("video");
+    const estado = document.getElementById("estado-centro");
+
+    let stream = null;
+    let camaraActiva = false;
+    let intervaloDeteccion = null;
+
+    btnCamara.addEventListener("click", async function () {
+      if (!camaraActiva) {
+        // ---- ACTIVAR CÁMARA ----
+        try {
+          stream = await navigator.mediaDevices.getUserMedia({ video: true });
+          video.srcObject = stream;
+
+          video.style.display = "block";
+          estado.style.display = "block";
+          estado.innerHTML = "Cámara activada. Colócate frente a la cámara.";
+
+          camaraActiva = true;
+          btnCamara.innerText = "Desactivar cámara";
+          btnCamara.style.background = "#d9534f";
+
+          iniciarDeteccion();
+
+        } catch (err) {
+          console.error("Error al acceder a la cámara:", err);
+          alert("No se pudo acceder a la cámara.");
+        }
+
+      } else {
+        // ---- DESACTIVAR CÁMARA ----
+        if (stream) {
+          stream.getTracks().forEach(track => track.stop());
+        }
+
+        video.style.display = "none";
+        estado.style.display = "none";
+        btnCamara.innerText = "Activar cámara";
+        btnCamara.style.background = "#4CAF50";
+
+        camaraActiva = false;
+
+        // Detener detección
+        if (intervaloDeteccion) clearInterval(intervaloDeteccion);
+      }
+    });
+
+
+    // ---------------------------------------------
+    //      SISTEMA DE DETECCIÓN MEJORADO
+    // ---------------------------------------------
+    function iniciarDeteccion() {
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+
+      intervaloDeteccion = setInterval(() => {
+        if (!camaraActiva) return;
+
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+
+        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        // Zonas divididas para detectar movimiento
+        const zonaCentro = obtenerLuminosidad(canvas, ctx, 0.33, 0.33, 0.33, 0.33);
+        const zonaIzquierda = obtenerLuminosidad(canvas, ctx, 0.10, 0.33, 0.20, 0.33);
+        const zonaDerecha = obtenerLuminosidad(canvas, ctx, 0.70, 0.33, 0.20, 0.33);
+
+        const umbral = 80; // Ajuste sensible para medir presencia
+
+        // ---- DECISIONES ----
+        if (zonaIzquierda > umbral && zonaDerecha < umbral) {
+          estado.style.color = "orange";
+          estado.innerHTML = "⬅ Te moviste a la izquierda";
+        } else if (zonaDerecha > umbral && zonaIzquierda < umbral) {
+          estado.style.color = "orange";
+          estado.innerHTML = "➡ Te moviste a la derecha";
+        } else if (zonaCentro < umbral) {
+          estado.style.color = "red";
+          estado.innerHTML = "❌ No estás centrado — Reajusta tu posición";
+        } else {
+          estado.style.color = "green";
+          estado.innerHTML = "✔ Perfecto, estás centrado";
+        }
+
+      }, 500);
+    }
+
+
+    // -------------------------------------------------
+    // FUNCIÓN PARA OBTENER LUMINOSIDAD EN UNA SUBZONA
+    // -------------------------------------------------
+    function obtenerLuminosidad(canvas, ctx, x, y, w, h) {
+      const zonaX = canvas.width * x;
+      const zonaY = canvas.height * y;
+      const zonaW = canvas.width * w;
+      const zonaH = canvas.height * h;
+
+      const data = ctx.getImageData(zonaX, zonaY, zonaW, zonaH).data;
+
+      let total = 0;
+      for (let i = 0; i < data.length; i += 4) {
+        total += (data[i] + data[i + 1] + data[i + 2]) / 3;
+      }
+
+      return total / (data.length / 4);
+    }
+
+  });
+</script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Mostrar aviso informativo sin activar nada
+    Swal.fire({
+      title: 'Funcionalidad de postura',
+      html: `
+        Para ayudarte a mejorar la postura frente a tu dispositivo,
+        HealthBot puede usar la cámara para verificar tu posición y ayudarte a que tengas una mejor experiencia.
+        <br><br>
+        ✓ La cámara solo se activa cuando tú lo decidas.<br>
+        ✓ No se guarda ninguna imagen ni video.<br>
+        ✓ Todo se procesa únicamente en tu dispositivo.
+      `,
+      icon: 'info',
+      confirmButtonText: 'Entendido',
+      allowOutsideClick: false
+    });
+  });
+</script>
 
 
 </body>

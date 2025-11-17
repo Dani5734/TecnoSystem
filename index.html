@@ -586,6 +586,23 @@
   </div>
   <!--Script de Api Google-->
   <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="plugins/sweetalert2/sweetalert2.all.min.js"></script>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('registro') === 'success') {
+    Swal.fire({
+      icon: 'success',
+      title: '¡Registro exitoso!',
+      text: 'Tu cuenta ha sido creada correctamente.',
+      confirmButtonText: 'Aceptar'
+    }).then(() => {
+      // Recargar sin parámetros
+      window.location.href = "index.html";
+    });
+  }
+</script>
+
 </body>
 
 

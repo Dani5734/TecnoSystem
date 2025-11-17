@@ -1,0 +1,17 @@
+[17-Nov-2025 20:55:08 Europe/Berlin] Intentando guardar plan tipo: ejercicio
+[17-Nov-2025 20:55:08 Europe/Berlin] Longitud del contenido: 1072
+[17-Nov-2025 20:55:08 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Column 'estatura' cannot be null in C:\xampp\htdocs\TecnoSystem\model\chatbot_api.php:178
+Stack trace:
+#0 C:\xampp\htdocs\TecnoSystem\model\chatbot_api.php(178): mysqli_stmt->execute()
+#1 {main}
+  thrown in C:\xampp\htdocs\TecnoSystem\model\chatbot_api.php on line 178
+[17-Nov-2025 20:55:40 Europe/Berlin] Intentando guardar plan tipo: ejercicio
+[17-Nov-2025 20:55:40 Europe/Berlin] Longitud del contenido: 1072
+[17-Nov-2025 20:55:40 Europe/Berlin] PHP Fatal error:  Uncaught mysqli_sql_exception: Column 'estatura' cannot be null in C:\xampp\htdocs\TecnoSystem\model\chatbot_api.php:178
+Stack trace:
+#0 C:\xampp\htdocs\TecnoSystem\model\chatbot_api.php(178): mysqli_stmt->execute()
+#1 {main}
+  thrown in C:\xampp\htdocs\TecnoSystem\model\chatbot_api.php on line 178
+[17-Nov-2025 21:05:42 Europe/Berlin] Intentando guardar plan tipo: ejercicio
+[17-Nov-2025 21:05:42 Europe/Berlin] Longitud del contenido: 1071
+[17-Nov-2025 21:05:42 Europe/Berlin] INSERT ejercicio exitoso, filas afectadas: 1
