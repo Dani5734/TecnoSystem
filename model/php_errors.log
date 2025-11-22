@@ -15,3 +15,35 @@ Stack trace:
 [17-Nov-2025 21:05:42 Europe/Berlin] Intentando guardar plan tipo: ejercicio
 [17-Nov-2025 21:05:42 Europe/Berlin] Longitud del contenido: 1071
 [17-Nov-2025 21:05:42 Europe/Berlin] INSERT ejercicio exitoso, filas afectadas: 1
+[19-Nov-2025 05:01:08 Europe/Berlin] Intentando guardar plan tipo: nutricional
+[19-Nov-2025 05:01:08 Europe/Berlin] Longitud del contenido: 1530
+[22-Nov-2025 05:21:37 Europe/Berlin] Intentando guardar plan tipo: ejercicio
+[22-Nov-2025 05:21:37 Europe/Berlin] Longitud del contenido: 992
+[22-Nov-2025 05:21:37 Europe/Berlin] INSERT ejercicio exitoso, filas afectadas: 1
+[22-Nov-2025 05:37:30 Europe/Berlin] Plan limpio guardado - Tipo: nutricional, Longitud: 1301
+[22-Nov-2025 05:37:56 Europe/Berlin] Intentando guardar plan tipo: nutricional
+[22-Nov-2025 05:37:56 Europe/Berlin] Longitud del contenido: 1301
+[22-Nov-2025 06:16:24 Europe/Berlin] IMC extraído de respuesta: 22
+[22-Nov-2025 06:16:24 Europe/Berlin] Plan guardado en sesión - Tipo: nutricional, Estatura: NULL, Peso: NULL, IMC: 22
+[22-Nov-2025 06:17:00 Europe/Berlin] Intentando guardar plan tipo: nutricional
+[22-Nov-2025 06:17:00 Europe/Berlin] Longitud del contenido: 1258
+[22-Nov-2025 06:17:00 Europe/Berlin] INSERTANDO PLAN NUTRICIONAL - Usuario: Esteban Romero, Estatura: NULL, Peso: NULL, IMC: 22
+[22-Nov-2025 06:17:00 Europe/Berlin] INSERT exitoso - Filas afectadas: 1
+[22-Nov-2025 06:25:31 Europe/Berlin] IMC extraído de respuesta: 22
+[22-Nov-2025 06:25:31 Europe/Berlin] Plan guardado en sesión - Tipo: nutricional, Estatura: NULL, Peso: NULL, IMC: 22
+[22-Nov-2025 06:25:38 Europe/Berlin] Intentando guardar plan tipo: nutricional
+[22-Nov-2025 06:25:38 Europe/Berlin] Longitud del contenido: 1191
+[22-Nov-2025 06:25:38 Europe/Berlin] INSERTANDO PLAN NUTRICIONAL - Usuario: Esteban Romero, Estatura: NULL, Peso: NULL, IMC: 22
+[22-Nov-2025 06:25:38 Europe/Berlin] INSERT exitoso - Filas afectadas: 1
+[22-Nov-2025 06:28:17 Europe/Berlin] Datos capturados - Estatura: 1.58 m, Peso: 55 kg, IMC: 22.031725684986
+[22-Nov-2025 06:28:23 Europe/Berlin] Usando datos de sesión para guardar - Estatura: 1.58, Peso: 55, IMC: 22.031725684986
+[22-Nov-2025 06:28:23 Europe/Berlin] Plan guardado en sesión - Tipo: nutricional, Estatura: 1.58, Peso: 55, IMC: 22.031725684986
+[22-Nov-2025 06:28:28 Europe/Berlin] IMC calculado: 22.031725684986
+[22-Nov-2025 06:28:28 Europe/Berlin] Intentando guardar plan tipo: nutricional
+[22-Nov-2025 06:28:28 Europe/Berlin] Longitud del contenido: 1110
+[22-Nov-2025 06:28:28 Europe/Berlin] INSERTANDO PLAN NUTRICIONAL - Usuario: Esteban Romero, Estatura: 1.58, Peso: 55, IMC: 22.031725684986
+[22-Nov-2025 06:28:28 Europe/Berlin] INSERT exitoso - Filas afectadas: 1
+[22-Nov-2025 06:41:11 Europe/Berlin] Plan guardado en sesión - Tipo: ejercicio, Estatura: NULL, Peso: NULL, IMC: NULL
+[22-Nov-2025 06:41:17 Europe/Berlin] Intentando guardar plan tipo: ejercicio
+[22-Nov-2025 06:41:17 Europe/Berlin] Longitud del contenido: 752
+[22-Nov-2025 06:41:17 Europe/Berlin] INSERT ejercicio exitoso, filas afectadas: 1
