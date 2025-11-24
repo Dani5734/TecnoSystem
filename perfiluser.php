@@ -1,5 +1,6 @@
 <?php
 require_once("model/Usuarios.php");
+require_once("model/Experiencias.php"); // Añadir esta línea
 session_start();
 if (!isset($_SESSION['nombre'])) {
   header("Location: index.html");
@@ -27,8 +28,7 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
   <!-- Login -->
   <script src="https://kit.fontawesome.com/274421acc6.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="plugins/sweetalert2/sweetalert2.min.css">
-
-  <!-- Fin Login -->
+  <link rel="icon" type="image/x-icon" href="images/logo_sinfondo.png">
 
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -288,6 +288,7 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
       </div>
     </div>
   </div>
+
   <!-- Sección: Compartir experiencia -->
   <section class="experience section py-5" id="experience">
     <div class="container">
@@ -297,43 +298,47 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
           <!-- Encabezado -->
           <h2 class="mb-4 fw-semibold">Comparte tu experiencia</h2>
           <p class="mb-4 fs-5 text-secondary">
-            Cuéntanos cómo ha sido tu experiencia usando nuestro chatbot. Tus comentarios nos ayudan a mejorar.
+            Cuéntanos cómo ha sido tu experiencia usando nuestro chatbot. Tus comentarios nos ayudan a mejorar y aparecerán en nuestra página principal.
           </p>
 
           <!-- Formulario -->
-          <form id="experienceForm" class="contact-form p-4 rounded shadow-lg text-start bg-white">
+          <form id="experienceForm" action="controller/ctrlExperiencias.php" method="POST" class="contact-form p-4 rounded shadow-lg text-start bg-white">
             <h5 class="mb-4 text-center fw-semibold">Tu opinión cuenta</h5>
 
-            <!-- Nombre -->
             <div class="mb-3">
               <label for="nombre" class="form-label">
-                <i class="bi bi-person-fill me-2"></i> Nombre
+                <i class="fa fa-user me-2"></i> Nombre
               </label>
-              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Tu nombre" required>
+              <input type="text" class="form-control" id="nombre" name="nombre" 
+                     value="<?php echo $_SESSION['nombre']; ?>" 
+                     placeholder="Tu nombre" required readonly>
             </div>
 
             <!-- Tipo de experiencia -->
             <div class="mb-3">
               <label for="tipo" class="form-label">
-                <i class="bi bi-emoji-smile-fill me-2"></i> Tipo de experiencia
+                <i class="fa fa-smile me-2"></i> Tipo de experiencia
               </label>
               <select class="form-select" id="tipo" name="tipo" required>
                 <option value="" selected disabled>Selecciona una opción</option>
-                <option value="excelente">Excelente</option>
-                <option value="buena">Buena</option>
-                <option value="regular">Regular</option>
-                <option value="mala">Mala</option>
+                <option value="excelente">⭐ Excelente</option>
+                <option value="buena">👍 Buena</option>
+                <option value="regular">😐 Regular</option>
+                <option value="mala">👎 Mala</option>
               </select>
             </div>
 
             <!-- Mensaje -->
             <div class="mb-3">
               <label for="mensaje" class="form-label">
-                <i class="bi bi-pencil-fill me-2"></i> Cuéntanos más
+                <i class="fa fa-pencil me-2"></i> Cuéntanos más
               </label>
               <textarea class="form-control" id="mensaje" name="mensaje" rows="5"
-                placeholder="Describe brevemente cómo fue tu experiencia..." required></textarea>
+                        placeholder="Describe brevemente cómo fue tu experiencia con HealthBot..." required></textarea>
             </div>
+
+            <!-- Campo oculto para la opción -->
+            <input type="hidden" name="opcion" value="1">
 
             <!-- Botón -->
             <div class="d-grid">
@@ -342,7 +347,7 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
 
             <!-- Mensaje de confirmación -->
             <div id="confirmacion" class="alert alert-success mt-4 d-none text-center" role="alert">
-              ¡Gracias por compartir tu experiencia!
+              ¡Gracias por compartir tu experiencia! Aparecerá pronto en nuestra página principal.
             </div>
           </form>
 
@@ -350,24 +355,6 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
       </div>
     </div>
   </section>
-
-  <!-- Script de confirmación -->
-  <script>
-    document.getElementById("experienceForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-
-      // Mostrar mensaje de confirmación
-      const confirmacion = document.getElementById("confirmacion");
-      confirmacion.classList.remove("d-none");
-
-      // Reiniciar formulario
-      this.reset();
-
-      // Ocultar mensaje después de unos segundos
-      setTimeout(() => confirmacion.classList.add("d-none"), 4000);
-    });
-  </script>
-
 
   <footer class="site-footer">
     <div class="container">
@@ -387,6 +374,7 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
       </div>
     </div>
   </footer>
+
   <!-- VENTANA CHATBOT -->
   <div id="chat-button" class="chat-button">
     <i class="fa fa-commenting" aria-hidden="true"></i>
@@ -437,7 +425,6 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
   <script src="js/custom.js"></script>
   <script src="js/chatbot.js"></script>
 
-
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const toggleLogin = document.getElementById('toggleLoginPassword');
@@ -463,14 +450,9 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
         toggleRegister.classList.toggle('fa-eye-slash');
       });
     });
-    // <!-- Font Awesome -->
-
 
     const passwordInput = document.getElementById('reg-contrasena');
     const tooltip = document.getElementById('passwordTooltip');
-    // const togglePassword = document.getElementById('toggleRegisterPassword');
-    const form = document.getElementById('registroForm'); // Asegúrate que el <form> tenga este id
-
 
     // Mostrar reglas al enfocar
     passwordInput.addEventListener('focus', () => {
@@ -491,18 +473,6 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
       document.getElementById('length').style.color = val.length >= 8 ? 'green' : 'red';
       document.getElementById('space').style.color = /\s/.test(val) ? 'red' : 'green';
     });
-
-    // Validar antes de enviar
-    // form.addEventListener('submit', (event) => {
-    //   const val = passwordInput.value;
-    //   const valid = /[a-z]/.test(val) && /[A-Z]/.test(val) && /\d/.test(val) && val.length >= 8 && !/\s/.test(val);
-
-    //   if (!valid) {
-    //     event.preventDefault();
-    //     alert('⚠️ La contraseña no cumple con los requisitos solicitados.');
-    //   }
-    // });
-
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -555,6 +525,7 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
       });
     });
   </script>
+
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_detection/face_detection.js"></script>
 
@@ -609,10 +580,6 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
       }
     });
 
-
-    // ---------------------------------------------
-    //      SISTEMA DE DETECCIÓN MEJORADO
-    // ---------------------------------------------
     function iniciarDeteccion() {
       const canvas = document.createElement("canvas");
       const ctx = canvas.getContext("2d");
@@ -650,10 +617,6 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
       }, 500);
     }
 
-
-    // -------------------------------------------------
-    // FUNCIÓN PARA OBTENER LUMINOSIDAD EN UNA SUBZONA
-    // -------------------------------------------------
     function obtenerLuminosidad(canvas, ctx, x, y, w, h) {
       const zonaX = canvas.width * x;
       const zonaY = canvas.height * y;
@@ -672,6 +635,7 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
 
   });
 </script>
+
 <script>
   document.addEventListener("DOMContentLoaded", function () {
     // Mostrar aviso informativo sin activar nada
@@ -692,7 +656,72 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
   });
 </script>
 
+<!-- Script para el formulario de experiencias -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const experienceForm = document.getElementById("experienceForm");
+    const confirmacion = document.getElementById("confirmacion");
+    
+    if (experienceForm) {
+        experienceForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            
+            // Mostrar mensaje de carga
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando...';
+            submitBtn.disabled = true;
+            
+            // Enviar formulario via AJAX
+            const formData = new FormData(this);
+            
+            fetch('controller/ctrlExperiencias.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log('Respuesta del servidor:', data);
+                
+                // Separar tipo y mensaje de la respuesta
+                const [tipo, mensaje] = data.split(': ');
+                
+                if (tipo === 'success') {
+                    // Mostrar mensaje de confirmación
+                    confirmacion.textContent = '¡Gracias por compartir tu experiencia! Aparecerá pronto en nuestra página principal.';
+                    confirmacion.className = 'alert alert-success mt-4 text-center';
+                    confirmacion.classList.remove("d-none");
+                    
+                    // Reiniciar formulario pero mantener el nombre
+                    const nombreValue = document.getElementById('nombre').value;
+                    experienceForm.reset();
+                    document.getElementById('nombre').value = nombreValue;
+                    
+                    // Ocultar mensaje después de unos segundos
+                    setTimeout(() => {
+                        confirmacion.classList.add("d-none");
+                    }, 5000);
+                } else {
+                    // Mostrar error
+                    alert('Error: ' + mensaje);
+                }
+                
+                // Restaurar botón
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Error de conexión. Inténtalo de nuevo.');
+                
+                // Restaurar botón
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            });
+        });
+    }
+});
+</script>
 
 </body>
-
 </html>

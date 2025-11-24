@@ -16,7 +16,7 @@ switch ($_REQUEST["opcion"]) {
             $_REQUEST['contrasena']
         );
         $usu->registrarUsuario();
-        header("Location: ../index.html?registro=success");
+        header("Location: ../index.php?registro=success");
         exit();
         break;
 
@@ -66,7 +66,7 @@ switch ($_REQUEST["opcion"]) {
     default:
         session_start();
         session_destroy();
-        header("Location:../index.html");
+        header("Location:../index.php");
         break;
 }
 ?>

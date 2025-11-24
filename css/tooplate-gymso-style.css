@@ -609,7 +609,7 @@ a:focus {
    HERO
 -----------------------------------------*/
 .hero {
-    background-image: url('../images/car1.jpg');
+    background-image: url('../images/banner2H.jpg');
     background-size: cover;
     background-position: top;
     background-repeat: no-repeat;
@@ -706,11 +706,12 @@ a:focus {
     line-height: 1.6;
     color: #000000;
 }
-
-.cargo {
+.titulo-nombre{
     color: #000000;
-    font-size: 0.95rem;
+    font-weight: bold;
+
 }
+
 
 .carousel-indicators li {
     background-color: #fff;
@@ -1314,9 +1315,15 @@ Estilos para las acciones rápidas
 .testimonio-texto {
     color: #000000;
 }
+.nombre_usuario{
+    color: #000000;
+    font-weight: bold;
+    font-size: 1rem;
+}
 
 .cargo {
-    color: #000000;
+    color: #fc0000;
+    font-size: 1rem;
 }
 
 /* Estilos para la sección de contacto */
