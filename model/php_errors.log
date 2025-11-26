@@ -677,3 +677,30 @@ Stack trace:
 [24-Nov-2025 08:26:47 Europe/Berlin] Intentando guardar plan tipo: ejercicio
 [24-Nov-2025 08:26:47 Europe/Berlin] Longitud del contenido: 1361
 [24-Nov-2025 08:26:47 Europe/Berlin] INSERT ejercicio exitoso, filas afectadas: 1
+[24-Nov-2025 19:46:32 Europe/Berlin] Datos capturados - Estatura: 1.75 m, Peso: 70 kg, IMC: 22.857142857143
+[24-Nov-2025 19:46:59 Europe/Berlin] Objetivo de entrenamiento detectado: tonificación
+[24-Nov-2025 19:46:59 Europe/Berlin] IMC calculado: 22.857142857143
+[24-Nov-2025 19:47:44 Europe/Berlin] Nivel de experiencia detectado: principiante
+[24-Nov-2025 19:47:44 Europe/Berlin] IMC calculado: 22.857142857143
+[24-Nov-2025 19:48:00 Europe/Berlin] IMC calculado: 22.857142857143
+[24-Nov-2025 19:48:15 Europe/Berlin] IMC calculado: 22.857142857143
+[24-Nov-2025 19:48:24 Europe/Berlin] Plan guardado en sesión - Tipo: ejercicio, Estatura: NULL, Peso: NULL, IMC: NULL
+[25-Nov-2025 03:24:55 Europe/Berlin] IMC calculado: 22.857142857143
+[25-Nov-2025 03:26:04 Europe/Berlin] IMC calculado: 22.857142857143
+[25-Nov-2025 03:28:11 Europe/Berlin] Datos capturados - Estatura: 1.65 m, Peso: 68 kg, IMC: 24.977043158861
+[25-Nov-2025 03:28:23 Europe/Berlin] Usando datos de sesión para guardar - Estatura: 1.65, Peso: 68, IMC: 24.977043158861
+[25-Nov-2025 03:28:23 Europe/Berlin] Plan guardado en sesión - Tipo: nutricional, Estatura: 1.65, Peso: 68, IMC: 24.977043158861
+[25-Nov-2025 03:28:37 Europe/Berlin] IMC calculado: 24.977043158861
+[25-Nov-2025 03:28:37 Europe/Berlin] Intentando guardar plan tipo: nutricional
+[25-Nov-2025 03:28:37 Europe/Berlin] Longitud del contenido: 1334
+[25-Nov-2025 03:28:37 Europe/Berlin] INSERTANDO PLAN NUTRICIONAL - Usuario: Paola, Estatura: 1.65, Peso: 68, IMC: 24.977043158861
+[25-Nov-2025 03:28:37 Europe/Berlin] INSERT exitoso - Filas afectadas: 1
+[26-Nov-2025 14:53:16 Europe/Berlin] Datos capturados - Estatura: 1.72 m, Peso: 68 kg, IMC: 22.985397512169
+[26-Nov-2025 14:53:42 Europe/Berlin] IMC calculado: 22.985397512169
+[26-Nov-2025 14:53:50 Europe/Berlin] Usando datos de sesión para guardar - Estatura: 1.72, Peso: 68, IMC: 22.985397512169
+[26-Nov-2025 14:53:50 Europe/Berlin] Plan guardado en sesión - Tipo: nutricional, Estatura: 1.72, Peso: 68, IMC: 22.985397512169
+[26-Nov-2025 14:54:12 Europe/Berlin] IMC calculado: 22.985397512169
+[26-Nov-2025 14:54:12 Europe/Berlin] Intentando guardar plan tipo: nutricional
+[26-Nov-2025 14:54:12 Europe/Berlin] Longitud del contenido: 1540
+[26-Nov-2025 14:54:12 Europe/Berlin] INSERTANDO PLAN NUTRICIONAL - Usuario: Andres, Estatura: 1.72, Peso: 68, IMC: 22.985397512169
+[26-Nov-2025 14:54:12 Europe/Berlin] INSERT exitoso - Filas afectadas: 1

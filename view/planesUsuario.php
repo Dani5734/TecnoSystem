@@ -5,7 +5,7 @@ include("../model/videos.php");
 
 // Verificación de sesión
 if (!isset($_SESSION['nombre'])) {
-  header("Location: ../index.html");
+  header("Location: ../index.php");
   exit();
 }
 
@@ -41,7 +41,7 @@ $videos = $videosModel ->listarVideos();
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="../index.html">
+      <a class="navbar-brand" href="../index.php">
         <img src="../images/logo4.png" alt="HealthBot" width="45" height="45" class="d-inline-block align-text-top">
       </a>
 

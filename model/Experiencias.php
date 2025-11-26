@@ -1,4 +1,5 @@
 <?php
+require_once('ConexionBd.php');
 class Experiencias{
     private $id;
     private $nombre;

@@ -1,7 +1,10 @@
 /*
  * Archivo: user-profile.css
- * Estilos y animaciones para la vista del perfil de usuario.---------------------------------------------------------------
- */@font-face {
+ * Estilos y animaciones para la vista del perfil de usuario.
+ * Incluye funcionalidad para cambiar imagen de perfil.
+ */
+
+@font-face {
     font-family: 'Plain';
     src: url('../fonts/Plain-Regular.woff2') format('woff2'),
         url('../fonts/Plain-Regular.woff') format('woff');
@@ -24,6 +27,7 @@
     font-weight: bold;
     font-style: normal;
 }
+
 :root {
     --primary-color:        rgb(251, 17, 17);
     --white-color:          #ffffff;
@@ -49,12 +53,124 @@
     --border-radius-large:  100%;
     --border-radius-small:  2px;
 }
+
 /* Sección principal del perfil */
 .user-profile-section {
     padding-top: 100px;
     padding-bottom: 40px;
-    background-color: #f8f9fa; /* Fondo gris claro */
+    background-color: #f8f9fa;
 }
+
+/* ========== ESTILOS PARA EL AVATAR INTERACTIVO ========== */
+
+/* Contenedor del avatar de perfil */
+.profile-avatar-wrapper {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 20px auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.profile-avatar-wrapper:hover {
+    transform: scale(1.05);
+}
+
+/* Avatar de perfil (circular) */
+.profile-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 5px solid var(--primary-color);
+    animation: pulse-border 2s infinite;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Animación para el borde del avatar */
+@keyframes pulse-border {
+    0% {
+        box-shadow: 0 0 0 0 rgba(251, 17, 17, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(251, 17, 17, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(251, 17, 17, 0);
+    }
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #d10000;
+    border-color: #d10000;
+    transform: translateY(-2px);
+}
+
+/* El avatar ahora es solo decorativo */
+.profile-avatar-wrapper {
+    cursor: default; /* Quita el cursor pointer */
+}
+
+.profile-avatar-wrapper:hover {
+    transform: none; /* Quita el efecto hover */
+}
+
+.edit-icon-overlay {
+    cursor: default; /* El ícono ya no es clickeable */
+}
+
+.edit-icon-overlay:hover {
+    transform: none;
+    background: var(--primary-color);
+}
+
+/* Loading spinner para cuando se sube imagen */
+.avatar-loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.avatar-loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30px;
+    height: 30px;
+    margin: -15px 0 0 -15px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 10;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Mensaje de ayuda para el avatar */
+.avatar-help {
+    font-size: 12px;
+    color: var(--gray-color);
+    margin-top: 5px;
+    text-align: center;
+    font-family: var(--base-font-family);
+    font-weight: var(--font-weight-light);
+}
+
+/* ========== ESTILOS EXISTENTES (MANTENIDOS) ========== */
 
 /* Estilos de las tarjetas (info-card, plan-card, progress-card) */
 .profile-card,
@@ -80,37 +196,7 @@
     font-weight: 700;
     color: var(--dark-color);
     font-size: 1.8em;
-}
-
-/* Contenedor del avatar de perfil */
-.profile-avatar-wrapper {
-    position: relative;
-    width: 150px;
-    height: 150px;
-    margin: 0 auto 20px auto;
-}
-
-/* Avatar de perfil (circular) */
-.profile-avatar {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 5px solid var(--primary-color);
-    animation: pulse-border 2s infinite; /* Animación de pulso */
-}
-
-/* Animación para el borde del avatar */
-@keyframes pulse-border {
-    0% {
-        box-shadow: 0 0 0 0 rgba(251, 17, 17, 0.4);
-    }
-    70% {
-        box-shadow: 0 0 0 10px rgba(251, 17, 17, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(251, 17, 17, 0);
-    }
+    font-family: var(--base-font-family);
 }
 
 /* Estilo para los elementos de información */
@@ -120,6 +206,7 @@
     align-items: center;
     border-bottom: 1px solid #e9ecef;
     padding: 12px 0;
+    font-family: var(--base-font-family);
 }
 
 .info-item:last-child {
@@ -130,11 +217,13 @@
     font-weight: 600;
     color: var(--p-color);
     font-size: 1.1em;
+    font-family: var(--base-font-family);
 }
 
 .info-value {
     color: var(--dark-color);
     font-weight: 500;
+    font-family: var(--base-font-family);
 }
 
 /* Estilos de las nuevas tarjetas (planes, progreso) */
@@ -150,7 +239,7 @@
 /* Estilo para los botones principales */
 .custom-btn {
     background-color: var(--primary-color);
-    color: var(--dark-color);
+    color: var(--white-color);
     border: none;
     border-radius: 50px;
     padding: 12px 30px;
@@ -159,14 +248,17 @@
     text-transform: uppercase;
     transition: all 0.3s ease;
     box-shadow: 0 4px 10px rgba(251, 17, 17, 0.3);
+    font-family: var(--base-font-family);
 }
 
 .custom-btn:hover {
     background-color: var(--dark-color);
+    color: var(--white-color);
     transform: translateY(-2px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
+/* Sección de experiencia */
 .experience.section {
     background-color: #fff;
     padding: 60px 0;
@@ -189,6 +281,7 @@
     font-weight: var(--font-weight-light);
 }
 
+/* Formularios de contacto */
 .contact-form {
     border: 1px solid #dee2e6;
     border-radius: 16px;
@@ -199,7 +292,7 @@
 .contact-form label {
     display: block;
     font-weight: var(--font-weight-bold);
-    color: var(--white-color);
+    color: var(--dark-color);
     margin-bottom: 8px;
     font-family: var(--base-font-family);
 }
@@ -235,7 +328,6 @@
     border-radius: 10px;
     padding: 12px;
     font-weight: var(--font-weight-bold);
-    
     font-family: var(--base-font-family);
     transition: all 0.3s ease-in-out;
 }
@@ -251,15 +343,8 @@
     font-family: var(--base-font-family);
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .experience h2 { font-size: 1.8rem; }
-    .experience p { font-size: 1rem; }
-}
+/* ========== ESTILOS RESPONSIVE ========== */
 
-
-
-/* Estilos responsive */
 @media (max-width: 768px) {
     .user-profile-section {
         padding-top: 80px;
@@ -273,4 +358,58 @@
     .card-title {
         font-size: 1.5em;
     }
+
+    .experience h2 { 
+        font-size: 1.8rem; 
+    }
+    
+    .experience p { 
+        font-size: 1rem; 
+    }
+
+    .edit-icon-overlay {
+        width: 30px;
+        height: 30px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-avatar-wrapper {
+        width: 100px;
+        height: 100px;
+    }
+
+    .avatar-help {
+        font-size: 11px;
+    }
+}
+
+/* ========== ESTILOS ADICIONALES PARA MEJOR UX ========== */
+
+/* Efecto de hover suave en toda la tarjeta de perfil */
+.user-summary:hover .profile-avatar-wrapper {
+    transform: scale(1.02);
+}
+
+/* Transición suave para todos los elementos interactivos */
+.profile-avatar-wrapper,
+.edit-icon-overlay,
+.custom-btn,
+.contact-form .btn {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Mejora visual para el estado de foco en elementos interactivos */
+.profile-avatar-wrapper:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 4px;
+}
+
+/* Estilo para el input de archivo oculto */
+#imageUpload {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
 }

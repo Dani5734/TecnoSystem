@@ -3,7 +3,7 @@ require_once("model/Usuarios.php");
 require_once("model/Experiencias.php"); // Añadir esta línea
 session_start();
 if (!isset($_SESSION['nombre'])) {
-  header("Location: index.html");
+  header("Location: index.php");
   exit();
 }
 
@@ -43,31 +43,121 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
 <body data-spy="scroll" data-target="#navbarNav" data-offset="50">
 
   <!-- MENU BAR -->
-  <nav class="navbar navbar-expand-lg fixed-top">
-    <div class="container">
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
 
-      <!-- Logo con icono -->
-      <a class="navbar-brand" href="index.html">
-        <img src="images/logo4.png" alt="HealthBot" width="45" height="45" class="d-inline-block align-text-top">
-      </a>
+    <!-- Logo con icono -->
+    <a class="navbar-brand" href="index.php">
+      <img src="images/logo4.png" alt="HealthBot" width="45" height="45" class="d-inline-block align-text-top">
+    </a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-      <div class="collapse navbar-collapse justify-content-end" id="navbarUser">
-        <ul class="navbar-nav mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="perfiluser.php">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" href="planes.php">Mis Planes</a></li>
-          <li class="nav-item"><a class="nav-link" href="progreso.php">Progreso</a></li>
-          <li class="nav-item"><a class="nav-link" href="configuracion.php">Configuración</a></li>
-          <li class="nav-item"> <a href="controller/ctrlUsuario.php" class="nav-link" type="button">Cerrar Sesion</a>
-          </li>
-        </ul>
-      </div>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarUser">
+      <ul class="navbar-nav mb-2 mb-lg-0 align-items-center">
+        <li class="nav-item"><a class="nav-link" href="perfiluser.php">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="planes.php">Mis Planes</a></li>
+        <li class="nav-item"><a class="nav-link" href="progreso.php">Progreso</a></li>
+        
+        <!-- Select de Configuración -->
+        <li class="nav-item dropdown">
+          <select class="form-select nav-config-select" id="configMenu" aria-label="Configuración">
+            <option value="" selected disabled>⚙️ Configuración</option>
+            <option value="editar">Editar Perfil</option>
+            <option value="eliminar">Eliminar Cuenta</option>
+            <option value="configuracion">Configuración Avanzada</option>
+          </select>
+        </li>
+        
+        <li class="nav-item"> 
+          <a href="controller/ctrlUsuario.php" class="nav-link" type="button">Cerrar Sesión</a>
+        </li>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>
+<style>
+  .nav-config-select {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  border-radius: 20px;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 180px;
+  margin: 0 10px;
+}
+
+.nav-config-select:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.nav-config-select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  background: rgba(0, 0, 0, 0.4);
+}
+
+/* Estilos para las opciones del select */
+.nav-config-select option {
+  background: #000;
+  color: white;
+  padding: 8px;
+}
+
+.nav-config-select option:checked {
+  background: #333;
+}
+
+/* Ajustes responsive */
+@media (max-width: 768px) {
+  .nav-config-select {
+    min-width: 160px;
+    font-size: 0.85rem;
+    margin: 5px 0;
+  }
+}
+</style>
+
+<script>
+// JavaScript para manejar las opciones del select de configuración
+document.addEventListener('DOMContentLoaded', function() {
+  const configMenu = document.getElementById('configMenu');
+  
+  if (configMenu) {
+    configMenu.addEventListener('change', function() {
+      const selectedValue = this.value;
+      
+      switch(selectedValue) {
+        case 'editar':
+          // Abrir modal de editar perfil
+          const editModal = new bootstrap.Modal(document.getElementById('registerModal'));
+          editModal.show();
+          break;
+          
+        case 'eliminar':
+          // Disparar el evento de eliminar cuenta
+          document.getElementById('btnEliminarCuenta').click();
+          break;
+          
+        case 'configuracion':
+          // Redirigir a página de configuración avanzada
+          window.location.href = 'configuracion.php';
+          break;
+      }
+      
+      // Resetear el select a la opción por defecto
+      this.value = '';
+    });
+  }
+});
+</script>
 
   <!-- PERFIL DE USUARIO -->
   <section class="section" id="perfiluser">
@@ -98,13 +188,7 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
                 Verificando posición...
               </p>
             </div>
-            <a href="" ata-bs-toggle="modal" data-toggle="modal" data-target="#registerModal"
-              data-bs-dismiss="modal">Editar Perfil</a>
-            <div class="d-grid">
-              <button type="button" class="btn btn-dark btn-lg mt-3" id="btnEliminarCuenta">
-                Eliminar cuenta
-              </button>
-            </div>
+            
             <!-- <div class="password-wrapper">
               <input type="password" id="userPassword" value="<?php echo $_SESSION['contrasena']; ?>" readonly>
               <button type="button" onclick="togglePassword()">👁</button>
@@ -417,7 +501,7 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
       </button>
     </div>
   </div>
-
+<button id="btnEliminarCuenta" style="display: none;"></button>
   <script src="js/jquery.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/aos.js"></script>
@@ -508,7 +592,7 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
                   text: "Tu cuenta ha sido eliminada exitosamente.",
                   confirmButtonText: "Aceptar"
                 }).then(() => {
-                  window.location.href = "index.html"; // Redirigir al inicio
+                  window.location.href = "index.php"; // Redirigir al inicio
                 });
               })
               .catch(error => {

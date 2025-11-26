@@ -1,10 +1,10 @@
 <?php
 session_start();
 require_once("../model/Experiencias.php");
-require_once("../model/ConexionBd.php"); // Asegúrate de incluir la conexión
+require_once("../model/ConexionBd.php");
 
 if (!isset($_SESSION['nombre'])) {
-    header("Location: ../index.html");
+    header("Location: ../index.php");
     exit();
 }
 
@@ -14,6 +14,9 @@ if ($_POST) {
     switch ($opcion) {
         case '1': // Guardar experiencia
             guardarExperiencia();
+            break;
+        case 'eliminar': // Eliminar experiencia
+            eliminarExperiencia();
             break;
         default:
             echo "error: Opción no válida";
@@ -56,6 +59,49 @@ function guardarExperiencia() {
         } else {
             echo "error: No se pudo guardar la experiencia en la base de datos";
         }
+    } catch (Exception $e) {
+        echo "error: Excepción: " . $e->getMessage();
+    }
+}
+
+function eliminarExperiencia() {
+    // Verificar que el usuario sea administrador
+    if (!isset($_SESSION['rol']) || $_SESSION['rol'] != 'administrador') {
+        echo "error: No autorizado";
+        exit();
+    }
+    
+    // Verificar que el ID esté presente
+    if (!isset($_POST['id']) || empty($_POST['id'])) {
+        echo "error: ID no válido";
+        return;
+    }
+    
+    $id = trim($_POST['id']);
+    
+    try {
+        $conexion = new ConexionBd();
+        $con = $conexion->conectarBd();
+        
+        if (!$con) {
+            echo "error: Error de conexión a la base de datos";
+            return;
+        }
+        
+        // Escapar el ID para prevenir SQL injection
+        $id = mysqli_real_escape_string($con, $id);
+        
+        $sql = "DELETE FROM experiencias WHERE id = '$id'";
+        $resultado = mysqli_query($con, $sql);
+        
+        if ($resultado) {
+            echo "success: Experiencia eliminada correctamente";
+        } else {
+            echo "error: No se pudo eliminar la experiencia: " . mysqli_error($con);
+        }
+        
+        mysqli_close($con);
+        
     } catch (Exception $e) {
         echo "error: Excepción: " . $e->getMessage();
     }

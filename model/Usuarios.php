@@ -56,7 +56,7 @@ class Usuarios
                 title: "Usuario registrado anteriormente",
                 confirmButtonText: "Aceptar"
                 }).then(function(){
-                window.location.href="../index.html";
+                window.location.href="../index.php";
                 });
             </script>';
 
@@ -74,73 +74,70 @@ class Usuarios
                 title: "Registro exitoso, bienvenido, Inicie sesión para continuar.",
                 confirmButtonText: "Aceptar"
                 }).then(function(){
-                window.location.href="../index.html";
+                window.location.href="../perfiluser.php";
                 });
             </script>';
         }
     }
 
     public function iniciarSesion($correousuario, $contrasena)
-    {
-        require_once("config_seguridad.php");
-        session_start();
+{
+    require_once("config_seguridad.php");
+    session_start();
 
+    // Debug: verificar qué datos llegan
+    error_log("Login attempt: $correousuario");
 
-        $consulta = mysqli_query($this->conectarBd(), "SELECT * FROM usuarios WHERE correousuario = '$correousuario'")
-            or die(mysqli_error($this->conectarBd()));
+    $consulta = mysqli_query($this->conectarBd(), "SELECT * FROM usuarios WHERE correousuario = '$correousuario'")
+        or die(mysqli_error($this->conectarBd()));
 
-        if ($reg = mysqli_fetch_array($consulta)) {
+    if ($reg = mysqli_fetch_array($consulta)) {
 
-            $contrasenaCifrada = $reg['contrasena'];
-            $contrasenaReal = openssl_decrypt($contrasenaCifrada, 'AES-256-CBC', AES_KEY, 0, AES_IV);
+        $contrasenaCifrada = $reg['contrasena'];
+        $contrasenaReal = openssl_decrypt($contrasenaCifrada, 'AES-256-CBC', AES_KEY, 0, AES_IV);
 
+        if ($contrasenaReal === $contrasena) {
+            $_SESSION['id'] = $reg['id'];
+            $_SESSION['nombre'] = $reg['nombre'];
+            $_SESSION['apellidos'] = $reg['apellidos'];
+            $_SESSION['telefono'] = $reg['telefono'];
+            $_SESSION['edad'] = $reg['edad'];
+            $_SESSION['genero'] = $reg['genero'];
+            $_SESSION['correousuario'] = $reg['correousuario'];
+            $_SESSION['nomusuario'] = $reg['nombre'] . ' ' . $reg['apellidos'];
+            $_SESSION['contrasena'] = $contrasenaReal;
+            $_SESSION['rol'] = $reg['rol'];
 
-            if ($contrasenaReal === $contrasena) {
-                $_SESSION['id'] = $reg['id'];
-                $_SESSION['nombre'] = $reg['nombre'];
-                $_SESSION['apellidos'] = $reg['apellidos'];
-                $_SESSION['telefono'] = $reg['telefono'];
-                $_SESSION['edad'] = $reg['edad'];
-                $_SESSION['genero'] = $reg['genero'];
-                $_SESSION['correousuario'] = $reg['correousuario'];
-                $_SESSION['nomusuario'] = $reg['nombre'] . ' ' . $reg['apellidos'];
-                $_SESSION['contrasena'] = $contrasenaReal;
+            // DEBUG: Verificar rol
+            error_log("User role: " . $reg['rol']);
+            error_log("Redirecting to: " . ($reg['rol'] == 'administrador' ? 'admin' : 'user'));
 
-                echo '<script type="text/javascript">
-                    window.location.href="../perfiluser.php";
-                </script>';
+            // Redirigir según el rol
+            if ($reg['rol'] == 'administrador') {
+                header("Location: ../view/perfiladmin.php");
+                exit();
             } else {
-                echo '<script type="text/javascript">
-                    Swal.fire({
-                    icon: "error",
-                    title: "Contraseña incorrecta",
-                    text: "Por favor, verifique su contraseña e inténtalo de nuevo.",
-                    confirmButtonText: "Intentar de nuevo"
-                    }).then(function(){
-                    window.history.back();
-                    });
-                </script>';
+                header("Location: ../perfiluser.php");
+                exit();
             }
         } else {
-            echo '<script type="text/javascript">
-                Swal.fire({
-                icon: "info",
-                title: "Correo no registrado",
-                text: "Por favor, verifique su correo o regístrate si aún no tienes una cuenta.",
-                confirmButtonText: "Intentar de nuevo"
-                }).then(function(){
-                window.history.back();
-                });
-            </script>';
+            // Contraseña incorrecta - redirigir con error
+            header("Location: ../index.php?error=password");
+            exit();
         }
+    } else {
+        // Usuario no encontrado - redirigir con error
+        header("Location: ../index.php?error=user_not_found");
+        exit();
     }
+}
 
     public function cerrarSesion()
     {
         session_start();
         session_unset();
         session_destroy();
-        header("Location: ../index.html");
+        header("Location: ../index.php");
         exit();
     }
 
@@ -231,7 +228,42 @@ class Usuarios
         }
     }
 
+    public function actualizarImagenPerfil($idUsuario, $nombreImagen)
+    {
+        $conexion = $this->conectarBd();
+        $sql = "UPDATE usuarios SET imagen_perfil = '$nombreImagen' WHERE id = '$idUsuario'";
+        $resultado = mysqli_query($conexion, $sql);
+
+        if ($resultado) {
+            // Actualizar la sesión si el usuario actual es el mismo
+            session_start();
+            if (isset($_SESSION['id']) && $_SESSION['id'] == $idUsuario) {
+                $_SESSION['imagen_perfil'] = $nombreImagen;
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * Obtiene la imagen de perfil dael usuario
+     */
+    public function obtenerImagenPerfil($idUsuario)
+    {
+        $conexion = $this->conectarBd();
+        $query = "SELECT imagen_perfil FROM usuarios WHERE id = '$idUsuario'";
+        $resultado = mysqli_query($conexion, $query);
+
+        if ($resultado && $fila = mysqli_fetch_array($resultado)) {
+            return $fila['imagen_perfil'];
+        }
+
+        return 'images/Perfil.gif'; // Imagen por defecto
+    }
+
+
 }
+
 
 ?>
 

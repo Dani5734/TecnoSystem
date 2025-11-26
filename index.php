@@ -291,54 +291,172 @@
     </div>
   </section>
 
-  <!-- CONTACT -->
-  <section class="contact section py-5" id="contact">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8 col-md-10 contact-info text-center">
-          <!-- Información -->
-          <h2 class="mb-3">Contáctanos</h2>
-          <p class="mb-4">Para mayor información, complete el siguiente formulario.</p>
+ <!-- CONTACT -->
+<section class="contact section py-5" id="contact">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10 contact-info text-center">
+        <!-- Información -->
+        <h2 class="mb-3">Contáctanos</h2>
+        <p class="mb-5">¿Tienes preguntas? Escríbenos y te responderemos pronto.</p>
 
-          <!-- Formulario -->
-          <form action="#" method="post" class="contact-form p-4 rounded shadow-lg text-start">
-            <h5 class="mb-4 text-center">Déjanos tu mensaje</h5>
-
-            <!-- Nombre -->
-            <div class="mb-3">
-              <label for="nombre" class="form-label">
-                <i class="bi bi-person-fill me-2"></i> Nombre
-              </label>
-              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Tu nombre" required>
+        <div class="row align-items-stretch">
+          <div class="col-lg-4 mb-4 mb-lg-0">
+            <div class="h-100 d-flex flex-column">
+              <div class="card border-0 shadow-sm h-50 mt-5">
+                <div class="card-body d-flex flex-column">
+                  <div class="mb-3">
+                    <i class="bi bi-whatsapp text-success fs-1"></i>
+                  </div>
+                  <h5 class="mb-2">WhatsApp</h5>
+                  <p class="text-muted mb-3">Respuesta inmediata</p>
+                  <div class="mt-auto">
+                    <a href="https://wa.me/5512419236?text=Hola%20HealthBot,%20me%20interesa%20saber%20más%20sobre%20sus%20servicios" class="btn btn-success w-100" id="btn-sec1" target="_blank"><i class="bi bi-whatsapp me-2"></i>Escribir ahora</a>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
+          <div class="col-lg-8">
+            <form action="controller/ctrlContacto.php" method="post" class="contact-form p-4 rounded shadow-lg h-100" id="formContacto">
+              <h5 class="mb-4 text-center">Déjanos tu mensaje</h5>
+              <input type="hidden" name="opcion" value="1">
 
-            <!-- Email -->
-            <div class="mb-3">
-              <label for="email" class="form-label">
-                <i class="bi bi-envelope-fill me-2"></i> Correo electrónico
-              </label>
-              <input type="email" class="form-control" id="email" name="email" placeholder="Tu correo" required>
-            </div>
+              <!-- Nombre -->
+              <div class="mb-3">
+                <label for="nombre" class="form-label">
+                  <i class="bi bi-person-fill me-2"></i> Nombre completo
+                </label>
+                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Tu nombre completo" required>
+              </div>
 
-            <!-- Mensaje -->
-            <div class="mb-3">
-              <label for="asunto" class="form-label">
-                <i class="bi bi-pencil-fill me-2"></i> Asunto
-              </label>
-              <textarea class="form-control" id="mensaje" name="mensaje" rows="5" placeholder="Escribe tu mensaje..."
-                required></textarea>
-            </div>
+              <!-- Email -->
+              <div class="mb-3">
+                <label for="email" class="form-label">
+                  <i class="bi bi-envelope-fill me-2"></i> Correo electrónico
+                </label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="tu.correo@ejemplo.com" required>
+              </div>
 
-            <!-- Botón -->
-            <div class="d-grid">
-              <button type="submit" class="btn btn-dark btn-lg">Enviar mensaje</button>
-            </div>
-          </form>
+              <!-- Mensaje -->
+              <div class="mb-4">
+                <label for="mensaje" class="form-label">
+                  <i class="bi bi-pencil-fill me-2"></i> Mensaje
+                </label>
+                <textarea class="form-control" id="mensaje" name="mensaje" rows="4" 
+                          placeholder="Describe tu consulta o mensaje aquí..." required></textarea>
+              </div>
+
+              <!-- Botón -->
+              <div class="d-grid">
+                <button type="submit" class="btn btn-dark btn-lg" id="btnEnviar">
+                  <i class="bi bi-send-fill me-2"></i>Enviar mensaje
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
+<style>
+
+
+.card {
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.bi {
+  color: var(--primary-color, #007bff);
+}
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+document.getElementById('formContacto').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const btnEnviar = document.getElementById('btnEnviar');
+    const originalText = btnEnviar.innerHTML;
+    
+    // Mostrar estado de envío
+    btnEnviar.innerHTML = '<i class="bi bi-hourglass-split me-2"></i>Enviando...';
+    btnEnviar.disabled = true;
+    
+    // Crear FormData con los datos del formulario
+    const formData = new FormData(this);
+    
+    // Enviar datos REALES al controlador
+    fetch('controller/ctrlContacto.php', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Error en la respuesta del servidor');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.estado === 'success') {
+            // Éxito - mensaje guardado en la base de datos
+            btnEnviar.innerHTML = '<i class="bi bi-check-circle-fill me-2"></i>Mensaje enviado';
+            btnEnviar.classList.remove('btn-dark');
+            btnEnviar.classList.add('btn-success');
+            
+            // Resetear formulario
+            this.reset();
+            
+            // Mostrar SweetAlert de éxito
+            Swal.fire({
+                icon: 'success',
+                title: '¡Mensaje Enviado!',
+                text: 'Tu mensaje ha sido enviado correctamente. Será revisado por nuestro equipo pronto. Te contactaremos por tu correo electronico',
+                confirmButtonText: 'Entendido',
+                confirmButtonColor: '#28a745',
+                timer: 5000,
+                timerProgressBar: true
+            });
+            
+        } else {
+            // Error del servidor
+            throw new Error(data.mensaje);
+        }
+    })
+    .catch(error => {
+        // Mostrar SweetAlert de error
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: '❌ ' + error.message,
+            confirmButtonText: 'Intentar de nuevo',
+            confirmButtonColor: '#dc3545'
+        });
+        
+        // Restaurar botón
+        btnEnviar.innerHTML = originalText;
+        btnEnviar.disabled = false;
+    })
+    .finally(() => {
+        // Restaurar botón después de 5 segundos si fue exitoso
+        if (btnEnviar.classList.contains('btn-success')) {
+            setTimeout(() => {
+                btnEnviar.innerHTML = originalText;
+                btnEnviar.disabled = false;
+                btnEnviar.classList.remove('btn-success');
+                btnEnviar.classList.add('btn-dark');
+            }, 5000);
+        }
+    });
+});
+</script>
   <!-- Modal Inicio de sesión-->
   <div class="modal" id="IniciarSesion" tabindex="-1" role="dialog" aria-labelledby="IniciarSesionLabel"
     aria-hidden="true">
@@ -688,6 +806,7 @@
       }
     });
   </script>
+  
 
 </body>
 

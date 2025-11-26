@@ -124,6 +124,32 @@ strong {
 .section {
     padding: 7rem 0;
 }
+/*Nav*/
+
+/* Mantener el estilo original del navbar (negro) */
+.navbar {
+  background: #000 !important; /* Fuerza el color negro */
+}
+
+.navbar-nav .nav-link {
+  color: white !important;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #f8f9fa !important;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Estilo para el toggler en móviles */
+.navbar-toggler {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
 
 
 /* BUTTON */
@@ -745,7 +771,7 @@ a:focus {
 
 .contact-info p {
     color: #444;
-    font-size: 15px;
+    font-size: 20px;
     margin-bottom: 12px;
 }
 
@@ -1383,6 +1409,9 @@ Estilos para las acciones rápidas
     background-color: #dc3545;
     border-color: #dc3545;
     color: #fff;
+}
+.text-contac{
+    font-family: var(--base-font-family);
 }
 
 @media (max-width: 768px) {
