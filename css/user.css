@@ -413,3 +413,60 @@
     width: 0;
     height: 0;
 }
+/* Opción 1: Tarjetas individuales */
+.data-metric-card, .analysis-metric-card {
+    background: rgba(251, 17, 17, 0.05);
+    border-radius: 12px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.data-metric-card:hover, .analysis-metric-card:hover {
+    border-color: rgba(251, 17, 17, 0.2);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.metric-number {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.metric-progress {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: 0.5rem;
+}
+
+.metric-rating {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--warning-color);
+    margin-bottom: 0.5rem;
+}
+
+.metric-category {
+    font-weight: 600;
+    color: var(--dark-color);
+    font-size: 0.9rem;
+}
+
+.metric-unit, .metric-status {
+    color: var(--gray-color);
+    font-size: 0.8rem;
+    font-weight: 300;
+}
+/* Responsive */
+@media (max-width: 768px) {
+    .circle-metrics-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .metric-number, .metric-progress, .metric-rating {
+        font-size: 1.5rem;
+    }
+}

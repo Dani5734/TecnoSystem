@@ -663,22 +663,32 @@ document.getElementById('formContacto').addEventListener('submit', function(e) {
   </div>
 
   <!-- FOOTER -->
-  <footer class="site-footer">
+<footer class="site-footer">
     <div class="container">
-      <div class="row">
-        <div class="ml-auto col-lg-4 col-md-5">
-          <p class="copyright-text">Copyright &copy; 2025 TecnoSystem</p>
+        <div class="row align-items-center">
+            <!-- Copyright a la izquierda -->
+            <div class="col-lg-4 col-md-4 col-12">
+                <p class="copyright-text">Copyright &copy; 2025 TecnoSystem</p>
+            </div>
+
+            <!-- Enlaces legales en el centro -->
+            <div class="col-lg-4 col-md-4 col-12">
+                <div class="legal-links text-center">
+                    <a href="docs/Aviso de Privacidad y Confidencialidad.pdf" target="_blank" class="legal-link">Política de Privacidad</a>
+                </div>
+            </div>
+
+            <!-- Redes sociales a la derecha -->
+            <div class="col-lg-4 col-md-4 col-12">
+                <ul class="social-icon d-flex justify-content-end">
+                    <li><a href="#" class="fa fa-facebook"></a></li>
+                    <li><a href="#" class="fa fa-twitter"></a></li>
+                    <li><a href="#" class="fa fa-instagram"></a></li>
+                </ul>
+            </div>
         </div>
-        <div class="d-flex justify-content-center mx-auto col-lg-5 col-md-7 col-12">
-          <ul class="social-icon ml-lg-3">
-            <li><a href="#" class="fa fa-facebook"></a></li>
-            <li><a href="#" class="fa fa-twitter"></a></li>
-            <li><a href="#" class="fa fa-instagram"></a></li>
-          </ul>
-        </div>
-      </div>
     </div>
-  </footer>
+</footer>
 
   <!-- SCRIPTS -->
   <script src="js/jquery.min.js"></script>
@@ -689,47 +699,51 @@ document.getElementById('formContacto').addEventListener('submit', function(e) {
   <script src="js/chatbot.js"></script>
 
   <!-- Chatbot -->
-  <div id="chat-button" class="chat-button">
+<div id="chat-button" class="chat-button">
     <i class="fa fa-commenting" aria-hidden="true"></i>
-  </div>
+    <span class="chat-notification">!</span>
+    <div class="chat-pulse"></div>
+</div>
 
-  <div id="chat-container" class="chat-container">
+<div id="chat-container" class="chat-container">
+    <!-- El resto del código del chatbot permanece igual -->
     <div class="chat-header">
-      <span class="chat-logo">
-        <img src="images/logo.png" alt="Logo del Chatbot">
-      </span>
-      <h3 class="chat-title">HealthBot</h3>
-      <div class="chat-controls">
-        <span id="expand-chat" class="chat-control-btn">
-          <i class="fa fa-expand" aria-hidden="true"></i>
+        <span class="chat-logo">
+            <img src="images/logo.png" alt="Logo del Chatbot">
         </span>
-        <span id="close-chat" class="chat-control-btn">&times;</span>
-      </div>
+        <h3 class="chat-title">HealthBot</h3>
+        <div class="chat-controls">
+            <span id="expand-chat" class="chat-control-btn">
+                <i class="fa fa-expand" aria-hidden="true"></i>
+            </span>
+            <span id="close-chat" class="chat-control-btn">&times;</span>
+        </div>
     </div>
 
     <div class="chat-body">
-      <div class="welcome-message">
-        <p>👋 ¡Hola! Soy Healthbot, tu asistente de bienestar.</p>
-        <p>¿En qué puedo ayudarte hoy con tu nutrición o ejercicio?</p>
-      </div>
+        <div class="welcome-message">
+            <p>👋 ¡Hola! Soy Healthbot, tu asistente de bienestar.</p>
+            <p>¿En qué puedo ayudarte hoy con tu nutrición o ejercicio?</p>
+        </div>
 
-      <div class="chat-options">
-        <button class="chat-option-button">📝 Beneficios</button>
-        <button class="chat-option-button">🚀 Mejora tu salud</button>
-        <button class="chat-option-button">💬 Consejos</button>
-      </div>
+        <div class="chat-options">
+            <button class="chat-option-button">📝 Beneficios</button>
+            <button class="chat-option-button">🚀 Mejora tu salud</button>
+            <button class="chat-option-button">💬 Consejos</button>
+        </div>
 
-      <div id="messages-container" class="messages-container">
-      </div>
+        <div id="messages-container" class="messages-container">
+        </div>
     </div>
 
     <div class="chat-input-area">
-      <input type="text" id="user-input" placeholder="Preguntame...">
-      <button id="send-button">
-        <i class="fa fa-paper-plane" aria-hidden="true"></i>
-      </button>
+        <input type="text" id="user-input" placeholder="Preguntame...">
+        <button id="send-button">
+            <i class="fa fa-paper-plane" aria-hidden="true"></i>
+        </button>
     </div>
-  </div>
+</div>
+
 
   <!--Script de Api Google-->
   <script src="https://accounts.google.com/gsi/client" async defer></script>

@@ -1,6 +1,7 @@
 <?php
 require_once("model/Usuarios.php");
-require_once("model/Experiencias.php"); // Añadir esta línea
+require_once("model/Experiencias.php");
+require_once("model/planes.php");
 session_start();
 if (!isset($_SESSION['nombre'])) {
   header("Location: index.php");
@@ -9,15 +10,71 @@ if (!isset($_SESSION['nombre'])) {
 
 $usuario = new Usuarios();
 $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
+
+// Función para formatear valores (mostrar "--" si es null o vacío)
+function formatearValor($valor, $decimales = 1) {
+    if ($valor === null || $valor === '' || $valor === '--' || !is_numeric($valor)) {
+        return '--';
+    }
+    if (is_numeric($valor)) {
+        // Si el valor es 0, también mostrar "--"
+        if (floatval($valor) == 0) {
+            return '--';
+        }
+        return $decimales > 0 ? number_format(floatval($valor), $decimales) : intval($valor);
+    }
+    return $valor;
+}
+
+// Función para obtener estado del IMC
+function obtenerEstadoIMC($imc) {
+    if ($imc === null || $imc === '--') return 'No registrado';
+    $imc = floatval($imc);
+    if ($imc < 18.5) return 'Bajo peso';
+    if ($imc < 25) return 'Saludable';
+    if ($imc < 30) return 'Sobrepeso';
+    return 'Obesidad';
+}
+
+// Función para formatear nivel de actividad
+function formatearNivelActividad($nivel) {
+    if ($nivel === null || $nivel === '--') return 'No especificado';
+    $niveles = [
+        'sedentario' => 'Sedentario',
+        'ligero' => 'Ligero', 
+        'moderado' => 'Moderado',
+        'activo' => 'Activo',
+        'muy_activo' => 'Muy Activo'
+    ];
+    return $niveles[$nivel] ?? ucfirst($nivel);
+}
+
+// Obtener datos con valores por defecto
+$estatura = formatearValor($datosSalud['estatura'] ?? null, 2);
+$peso = formatearValor($datosSalud['peso'] ?? null, 1);
+$imc = formatearValor($datosSalud['imc'] ?? null, 1);
+$tmb = formatearValor($datosSalud['tmb'] ?? null, 0);
+$get_calorias = formatearValor($datosSalud['get_calorias'] ?? null, 0);
+$nivel_actividad = formatearNivelActividad($datosSalud['nivel_actividad'] ?? null);
+$fecha_actualizacion = $datosSalud['fecha'] ?? null;
+
+// AGREGAR ESTA LÍNEA - Obtener edad desde la sesión
+$edad = $_SESSION['edad'] ?? '--';
+
+$estado_imc = obtenerEstadoIMC($datosSalud['imc'] ?? null);
+
+// Obtener inicial del género
+$inicial_genero = substr($_SESSION['genero'] ?? '--', 0, 1);
+
+// Verificar si hay datos de salud
+$hayDatosSalud = !empty($datosSalud['estatura']) || !empty($datosSalud['peso']) || !empty($datosSalud['imc']);
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-
   <title>HealthBott</title>
-
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=Edge">
   <meta name="description" content="">
@@ -59,7 +116,7 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
     <div class="collapse navbar-collapse justify-content-end" id="navbarUser">
       <ul class="navbar-nav mb-2 mb-lg-0 align-items-center">
         <li class="nav-item"><a class="nav-link" href="perfiluser.php">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" href="planes.php">Mis Planes</a></li>
+        <li class="nav-item"><a class="nav-link" href="view/planesUsuario.php">Mis Planes</a></li>
         <li class="nav-item"><a class="nav-link" href="progreso.php">Progreso</a></li>
         
         <!-- Select de Configuración -->
@@ -123,6 +180,12 @@ $datosSalud = $usuario->obtenerDatosSalud($_SESSION['nombre']);
     margin: 5px 0;
   }
 }
+
+/* Estilos para datos no disponibles */
+.no-data {
+    color: #6c757d;
+    font-style: italic;
+}
 </style>
 
 <script>
@@ -173,6 +236,15 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
             <h2 class="user-name"><?php echo $_SESSION['nombre'] . ' ' . $_SESSION['apellidos']; ?></h2>
             <p class="user-email"><?php echo $_SESSION['correousuario']; ?></p>
+            
+            <!-- Mensaje si no hay datos de salud -->
+            <?php if (!$hayDatosSalud): ?>
+            <div class="alert alert-info mt-3">
+              <i class="fa fa-info-circle"></i> 
+              Para ver tus métricas de salud, conversa con HealthBot y proporciona tu estatura, peso y nivel de actividad.
+            </div>
+            <?php endif; ?>
+            
             <div id="camara-check" style="text-align:center; margin-top:20px;">
 
               <button id="btnCamara"
@@ -213,52 +285,163 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="col-lg-6 col-md-6 col-12 mb-4" data-aos="fade-right" data-aos-delay="200">
           <div class="info-card p-4">
             <h5 class="card-title text-center mb-4">Tus datos</h5>
-            <div class="info-item mb-3">
-              <div class="info-label">Edad:</div>
-              <div class="info-value" id="userAge"><?php echo $_SESSION['edad']; ?></div>
-            </div>
-            <div class="info-item mb-3">
-              <div class="info-label">Estatura:</div>
-              <div class="info-value" id="userHeight">
-                <?= isset($datosSalud['estatura']) ? $datosSalud['estatura'] . ' m' : 'No registrada' ?>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <div class="data-metric-card text-center p-3">
+                  <div class="metric-number"><?php echo $_SESSION['edad']; ?></div>
+                  <div class="metric-category">Edad</div>
+                  <div class="metric-unit">años</div>
+                </div>
               </div>
-            </div>
-            <div class="info-item mb-3">
-              <div class="info-label">Peso:</div>
-              <div class="info-value" id="userWeight">
-                <?= isset($datosSalud['peso']) ? $datosSalud['peso'] . 'Kg' : 'No registrada' ?>
+              <div class="col-md-6">
+                <div class="data-metric-card text-center p-3">
+                  <div class="metric-number <?php echo $estatura === '--' ? 'no-data' : ''; ?>"><?php echo $estatura; ?></div>
+                  <div class="metric-category">Estatura</div>
+                  <div class="metric-unit">metros</div>
+                </div>
               </div>
-            </div>
-            <div class="info-item mb-3">
-              <div class="info-label">Género:</div>
-              <div class="info-value" id="userGender"><?php echo $_SESSION['genero']; ?></div>
+              <div class="col-md-6">
+                <div class="data-metric-card text-center p-3">
+                  <div class="metric-number <?php echo $peso === '--' ? 'no-data' : ''; ?>"><?php echo $peso; ?></div>
+                  <div class="metric-category">Peso</div>
+                  <div class="metric-unit">kilogramos</div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="data-metric-card text-center p-3">
+                  <div class="metric-number"><?php echo $inicial_genero; ?></div>
+                  <div class="metric-category">Género</div>
+                  <div class="metric-unit"><?php echo $_SESSION['genero'] ?? 'No especificado'; ?></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <div class="col-lg-6 col-md-6 col-12 mb-4" data-aos="fade-left" data-aos-delay="200">
-          <div class="info-card p-4">
-            <h5 class="card-title text-center mb-4">Análisis</h5>
-            <div class="info-item mb-3">
-              <div class="info-label">IMC:</div>
-              <div class="info-value" id="userIMC">
-                <?= isset($datosSalud['imc']) ? $datosSalud['imc'] : 'No registrada' ?>
-              </div>
+    <div class="info-card p-4">
+        <h5 class="card-title text-center mb-4">Análisis de Salud</h5>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="analysis-metric-card text-center p-3">
+                    <div class="metric-number <?php echo $imc === '--' ? 'no-data' : ''; ?>"><?php echo $imc; ?></div>
+                    <div class="metric-category">IMC</div>
+                    <div class="metric-status"><?php echo $estado_imc; ?></div>
+                </div>
             </div>
-            <div class="info-item mb-3">
-              <div class="info-label">TBM:</div>
-              <div class="info-value" id="userTBM">1700 kcal</div>
+            
+            <!-- Peso Ideal -->
+            <div class="col-md-6">
+                <div class="analysis-metric-card text-center p-3">
+                    <?php
+                    $peso_ideal = '--';
+                    if ($estatura !== '--') {
+                        // Fórmula simple para peso ideal (IMC 22)
+                        $peso_ideal_min = round(18.5 * ($estatura * $estatura), 1);
+                        $peso_ideal_max = round(24.9 * ($estatura * $estatura), 1);
+                        $peso_ideal = "$peso_ideal_min - $peso_ideal_max";
+                    }
+                    ?>
+                    <div class="metric-number <?php echo $peso_ideal === '--' ? 'no-data' : ''; ?>">
+                        <?php echo $peso_ideal; ?>
+                    </div>
+                    <div class="metric-category">Peso Ideal</div>
+                    <div class="metric-unit">kg</div>
+                </div>
             </div>
-            <div class="info-item mb-3">
-              <div class="info-label">Progreso:</div>
-              <div class="info-value" id="userProgress">En seguimiento</div>
+            
+            <!-- Edad Metabólica -->
+            <div class="col-md-6">
+                <div class="analysis-metric-card text-center p-3">
+                    <?php
+                    $edad_metabolica = '--';
+                    // Verificar que tenemos todos los datos necesarios
+                    if ($edad !== '--' && $imc !== '--' && is_numeric($imc)) {
+                        $imc_num = floatval($imc);
+                        $edad_num = intval($edad);
+                        
+                        // Estimación simple basada en IMC
+                        if ($imc_num > 25) {
+                            $edad_metabolica = $edad_num + 5; // +5 años si tiene sobrepeso
+                        } else if ($imc_num < 18.5) {
+                            $edad_metabolica = $edad_num - 2; // -2 años si está bajo peso
+                        } else {
+                            $edad_metabolica = $edad_num; // Misma edad si está en peso normal
+                        }
+                    }
+                    ?>
+                    <div class="metric-number <?php echo $edad_metabolica === '--' ? 'no-data' : ''; ?>">
+                        <?php echo $edad_metabolica; ?>
+                    </div>
+                    <div class="metric-category">Edad Metabólica</div>
+                    <div class="metric-unit">años</div>
+                </div>
             </div>
-            <div class="info-item mb-3">
-              <div class="info-label">Resumen:</div>
-              <div class="info-value" id="userSummary">Peso saludable</div>
+            
+            <!-- Calorías Diarias Recomendadas -->
+            <div class="col-md-6">
+                <div class="analysis-metric-card text-center p-3">
+                    <?php
+                    $calorias_diarias = '--';
+                    if ($peso !== '--' && is_numeric($peso)) {
+                        // Fórmula simple: peso * 25-30 para mantenimiento
+                        $calorias_min = round($peso * 25);
+                        $calorias_max = round($peso * 30);
+                        $calorias_diarias = "$calorias_min - $calorias_max";
+                    }
+                    ?>
+                    <div class="metric-number <?php echo $calorias_diarias === '--' ? 'no-data' : ''; ?>">
+                        <?php echo $calorias_diarias; ?>
+                    </div>
+                    <div class="metric-category">Calorías Diarias</div>
+                    <div class="metric-unit">kcal</div>
+                </div>
             </div>
-          </div>
+            
+            <!-- Macronutrientes -->
+            <div class="col-md-6">
+                <div class="analysis-metric-card text-center p-3">
+                    <div class="metric-rating" style="color: #4CAF50;">
+                        40-30-30
+                    </div>
+                    <div class="metric-category">Macros</div>
+                    <div class="metric-status">C-P-G</div>
+                </div>
+            </div>
+            
+            <!-- Planes Activos -->
+            <div class="col-md-6">
+                <div class="analysis-metric-card text-center p-3">
+                    <?php
+                    // Contar planes activos (esto vendría de la BD)
+                    $planes_activos = 1; // Por defecto
+                    ?>
+                    <div class="metric-number" style="color: #2196F3;">
+                        <?php echo $planes_activos; ?>
+                    </div>
+                    <div class="metric-category">Planes Activos</div>
+                    <div class="metric-status">En progreso</div>
+                </div>
+            </div>
         </div>
+        
+        <!-- Botón de acción -->
+        <div class="text-center mt-4">
+            <button class="btn btn-primary btn-sm" onclick="actualizarDatos()">
+                <i class="fa fa-refresh"></i> Actualizar Métricas
+            </button>
+        </div>
+        
+        <?php if ($hayDatosSalud && $fecha_actualizacion): ?>
+        <div class="text-center mt-3">
+            <small class="text-muted">
+                <i class="fa fa-clock-o"></i>
+                Actualizado: <?php echo date('d/m/Y', strtotime($fecha_actualizacion)); ?>
+            </small>
+        </div>
+        <?php endif; ?>
+    </div>
+</div>
       </div>
 
       <div class="row justify-content-center mt-4">
